@@ -41,13 +41,13 @@
 							<form method="post" action="{{ route('admin.createparent') }}" enctype="multipart/form-data">
 							@csrf
 
-                            @if (Session::get('success'))
-                            <div class="alert alert-success">
-                                {{ Session::get('success') }}
-                            </div>
-                            @endif
-          
-                            @if (Session::get('fail'))
+                @if (Session::get('success'))
+                <div class="alert alert-success">
+                    {{ Session::get('success') }}
+                </div>
+                @endif
+
+                @if (Session::get('fail'))
                             <div class="alert alert-danger">
                             {{ Session::get('fail') }}
                             @endif
