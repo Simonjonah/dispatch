@@ -36,7 +36,7 @@
 				<div class="row clearfix">
 					<!-- Info Column -->
 					<div class="info-column col-lg-6 col-md-12 col-sm-12">
-                        <h3>Details of Child's Parent (Father)</h3>
+                        <h3>Detail of Child's Parent (Father)</h3>
 						<div class="contactform">
 							<form method="post" action="{{ route('admin.createparent') }}" enctype="multipart/form-data">
 							@csrf
