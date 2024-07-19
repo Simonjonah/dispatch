@@ -113,7 +113,7 @@
 					<div class="social-column col-lg-6 col-md-6 col-sm-12">
 						<ul>
 							<li class="follow">Follow us: </li>
-							<li><a href="#"><span class="fa fa-facebook-square"></span></a></li>
+							<li><a href="https://www.facebook.com/share/czMH2jrc9MxwvErz/?mibextid=xfxF2i"><span class="fa fa-facebook-square"></span></a></li>
 							<li><a href="#"><span class="fa fa-twitter-square"></span></a></li>
 							<li><a href="#"><span class="fa fa-linkedin-square"></span></a></li>
 							<li><a href="#"><span class="fa fa-google-plus-square"></span></a></li>

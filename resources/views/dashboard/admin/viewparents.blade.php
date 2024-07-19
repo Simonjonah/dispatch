@@ -41,7 +41,7 @@
                     <th>F.name</th>
                     <th>F.Middlename</th>
                     <th>F.Last Name</th>
-                    <th>F.Title</th>
+                    <th>Marital Status</th>
                     <th>Phone</th>
                     <th>Email</th>
                     <th>Add Child</th>
@@ -52,8 +52,8 @@
                     <th>M.email</th>
                     <th>M.phone</th>
                     <th>M.Address</th>
-                    <th>M.Title</th>
-                    <th>M.Nationlity</th>
+                    <th>M.Tongue</th>
+                    <th>1st Emerg</th>
 
                     <th>Status</th>
                     <th>Action</th>
@@ -80,7 +80,7 @@
                         <td>{{ $view_parent->fathername }}</td>
                         <td>{{ $view_parent->fathermiddlename }}</td>
                         <td>{{ $view_parent->fathersurname }}</td>
-                        <td>{{ $view_parent->title }}</td>
+                        <td>{{ $view_parent->maritalstatus }}</td>
                         <td>{{ $view_parent->phone }}
                         
                          <small> <a href="{{ url('admin/viewchildren/'.$view_parent->ref_no) }}"
@@ -105,8 +105,8 @@
                         <td>{{ $view_parent->motheremail }}</td>
                         <td>{{ $view_parent->motherphone }}</td>
                         <td>{{ $view_parent->motheraddress }}</td>
-                        <td>{{ $view_parent->mothertitle }}</td>
-                        <td>{{ $view_parent->mothernationality }}</td>
+                        <td>{{ $view_parent->mothertongue }}</td>
+                        <td>{{ $view_parent->femergeno }}</td>
                       
                        
                        <td>@if ($view_parent->role == 'teacher')
@@ -124,11 +124,11 @@
                           Action
                         </button>
                         <ul class="dropdown-menu">
-                          <li class="dropdown-item"><a href="{{ url('admin/viewsingleteacher/'.$view_parent->ref_no) }}">View</a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/editstudent/'.$view_parent->ref_no) }}">Edit</a></li>
+                          <li class="dropdown-item"><a href="{{ url('admin/viewsingleparent/'.$view_parent->ref_no) }}">View</a></li>
+                          <li class="dropdown-item"><a href="{{ url('admin/editparent/'.$view_parent->ref_no) }}">Edit</a></li>
                           <li class="dropdown-item"><a href="{{ url('admin/studentsaddmit/'.$view_parent->ref_no) }}">Approved</a></li>
                           <li class="dropdown-item"><a href="{{ url('admin/suspendstudent/'.$view_parent->ref_no) }}">Suspend</a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/studentpdf/'.$view_parent->ref_no) }}">Print</a></li>
+                          <li class="dropdown-item"><a href="{{ url('admin/printparent/'.$view_parent->ref_no) }}">Print</a></li>
                           <li class="dropdown-item"><a href="{{ url('admin/rejectstudent/'.$view_parent->ref_no) }}">Reject</a></li>
                         </ul>
                       </div></td>
@@ -155,7 +155,7 @@
                         <th>F.name</th>
                         <th>F.Middlename</th>
                         <th>F.Last Name</th>
-                        <th>F.Title</th>
+                        <th>Marital Status</th>
                         <th>Phone</th>
                         <th>Email</th>
                         <th>Add Child</th>
@@ -166,8 +166,8 @@
                         <th>M.email</th>
                         <th>M.phone</th>
                         <th>M.Address</th>
-                        <th>M.Title</th>
-                        <th>M.Nationlity</th>
+                        <th>M.Tongue</th>
+                        <th>1st Emerg</th>
     
                         <th>Status</th>
                         <th>Action</th>
@@ -196,7 +196,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2023 <a href="httpS://BRIXTONNSCHOOLS.COM.NG">BRIXTONN SCHOOLS</a>.</strong> All rights
+    <strong>Copyright &copy; 2023 <a href="#">GOGIS</a>.</strong> All rights
     reserved.
   </footer>
 

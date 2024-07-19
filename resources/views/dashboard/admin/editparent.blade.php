@@ -38,9 +38,9 @@
 					<div class="info-column col-lg-6 col-md-12 col-sm-12">
                         <h3>Detail of Child's Parent (Father)</h3>
 						<div class="contactform">
-							<form method="post" action="{{ route('admin.createparent') }}" enctype="multipart/form-data">
+							<form method="post" action="{{ url('admin/updateparent/'.$edit_parent->ref_no) }}" enctype="multipart/form-data">
 							@csrf
-
+                    @method('PUT')
                 @if (Session::get('success'))
                 <div class="alert alert-success">
                     {{ Session::get('success') }}
@@ -53,20 +53,21 @@
                             @endif
 								<div class="form-group">
 									<h5>Surname</h5>
-									<input class="form-control" type="text" name="fathersurname" value="" placeholder="Surname" required="">
+									<input class="form-control" type="text" name="fathersurname" value="{{ $edit_parent->fathersurname }}" placeholder="Surname" required="">
 								</div>
 								
 								<div class="form-group">
 									<h5>First name</h5>
-									<input class="form-control" type="text" name="fathername" value="" placeholder="First Name" required="">
+									<input class="form-control" type="text" name="fathername" value="{{ $edit_parent->fathername }}" placeholder="First Name" required="">
 								</div>
 								<div class="form-group">
 									<h5>Middle name</h5>
-									<input class="form-control" type="text" name="fathermiddlename" value="" placeholder="Middle Name" required="">
+									<input class="form-control" type="text" name="fathermiddlename" value="{{ $edit_parent->fathermiddlename }}" placeholder="Middle Name" required="">
 								</div>
 								<div class="form-group">
 									<h5>Marital Status</h5>
                   <select name="maritalstatus" class="form-control">
+                    <option value="{{ $edit_parent->maritalstatus }}">{{ $edit_parent->maritalstatus }}</option>
                     <option value="Single">Single</option>
                     <option value="Married">Married</option>
                     <option value="Divorced">Divorced</option>
@@ -76,7 +77,7 @@
 								<div class="form-group">
 									<h5>Phone</h5>
                     <input type="text" class="form-control" @error('phone')
-                    @enderror value="{{ old('phone') }}" name="phone" placeholder="phone">
+                    @enderror value="{{ $edit_parent->phone }}" name="phone" placeholder="phone">
                 </div>
             
                 @error('phone')
@@ -87,7 +88,7 @@
                 <div class="form-group">
 									<h5>1st Contact Phone number</h5>
                     <input type="text" class="form-control" @error('femergeno')
-                    @enderror value="{{ old('femergeno') }}" name="femergeno" placeholder="1st Contact Phone number">
+                    @enderror value="{{ $edit_parent->femergeno }}" name="femergeno" placeholder="1st Contact Phone number">
                 </div>
             
                 @error('femergeno')
@@ -97,7 +98,7 @@
                 <div class="form-group">
 									<h5>2nd Contact Phone number</h5>
                     <input type="text" class="form-control" @error('semergeno')
-                    @enderror value="{{ old('semergeno') }}" name="semergeno" placeholder="2nd Contact Phone number">
+                    @enderror value="{{ $edit_parent->semergeno }}" name="semergeno" placeholder="2nd Contact Phone number">
                 </div>
             
                 @error('semergeno')
@@ -105,38 +106,39 @@
                 @enderror 
                    
                 <div class="form-group">
-									<h5>Nationality</h5>
-									<input class="form-control" type="text" name="nationality" value="" placeholder="Nationality" required="">
-								</div>
+                    <h5>Nationality</h5>
+                    <input class="form-control" type="text" name="nationality" value="{{ $edit_parent->nationality }}" placeholder="Nationality" required="">
+                </div>
                   <div class="form-group">
 									<h5>Father Occupation</h5>
-									<input class="form-control" type="text" name="fatheremployer" value="" placeholder="Father Occupation" required="">
+									<input class="form-control" type="text" name="fatheremployer" value="{{ $edit_parent->fatheremployer }}" placeholder="Father Occupation" required="">
 								</div>
 
                 <div class="form-group">
 									<h5>Religion</h5>
-									<input class="form-control" type="text" name="religion" value="" placeholder="Religion" required="">
+									<input class="form-control" type="text" name="religion" value="{{ $edit_parent->religion }}" placeholder="Religion" required="">
 								</div>
 
                   <div class="form-group">
-									<h5>Email</h5>
-									<input type="text" class="form-control" @error('email')
-                      @enderror value="{{ old('email') }}" name="email" placeholder="Email">
+                                <h5>Email</h5>
+                                <input type="text" class="form-control" @error('email')
+                    @enderror value="{{ $edit_parent->email }}" name="email" placeholder="Email">
                   </div>
                   
                   @error('email')
                   <span class="text-danger">{{ $message }}</span>
                   @enderror 
                    
-								<div class="form-group">
-									<h5>Address</h5>
-									<input class="form-control" type="text" name="fatheraddress" value="" placeholder="Address" required="">
-								</div>
+                <div class="form-group">
+                    <h5>Address</h5>
+                    <input class="form-control" type="text" name="fatheraddress" value="{{ $edit_parent->fatheraddress }}" placeholder="Address" required="">
+                </div>
                                
 
                 <div class="form-group">
                       <label for="exampleInputEmail1">Section</label>
                       <select name="section" class="form-control" required>
+                        <option value="{{ $edit_parent->section }}">{{ $edit_parent->section }}</option>
                       <option value="Creche">Creche</option>
                       <option value="Pre-Nursery">Pre-Nursery</option>
                       <option value="Primary">Primary</option>
@@ -156,35 +158,35 @@
                         <h3>Details of Child's Parent (Mother)</h3>
 						            <div class="form-group">
                             <h5>Surname</h5>
-                            <input class="form-control" type="text" name="mothersurname" value="" placeholder="Surname" required="">
+                            <input class="form-control" type="text" name="mothersurname" value="{{ $edit_parent->mothersurname }}" placeholder="Surname" required="">
                         </div>
                         
                         <div class="form-group">
                             <h5>First name</h5>
-                            <input class="form-control" type="text" name="mothername" value="" placeholder="First Name" required="">
+                            <input class="form-control" type="text" name="mothername" value="{{ $edit_parent->mothername }}" placeholder="First Name" required="">
                         </div>
                         <div class="form-group">
                             <h5>Middle name</h5>
-                            <input class="form-control" type="text" name="mothermiddlename" value="" placeholder="Middle Name" required="">
+                            <input class="form-control" type="text" name="mothermiddlename" value="{{ $edit_parent->mothermiddlename }}" placeholder="Middle Name" required="">
                         </div>
                         <div class="form-group">
                             <h5>Child's Mother Tongue</h5>
-                            <input class="form-control" type="text" name="mothertongue" value="" placeholder="Child's Mother Tongue" required="">
+                            <input class="form-control" type="text" name="mothertongue" value="{{ $edit_parent->mothertongue }}" placeholder="Child's Mother Tongue" required="">
                         </div>
                         <div class="form-group">
                             <h5>Mother Phone</h5>
-                            <input class="form-control" type="text" name="motherphone" value="" placeholder="Phone Number" required="">
+                            <input class="form-control" type="text" name="motherphone" value="{{ $edit_parent->motherphone }}" placeholder="Phone Number" required="">
                         </div>
                         
                         <div class="form-group">
                             <h5>Mother Occupation</h5>
-                            <input class="form-control" type="text" name="motheremployer" value="" placeholder="Employer" required="">
+                            <input class="form-control" type="text" name="motheremployer" value="{{ $edit_parent->motheremployer }}" placeholder="Employer" required="">
                         </div>
 
                         <div class="form-group">
                             <h5>Mother Email</h5>
                             <input class="form-control" type="text" name="motheremail"@error('motheremail')
-                          @enderror value="{{ old('motheremail') }}" name="motheremail" placeholder="Mother Email">
+                          @enderror value="{{ $edit_parent->motheremail }}" name="motheremail" placeholder="Mother Email">
                     </div>
                   
                   @error('motheremail')
@@ -192,12 +194,12 @@
                   @enderror 
                         <div class="form-group">
                             <h5>Mother Address</h5>
-                            <input class="form-control" type="text" name="motheraddress" value="" placeholder="Address" required="">
+                            <input class="form-control" type="text" name="motheraddress" value="{{ $edit_parent->motheraddress }}" placeholder="Address" required="">
                         </div>
 
                         <div class="form-group">
                             <h5>Who will be bringing your Child to School and also take home?</h5>
-                            <textarea name="whobring" class="form-control" placeholder="List them here"></textarea>
+                            <textarea name="whobring" class="form-control" placeholder="List them here">{{ $edit_parent->whobring }}</textarea>
                             <!-- <input class="form-control" type="text" name="motheraddress" value="" placeholder="Address" required=""> -->
                         </div>
                         

@@ -1,25 +1,29 @@
 @include('pages.common.header')
 	<!--Main Slider-->
-    <section class="main-slider style-two">
-
-		<div class="main-slider-carousel owl-carousel owl-theme">
+    <section class="main-slider style-four">
+        <div class="main-slider-carousel owl-carousel owl-theme">
 			@foreach ($view_sliders as $view_slider)
-            	<div class="slide" style="background-image:url({{ URL::asset("/public/../$view_slider->images")}});  background-size: cover; background-repeat: no-repeat; background-position: center;">
-
-				<!-- <div class="slide" style="background-image:url(front/images/main-slider/3.jpg)"> -->
-					<div class="auto-container">
-						<div class="content alternate">
-							<h1 class="alternate">{{ $view_slider->name}}</span></h1>
-							<div class="text alternate">{{ $view_slider->facts }}</div>
-							<div class="btn-box">
-								<a href="{{ url('admissionform') }}" class="btn btn-dark btn-lg">Apply now</a>
-							</div>
+				
+            <div class="slide" style="background-image:url({{ URL::asset("/public/../$view_slider->images")}});  background-size: cover; background-repeat: no-repeat; background-position: center;">
+                <div class="auto-container">
+					<div class="content">
+						<div class="title">{{ $view_slider->name }}</div>
+						<h2 style="color: #fff; font-weight: bold">{{ $view_slider->name }}</h2>
+						<div class="text">{{ $view_slider->facts }}</div>
+						<div class="link-box">
+							<a href="contact" class="theme-btn btn-style-twelve">Let’s start now <span class="fa fa-angle-right"></span></a>
+							<!-- <a href="services" class="theme-btn btn-style-thirteen">Our services <span class="fa fa-angle-right"></span></a> -->
 						</div>
 					</div>
-				</div>
+                </div>
+            </div>
 			@endforeach
-        </div>	
-	</section>
+
+		</div>
+
+    </section>
+    <!--End Main Slider-->
+
 	
 	<!-- Services Section Three-->
 	<section class="services-section-three">

@@ -53,20 +53,21 @@
                             @endif
 								<div class="form-group">
 									<h5>Surname</h5>
-									<input class="form-control" type="text" name="fathersurname" value="" placeholder="Surname" required="">
+									<input class="form-control" type="text" name="fathersurname" value="{{ $viewsingle_parent->fathersurname }}" placeholder="Surname" required="">
 								</div>
 								
 								<div class="form-group">
 									<h5>First name</h5>
-									<input class="form-control" type="text" name="fathername" value="" placeholder="First Name" required="">
+									<input class="form-control" type="text" name="fathername" value="{{ $viewsingle_parent->fathername }}" placeholder="First Name" required="">
 								</div>
 								<div class="form-group">
 									<h5>Middle name</h5>
-									<input class="form-control" type="text" name="fathermiddlename" value="" placeholder="Middle Name" required="">
+									<input class="form-control" type="text" name="fathermiddlename" value="{{ $viewsingle_parent->fathermiddlename }}" placeholder="Middle Name" required="">
 								</div>
 								<div class="form-group">
 									<h5>Marital Status</h5>
                   <select name="maritalstatus" class="form-control">
+                    <option value="{{ $viewsingle_parent->maritalstatus }}">{{ $viewsingle_parent->maritalstatus }}</option>
                     <option value="Single">Single</option>
                     <option value="Married">Married</option>
                     <option value="Divorced">Divorced</option>
@@ -76,7 +77,7 @@
 								<div class="form-group">
 									<h5>Phone</h5>
                     <input type="text" class="form-control" @error('phone')
-                    @enderror value="{{ old('phone') }}" name="phone" placeholder="phone">
+                    @enderror value="{{ $viewsingle_parent->phone }}" name="phone" placeholder="phone">
                 </div>
             
                 @error('phone')
@@ -87,7 +88,7 @@
                 <div class="form-group">
 									<h5>1st Contact Phone number</h5>
                     <input type="text" class="form-control" @error('femergeno')
-                    @enderror value="{{ old('femergeno') }}" name="femergeno" placeholder="1st Contact Phone number">
+                    @enderror value="{{ $viewsingle_parent->femergeno }}" name="femergeno" placeholder="1st Contact Phone number">
                 </div>
             
                 @error('femergeno')
@@ -97,7 +98,7 @@
                 <div class="form-group">
 									<h5>2nd Contact Phone number</h5>
                     <input type="text" class="form-control" @error('semergeno')
-                    @enderror value="{{ old('semergeno') }}" name="semergeno" placeholder="2nd Contact Phone number">
+                    @enderror value="{{ $viewsingle_parent->semergeno }}" name="semergeno" placeholder="2nd Contact Phone number">
                 </div>
             
                 @error('semergeno')
@@ -105,38 +106,39 @@
                 @enderror 
                    
                 <div class="form-group">
-									<h5>Nationality</h5>
-									<input class="form-control" type="text" name="nationality" value="" placeholder="Nationality" required="">
-								</div>
+                    <h5>Nationality</h5>
+                    <input class="form-control" type="text" name="nationality" value="{{ $viewsingle_parent->nationality }}" placeholder="Nationality" required="">
+                </div>
                   <div class="form-group">
 									<h5>Father Occupation</h5>
-									<input class="form-control" type="text" name="fatheremployer" value="" placeholder="Father Occupation" required="">
+									<input class="form-control" type="text" name="fatheremployer" value="{{ $viewsingle_parent->fatheremployer }}" placeholder="Father Occupation" required="">
 								</div>
 
                 <div class="form-group">
 									<h5>Religion</h5>
-									<input class="form-control" type="text" name="religion" value="" placeholder="Religion" required="">
+									<input class="form-control" type="text" name="religion" value="{{ $viewsingle_parent->religion }}" placeholder="Religion" required="">
 								</div>
 
                   <div class="form-group">
-									<h5>Email</h5>
-									<input type="text" class="form-control" @error('email')
-                      @enderror value="{{ old('email') }}" name="email" placeholder="Email">
+                                <h5>Email</h5>
+                                <input type="text" class="form-control" @error('email')
+                    @enderror value="{{ $viewsingle_parent->email }}" name="email" placeholder="Email">
                   </div>
                   
                   @error('email')
                   <span class="text-danger">{{ $message }}</span>
                   @enderror 
                    
-								<div class="form-group">
-									<h5>Address</h5>
-									<input class="form-control" type="text" name="fatheraddress" value="" placeholder="Address" required="">
-								</div>
+                <div class="form-group">
+                    <h5>Address</h5>
+                    <input class="form-control" type="text" name="fatheraddress" value="{{ $viewsingle_parent->fatheraddress }}" placeholder="Address" required="">
+                </div>
                                
 
                 <div class="form-group">
                       <label for="exampleInputEmail1">Section</label>
                       <select name="section" class="form-control" required>
+                        <option value="{{ $viewsingle_parent->section }}">{{ $viewsingle_parent->section }}</option>
                       <option value="Creche">Creche</option>
                       <option value="Pre-Nursery">Pre-Nursery</option>
                       <option value="Primary">Primary</option>
@@ -156,35 +158,35 @@
                         <h3>Details of Child's Parent (Mother)</h3>
 						            <div class="form-group">
                             <h5>Surname</h5>
-                            <input class="form-control" type="text" name="mothersurname" value="" placeholder="Surname" required="">
+                            <input class="form-control" type="text" name="mothersurname" value="{{ $viewsingle_parent->mothersurname }}" placeholder="Surname" required="">
                         </div>
                         
                         <div class="form-group">
                             <h5>First name</h5>
-                            <input class="form-control" type="text" name="mothername" value="" placeholder="First Name" required="">
+                            <input class="form-control" type="text" name="mothername" value="{{ $viewsingle_parent->mothername }}" placeholder="First Name" required="">
                         </div>
                         <div class="form-group">
                             <h5>Middle name</h5>
-                            <input class="form-control" type="text" name="mothermiddlename" value="" placeholder="Middle Name" required="">
+                            <input class="form-control" type="text" name="mothermiddlename" value="{{ $viewsingle_parent->mothermiddlename }}" placeholder="Middle Name" required="">
                         </div>
                         <div class="form-group">
                             <h5>Child's Mother Tongue</h5>
-                            <input class="form-control" type="text" name="mothertongue" value="" placeholder="Child's Mother Tongue" required="">
+                            <input class="form-control" type="text" name="mothertongue" value="{{ $viewsingle_parent->mothertongue }}" placeholder="Child's Mother Tongue" required="">
                         </div>
                         <div class="form-group">
                             <h5>Mother Phone</h5>
-                            <input class="form-control" type="text" name="motherphone" value="" placeholder="Phone Number" required="">
+                            <input class="form-control" type="text" name="motherphone" value="{{ $viewsingle_parent->motherphone }}" placeholder="Phone Number" required="">
                         </div>
                         
                         <div class="form-group">
                             <h5>Mother Occupation</h5>
-                            <input class="form-control" type="text" name="motheremployer" value="" placeholder="Employer" required="">
+                            <input class="form-control" type="text" name="motheremployer" value="{{ $viewsingle_parent->motheremployer }}" placeholder="Employer" required="">
                         </div>
 
                         <div class="form-group">
                             <h5>Mother Email</h5>
                             <input class="form-control" type="text" name="motheremail"@error('motheremail')
-                          @enderror value="{{ old('motheremail') }}" name="motheremail" placeholder="Mother Email">
+                          @enderror value="{{ $viewsingle_parent->motheremail }}" name="motheremail" placeholder="Mother Email">
                     </div>
                   
                   @error('motheremail')
@@ -192,12 +194,12 @@
                   @enderror 
                         <div class="form-group">
                             <h5>Mother Address</h5>
-                            <input class="form-control" type="text" name="motheraddress" value="" placeholder="Address" required="">
+                            <input class="form-control" type="text" name="motheraddress" value="{{ $viewsingle_parent->motheraddress }}" placeholder="Address" required="">
                         </div>
 
                         <div class="form-group">
                             <h5>Who will be bringing your Child to School and also take home?</h5>
-                            <textarea name="whobring" class="form-control" placeholder="List them here"></textarea>
+                            <textarea name="whobring" class="form-control" placeholder="List them here">{{ $viewsingle_parent->whobring }}</textarea>
                             <!-- <input class="form-control" type="text" name="motheraddress" value="" placeholder="Address" required=""> -->
                         </div>
                         

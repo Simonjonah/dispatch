@@ -84,8 +84,8 @@ return new class extends Migration
             $table->string('state', 100)->nullable();
             $table->string('term', 100)->nullable();
             $table->string('role', 20)->nullable();
-            $table->string('1st_emergeno', 20)->nullable();
-            $table->string('2nd_emergeno', 20)->nullable();
+            $table->string('semergeno', 20)->nullable();
+            $table->string('femergeno', 20)->nullable();
             $table->string('regnumber', 20)->nullable();
             $table->string('password_resets')->nullable();
             

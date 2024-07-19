@@ -357,7 +357,7 @@ class UserController extends Controller
             'fname' => ['nullable', 'string', 'max:255'],
             'surname' => ['nullable', 'string'],
             // 'email' => ['nullable', 'string'],
-            'centername' => ['nullable', 'string'],
+            // 'centername' => ['nullable', 'string'],
             //'phone' => ['nullable', 'string'],
             'middlename' => ['nullable', 'string'],
             'monthofentry' => ['nullable', 'string'],
@@ -1306,7 +1306,7 @@ class UserController extends Controller
             'fatheraddress' => ['required', 'string', 'max:255'],
             'term' => ['required', 'string', 'max:255'],
             'classname' => ['required', 'string', 'max:255'],
-            'centername' => ['required', 'string', 'max:255'],
+            // 'centername' => ['required', 'string', 'max:255'],
             'images' => 'required|mimes:jpg,png,jpeg,jfif',
         ]);
         // dd($request->all());
@@ -1340,32 +1340,31 @@ class UserController extends Controller
 
 
     public function createparent(Request $request){
-
         $request->validate([
             'section' => ['required', 'string'],
-
             'fathersurname' => ['required', 'string'],
             'fathername' => ['required', 'string'],
             'fathermiddlename' => ['required', 'string'],
-            'title' => ['required', 'string'],
+            'maritalstatus' => ['required', 'string'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone' => ['required', 'string', 'unique:users'],
-
             'nationality' => ['required', 'string'],
             'fatheremployer' => ['required', 'string'],
             'fatheraddress' => ['required', 'string'],
             'mothersurname' => ['required', 'string'],
             'mothername' => ['required', 'string'],
             'mothermiddlename' => ['required', 'string'],
-            'mothertitle' => ['required', 'string'],
+            'mothertongue' => ['required', 'string'],
             'motherphone' => ['nullable', 'string'],
-            'mothernationality' => ['required', 'string'],
+            'femergeno' => ['required', 'string'],
+            'semergeno' => ['required', 'string'],
             'motheremployer' => ['required', 'string'],
-            'motheremail' => ['nullable', 'string'],
+            'motheremail' => ['nullable', 'string', 'unique:users'],
             'motheraddress' => ['required', 'string'],
-            'password' => ['required', 'string'],
+            'whobring' => ['required', 'string'],
+            'religion' => ['required', 'string'],
+            // 'password' => ['required', 'string'],
 
-            
         ]);
 
         // dd($request->all());
@@ -1374,7 +1373,7 @@ class UserController extends Controller
         $add_parent->fathersurname = $request->fathersurname;
         $add_parent->fathername = $request->fathername;
         $add_parent->fathermiddlename = $request->fathermiddlename;
-        $add_parent->title = $request->title;
+        $add_parent->maritalstatus = $request->maritalstatus;
         $add_parent->phone = $request->phone;
         $add_parent->nationality = $request->nationality;
         $add_parent->fatheremployer = $request->fatheremployer;
@@ -1383,19 +1382,20 @@ class UserController extends Controller
         $add_parent->mothersurname = $request->mothersurname;
         $add_parent->mothername = $request->mothername;
         $add_parent->mothermiddlename = $request->mothermiddlename;
-        $add_parent->mothertitle = $request->mothertitle;
+        $add_parent->femergeno = $request->femergeno;
+        $add_parent->semergeno = $request->semergeno;
         $add_parent->motherphone = $request->motherphone;
         $add_parent->mothernationality = $request->mothernationality;
         $add_parent->motheremployer = $request->motheremployer;
         $add_parent->motheremail = $request->motheremail;
         $add_parent->motheraddress = $request->motheraddress;
-        // $add_parent->centername = $request->centername;
+        $add_parent->mothertongue = $request->mothertongue;
+        $add_parent->religion = $request->religion;
+        $add_parent->whobring = $request->whobring;
         $add_parent->section = $request->section;
         $add_parent->assign = 'parent';
         $add_parent->password = \Hash::make($request->phone);
-        
         $add_parent->ref_no = substr(rand(0,time()),0, 9);
-
         $add_parent->save();
 
         return redirect()->back()->with('success', 'You have added a parent sucessfully');
@@ -1404,6 +1404,80 @@ class UserController extends Controller
     }
 
 
+    
+    public function updateparent(Request $request, $ref_no){
+        $edit_parent = User::where('ref_no', $ref_no)->first();
+        $request->validate([
+            'section' => ['required', 'string'],
+            'fathersurname' => ['required', 'string'],
+            'fathername' => ['required', 'string'],
+            'fathermiddlename' => ['required', 'string'],
+            'maritalstatus' => ['required', 'string'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'phone' => ['required', 'string'],
+            'nationality' => ['required', 'string'],
+            'fatheremployer' => ['required', 'string'],
+            'fatheraddress' => ['required', 'string'],
+            'mothersurname' => ['required', 'string'],
+            'mothername' => ['required', 'string'],
+            'mothermiddlename' => ['required', 'string'],
+            'mothertongue' => ['required', 'string'],
+            'motherphone' => ['nullable', 'string'],
+            'femergeno' => ['required', 'string'],
+            'semergeno' => ['required', 'string'],
+            'motheremployer' => ['required', 'string'],
+            'motheremail' => ['nullable', 'string'],
+            'motheraddress' => ['required', 'string'],
+            'whobring' => ['required', 'string'],
+            'religion' => ['required', 'string'],
+            // 'password' => ['required', 'string'],
+
+        ]);
+
+        // dd($request->all());
+      
+        $edit_parent->fathersurname = $request->fathersurname;
+        $edit_parent->fathername = $request->fathername;
+        $edit_parent->fathermiddlename = $request->fathermiddlename;
+        $edit_parent->maritalstatus = $request->maritalstatus;
+        $edit_parent->phone = $request->phone;
+        $edit_parent->nationality = $request->nationality;
+        $edit_parent->fatheremployer = $request->fatheremployer;
+        $edit_parent->email = $request->email;
+        $edit_parent->fatheraddress = $request->fatheraddress;
+        $edit_parent->mothersurname = $request->mothersurname;
+        $edit_parent->mothername = $request->mothername;
+        $edit_parent->mothermiddlename = $request->mothermiddlename;
+        $edit_parent->femergeno = $request->femergeno;
+        $edit_parent->semergeno = $request->semergeno;
+        $edit_parent->motherphone = $request->motherphone;
+        $edit_parent->mothernationality = $request->mothernationality;
+        $edit_parent->motheremployer = $request->motheremployer;
+        $edit_parent->motheremail = $request->motheremail;
+        $edit_parent->motheraddress = $request->motheraddress;
+        $edit_parent->mothertongue = $request->mothertongue;
+        $edit_parent->religion = $request->religion;
+        $edit_parent->whobring = $request->whobring;
+        $edit_parent->section = $request->section;
+        $edit_parent->update();
+
+        return redirect()->back()->with('success', 'You have added a parent sucessfully');
+        // return redirect()->route('thirdregistration', ['ref_no' =>$addsec_admission->ref_no]); 
+
+    }
+
+    
+
+    public function viewsingleparent($ref_no){
+        $viewsingle_parent = User::where('ref_no', $ref_no)->first();
+        return view('dashboard.admin.viewsingleparent', compact('viewsingle_parent'));
+    }
+
+    // public function editparent($ref_no){
+    //     $edit_parent = User::where('ref_no', $ref_no)->first();
+    //     return view('dashboard.admin.editparent', compact('edit_parent'));
+    // }
+    
     public function createparenthead(Request $request){
 
         $request->validate([
@@ -1769,9 +1843,9 @@ class UserController extends Controller
 
      public function editparent($ref_no){
         $edit_parent = User::where('ref_no', $ref_no)->first();
-        $addcenters = Studycenter::all();
+        
       
-        return view('dashboard.editparent', compact('edit_parent', 'addcenters'));
+        return view('dashboard.admin.editparent', compact('edit_parent'));
      }
 
      

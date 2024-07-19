@@ -410,11 +410,14 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::post('/createparent', [UserController::class, 'createparent'])->name('createparent');
         Route::post('/createadmissionadmin', [UserController::class, 'createadmissionadmin'])->name('createadmissionadmin');
         Route::get('/viewparents', [UserController::class, 'viewparents'])->name('viewparents');
+        Route::get('/viewsingleparent/{ref_no}', [UserController::class, 'viewsingleparent'])->name('viewsingleparent');
+        Route::get('/editparent/{ref_no}', [UserController::class, 'editparent'])->name('editparent');
+        Route::put('/updateparent/{ref_no}', [UserController::class, 'updateparent'])->name('updateparent');
         
         Route::get('/studentsaddmit1/{ref_no1}', [UserController::class, 'studentsaddmit1'])->name('studentsaddmit1');
         Route::get('/addchild/{ref_no}', [UserController::class, 'addchild'])->name('addchild');
         Route::get('/viewchildren/{ref_no}', [UserController::class, 'viewchildren'])->name('viewchildren');
-        Route::put('/updateparent/{ref_no}', [StudentParentController::class, 'updateparent'])->name('updateparent');
+        Route::put('/updateparent/{ref_no}', [UserController::class, 'updateparent'])->name('updateparent');
         Route::get('/addchild/{id}', [StudentParentController::class, 'addchild'])->name('addchild');
         Route::post('/add_childto_parents', [UserController::class, 'add_childto_parents'])->name('add_childto_parents');
         Route::get('/parentochild/{id}', [StudentParentController::class, 'parentochild'])->name('parentochild');
