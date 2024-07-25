@@ -54,6 +54,9 @@ $.widget.bridge('uibutton', $.ui.button)
 <!-- Toastr -->
 <script src="{{  asset('assets/plugins/toastr/toastr.min.js') }}"></script>
 
+<!-- <script src="../../plugins/summernote/summernote-bs4.min.js"></script> -->
+
+
 {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
@@ -128,6 +131,11 @@ $('#title').change(function(e) {
    }
    );
 });
+
+  $(function () {
+    // Summernote
+    $('.textarea').summernote()
+  })
 </script>
 </body>
 </html>

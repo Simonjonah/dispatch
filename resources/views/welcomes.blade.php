@@ -317,6 +317,49 @@
 	</section>
 	<!-- End Faq Section -->
 	
+
+	
+	<!-- Testimonial Section Two -->
+	<section class="testimonial-section-two">
+		<div class="image-layer" style="background-image:url({{ asset('front/images/gallery/about.jpeg') }})"></div>
+		<div class="auto-container">
+			<h2 style="color: red;">What some  <span>clients Say</span></h2>
+			<div class="testimonial-carousel-two owl-carousel owl-theme">
+				
+				<!-- Testimonial Block -->
+				@foreach ($view_testimonies as $view_testimony)
+
+				<div class="testimonial-block-three">
+					<div class="inner-box">
+
+						<div class="row clearfix">
+							<!-- Image Column -->
+							 <div class="image-column col-lg-3 col-md-4 col-sm-12">
+								<div class="inner-column">
+									<div class="image">
+										<img style="height: 200px; with: 60px;" src="{{ URL::asset("/public/../$view_testimony->images")}}" alt="" />
+									</div>
+								</div>
+							</div>
+							<!-- Content Column -->
+							<div class="content-column col-lg-9 col-md-8 col-sm-12">
+								<div class="inner-column">
+									<div class="text"><span class="icon flaticon-left-quote"></span>{!! $view_testimony->message !!}.</div>
+									<h5>{{ $view_testimony->surname }} {{ $view_testimony->fname }}</h5>
+									<div class="designation">{{ $view_testimony->designation }}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				@endforeach
+				
+			</div>
+		</div>
+	</section>
+	<!-- End Testimonial Section Two -->
+	
+
 	<!-- News Section Two -->
 	<section class="news-section-two" style="margin-bottom: 50px;">
 		<div class="auto-container">
@@ -355,5 +398,31 @@
 	</section>
 	
 	
+
+	<!--Sponsors Section-->
+	<section class="sponsors-section">
+		<div class="auto-container">
+			
+			<div class="carousel-outer">
+                <!--Sponsors Slider-->
+                <ul class="sponsors-carousel owl-carousel owl-theme">
+                    <li><div class="image-box"><a href="#"><img src="images/clients/1.png" alt=""></a></div></li>
+                    <li><div class="image-box"><a href="#"><img src="images/clients/2.png" alt=""></a></div></li>
+                    <li><div class="image-box"><a href="#"><img src="images/clients/3.png" alt=""></a></div></li>
+                    <li><div class="image-box"><a href="#"><img src="images/clients/4.png" alt=""></a></div></li>
+                    <li><div class="image-box"><a href="#"><img src="images/clients/5.png" alt=""></a></div></li>
+                    <li><div class="image-box"><a href="#"><img src="images/clients/6.png" alt=""></a></div></li>
+					<li><div class="image-box"><a href="#"><img src="images/clients/1.png" alt=""></a></div></li>
+                    <li><div class="image-box"><a href="#"><img src="images/clients/2.png" alt=""></a></div></li>
+                    <li><div class="image-box"><a href="#"><img src="images/clients/3.png" alt=""></a></div></li>
+                    <li><div class="image-box"><a href="#"><img src="images/clients/4.png" alt=""></a></div></li>
+                    <li><div class="image-box"><a href="#"><img src="images/clients/5.png" alt=""></a></div></li>
+                    <li><div class="image-box"><a href="#"><img src="images/clients/6.png" alt=""></a></div></li>
+                </ul>
+            </div>
+			
+		</div>
+	</section>
+	<!--End Sponsors Section-->
 	<!-- End Call To Action Two -->
 	@include('pages.common.footer')

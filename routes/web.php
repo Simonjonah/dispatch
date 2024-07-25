@@ -11,6 +11,8 @@ use App\Http\Controllers\StudentParentController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\FlutterwaveController;
+use App\Http\Controllers\TeacherofweekController;
+use App\Http\Controllers\MarketController;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -46,6 +48,8 @@ use App\Models\Studycenter;
 use App\Models\Classname;
 use App\Models\Club1;
 use App\Models\Facility;
+use App\Models\Testimony;
+use App\Models\Teacherofweek;
 
 
 
@@ -68,8 +72,10 @@ Route::get('/', function () {
     $view_events = Event::latest()->where('status', 'approved')->get();
     $view_blogs = Blog::latest()->take(3)->where('status', 'approved')->get();
     $view_sliders = Mainslider::orderby('created_at', 'ASC')->get();
+    $view_testimonies = Testimony::latest()->get();
+    
 
-    return view('welcomes', compact('view_sliders', 'view_teams', 'view_events', 'view_blogs'));
+    return view('welcomes', compact('view_testimonies', 'view_sliders', 'view_teams', 'view_events', 'view_blogs'));
 });
 
 Route::get('/ourevents', function () {
@@ -141,7 +147,33 @@ Route::get('/admissionform', function () {
     return view('pages.admissionform');
 });
 
+Route::get('/teacherofweek', function () {
+    $view_teachersofweeks = Teacherofweek::where('role', 'Teacher of the Week')->latest()->get();
+    $view_teachersofmonths = Teacherofweek::where('role', 'Teacher of the Month')->latest()->get();
+    $view_teachersofyears = Teacherofweek::where('role', 'Teacher of the Year')->latest()->get();
+    return view('pages.teacherofweek', compact('view_teachersofyears', 'view_teachersofweeks', 'view_teachersofmonths'));
+});
 
+Route::get('/parentsweek', function () {
+    $view_teachersofweeks = Teacherofweek::where('role', 'Parent of the Week')->latest()->get();
+    $view_teachersofmonths = Teacherofweek::where('role', 'Parent of the Month')->latest()->get();
+    $view_teachersofyears = Teacherofweek::where('role', 'Parent of the Year')->latest()->get();
+    return view('pages.parentsweek', compact('view_teachersofyears', 'view_teachersofweeks', 'view_teachersofmonths'));
+});
+
+
+Route::get('/pupilsofweek', function () {
+    $view_teachersofweeks = Teacherofweek::where('role', 'Pupils of the Week')->latest()->get();
+    $view_teachersofmonths = Teacherofweek::where('role', 'Pupils of the Month')->latest()->get();
+    $view_teachersofyears = Teacherofweek::where('role', 'Pupils of the Year')->latest()->get();
+    return view('pages.pupilsofweek', compact('view_teachersofyears', 'view_teachersofweeks', 'view_teachersofmonths'));
+});
+
+Route::get('/viewsingleactivity/{ref_no}', function ($ref_no) {
+    $view_singleact = Teacherofweek::where('ref_no', $ref_no)->first();
+    $allactivities = Teacherofweek::latest()->take(10)->get();
+    return view('pages.viewsingleactivity', compact('allactivities', 'view_singleact'));
+});
 
 
 
@@ -210,6 +242,24 @@ Route::prefix('admin')->name('admin.')->group(function() {
     // dns1.web-hosting.com
     Route::middleware(['auth:admin'])->group(function() {
         
+        Route::get('/addmarkets', [MarketController::class, 'addmarkets'])->name('addmarkets');
+        Route::get('/parentofyear', [TeacherofweekController::class, 'parentofyear'])->name('parentofyear');
+        Route::get('/parentofmonth', [TeacherofweekController::class, 'parentofmonth'])->name('parentofmonth');
+        Route::get('/viewparentweek', [TeacherofweekController::class, 'viewparentweek'])->name('viewparentweek');
+        Route::get('/teacherofyear', [TeacherofweekController::class, 'teacherofyear'])->name('teacherofyear');
+        Route::get('/teacherofmonth', [TeacherofweekController::class, 'teacherofmonth'])->name('teacherofmonth');
+        Route::get('/viewteacherweek', [TeacherofweekController::class, 'viewteacherweek'])->name('viewteacherweek');
+        Route::get('/pupilofyear', [TeacherofweekController::class, 'pupilofyear'])->name('pupilofyear');
+        Route::get('/pupilofmonth', [TeacherofweekController::class, 'pupilofmonth'])->name('pupilofmonth');
+        Route::get('/performancedelete/{ref_no}', [TeacherofweekController::class, 'performancedelete'])->name('performancedelete');
+        Route::get('/performancesuspend/{ref_no}', [TeacherofweekController::class, 'performancesuspend'])->name('performancesuspend');
+        Route::get('/performanceapprove/{ref_no}', [TeacherofweekController::class, 'performanceapprove'])->name('performanceapprove');
+        Route::post('/updatectivities/{ref_no}', [TeacherofweekController::class, 'updatectivities'])->name('updatectivities');
+        Route::get('/editperformance/{ref_no}', [TeacherofweekController::class, 'editperformance'])->name('editperformance');
+        Route::get('/viewperformance/{ref_no}', [TeacherofweekController::class, 'viewperformance'])->name('viewperformance');
+        Route::get('/viewpupilsweek', [TeacherofweekController::class, 'viewpupilsweek'])->name('viewpupilsweek');
+        Route::post('/createactivities', [TeacherofweekController::class, 'createactivities'])->name('createactivities');
+        Route::get('/addativityofweek', [TeacherofweekController::class, 'addativityofweek'])->name('addativityofweek');
         Route::get('/editresultmidtermadmin/{id}', [ResultController::class, 'editresultmidtermadmin'])->name('editresultmidtermadmin');
         Route::post('/createadminbyparents', [UserController::class, 'createadminbyparents'])->name('createadminbyparents');
         Route::put('/updatemidtermresultad/{id}', [ResultController::class, 'updatemidtermresultad'])->name('updatemidtermresultad');

@@ -14,85 +14,102 @@
     </section>
     <!--End Page Title-->
 
+	
 	<!-- Services Section Ten -->
-	<section class="services-section-ten style-two">
+	<section class="services-section-ten">
 		<div class="auto-container">
 			<!-- Sec Title -->
-			<div class="sec-title centered">
-				
-				<h2>Our <span style="color: pink"> Services </span></h2>
+			<div class="sec-title-three centered">
+				<div class="title">Our services</div>
+				<h2>Our services</h2>
 			</div>
 			<div class="row clearfix">
 
 				<!-- Services Block Fourteen -->
-				<div class="services-block-fourteen style-two col-lg-3 col-md-6 col-sm-12">
+				<div class="services-block-fourteen col-lg-3 col-md-6 col-sm-12">
 					<div class="inner-box wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+						<div class="box-one"></div>
+						<div class="box-two"></div>
 						
 						<h6><a href="#">Future <br> Management</a></h6>
-						{{-- <div class="text">The argument in favorite of using filler to text goes some thing like this top</div> --}}
+						<div class="text">The argument in favorite of using filler to text goes some thing like this top</div>
 					</div>
 				</div>
 
 				<!-- Services Block Fourteen -->
-				<div class="services-block-fourteen style-two col-lg-3 col-md-6 col-sm-12">
+				<div class="services-block-fourteen col-lg-3 col-md-6 col-sm-12">
 					<div class="inner-box wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
+						<div class="box-one"></div>
+						<div class="box-two"></div>
 						
 						<h6><a href="#">Sport <br> Activities</a></h6>
-						{{-- <div class="text">The argument in favorite of using filler to text goes some thing like this top</div> --}}
+						<div class="text">The argument in favorite of using filler to text goes some thing like this top</div>
 					</div>
 				</div>
 
 				<!-- Services Block Fourteen -->
-				<div class="services-block-fourteen style-two col-lg-3 col-md-6 col-sm-12">
+				<div class="services-block-fourteen col-lg-3 col-md-6 col-sm-12">
 					<div class="inner-box wow fadeInUp" data-wow-delay="600ms" data-wow-duration="1500ms">
+						<div class="box-one"></div>
+						<div class="box-two"></div>
 						
-						<h6><a href="#">Reading and  <br> Spellings</a></h6>
-						{{-- <div class="text">The argument in favorite of using filler to text goes some thing like this top</div> --}}
+						<h6><a href="#">Music <br> Clasess</a></h6>
+						<div class="text">The argument in favorite of using filler to text goes some thing like this top</div>
 					</div>
 				</div>
 
 				<!-- Services Block Fourteen -->
-				<div class="services-block-fourteen style-two col-lg-3 col-md-6 col-sm-12">
+				<div class="services-block-fourteen col-lg-3 col-md-6 col-sm-12">
 					<div class="inner-box wow fadeInUp" data-wow-delay="900ms" data-wow-duration="1500ms">
+						<div class="box-one"></div>
+						<div class="box-two"></div>
 						
-						<h6><a href="#">Music <br> Classes</a></h6>
-						{{-- <div class="text">The argument in favorite of using filler to text goes some thing like this top</div> --}}
+						<h6><a href="#">Reading/ Spelling<br> Classes</a></h6>
+						<div class="text">The argument in favorite of using filler to text goes some thing like this top</div>
 					</div>
 				</div>
 
 				<!-- Services Block Fourteen -->
-				<div class="services-block-fourteen style-two col-lg-3 col-md-6 col-sm-12">
+				<div class="services-block-fourteen col-lg-3 col-md-6 col-sm-12">
 					<div class="inner-box wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+						<div class="box-one"></div>
+						<div class="box-two"></div>
 						
-						<h6><a href="#">Art <br> Work</a></h6>
-						{{-- <div class="text">The argument in favorite of using filler to text goes some thing like this top</div> --}}
+						<h6><a href="#">Artwork <br> Classes</a></h6>
+						<div class="text">The argument in favorite of using filler to text goes some thing like this top</div>
 					</div>
 				</div>
 
 				<!-- Services Block Fourteen -->
-				<div class="services-block-fourteen style-two col-lg-3 col-md-6 col-sm-12">
+				<div class="services-block-fourteen col-lg-3 col-md-6 col-sm-12">
 					<div class="inner-box wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
+						<div class="box-one"></div>
+						<div class="box-two"></div>
 						
-						<h6><a href="#">Creative  <br> Writing</a></h6>
-						{{-- <div class="text">The argument in favorite of using filler to text goes some thing like this top</div> --}}
+						<h6><a href="#">Creative <br> Classes</a></h6>
+						<div class="text">The argument in favorite of using filler to text goes some thing like this top</div>
 					</div>
 				</div>
 
 				<!-- Services Block Fourteen -->
-				<div class="services-block-fourteen style-two col-lg-3 col-md-6 col-sm-12">
+				<div class="services-block-fourteen col-lg-3 col-md-6 col-sm-12">
 					<div class="inner-box wow fadeInUp" data-wow-delay="600ms" data-wow-duration="1500ms">
-						
-						<h6><a href="#">Computer <br> Clasess</a></h6>
-						{{-- <div class="text">The argument in favorite of using filler to text goes some thing like this top</div> --}}
-					</div>
-				</div>
-
-				<!-- Services Block Fourteen -->
-				<div class="services-block-fourteen style-two col-lg-3 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInUp" data-wow-delay="900ms" data-wow-duration="1500ms">
+						<div class="box-one"></div>
+						<div class="box-two"></div>
 						
 						<h6><a href="#">Skill <br> Development</a></h6>
-						{{-- <div class="text">The argument in favorite of using filler to text goes some thing like this top</div> --}}
+						<div class="text">The argument in favorite of using filler to text goes some thing like this top</div>
+					</div>
+				</div>
+
+				<!-- Services Block Fourteen -->
+				<div class="services-block-fourteen col-lg-3 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInUp" data-wow-delay="900ms" data-wow-duration="1500ms">
+						<div class="box-one"></div>
+						<div class="box-two"></div>
+						
+						<h6><a href="#">Computer <br> Classes</a></h6>
+						<div class="text">The argument in favorite of using filler to text goes some thing like this top</div>
 					</div>
 				</div>
 

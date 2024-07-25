@@ -91,6 +91,35 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
+                Markets
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <li class="nav-item">
+                  <a href="{{ url('admin/addmarkets') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Markets</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="{{ url('admin/viewmarkets') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Markets</p>
+                  </a>
+                </li>
+
+              </li>
+            </ul>
+          </li>
+
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
                 Weekly Activities
                 <i class="fas fa-angle-left right"></i>
               </p>
@@ -98,25 +127,35 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <li class="nav-item">
-                  <a href="{{ url('admin/studycenter1') }}" class="nav-link">
+                  <a href="{{ url('admin/addativityofweek') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Pupils of the Week</p>
+                    <p>Add Activities</p>
                   </a>
                 </li>
 
                 <li class="nav-item">
-                  <a href="{{ url('admin/studycentertables') }}" class="nav-link">
+                  <a href="{{ url('admin/viewpupilsweek') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Teachers of the Week</p>
+                    <p>View Pupils of the Week</p>
+                  </a>
+                </li>
+
+
+                <li class="nav-item">
+                  <a href="{{ url('admin/viewteacherweek') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Teacher of the Week</p>
                   </a>
                 </li>
 
                 <li class="nav-item">
-                  <a href="{{ url('admin/studycentertables') }}" class="nav-link">
+                  <a href="{{ url('admin/viewparentweek') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Parents of the Week</p>
+                    <p>View Parent of the Week</p>
                   </a>
                 </li>
+
+                
               </li>
             </ul>
           </li>

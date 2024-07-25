@@ -70,9 +70,9 @@ class TestimonyController extends Controller
             $file = $request['images'];
             $filename = 'SimonJonah-' . time() . '.' . $file->getClientOriginalExtension();
             $path = $request->file('images')->storeAs('resourceimages', $filename);
+            $edit_testimonies->images = $path;
 
         }
-        $edit_testimonies['images'] = $path;
         $edit_testimonies->fname = $request->fname;
         $edit_testimonies->surname = $request->surname;
         $edit_testimonies->designation = $request->designation;

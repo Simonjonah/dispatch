@@ -61,7 +61,7 @@ class GalleryController extends Controller
             $path = $request->file('images')->storeAs('resourceimages', $filename);
             $edit_gallery->images = $path;
         }
-        $edit_gallery['images'] = $path;
+        // $edit_gallery['images'] = $path;
         $edit_gallery->title = $request->title;
         $edit_gallery->messages = $request->messages;
         $edit_gallery->update();

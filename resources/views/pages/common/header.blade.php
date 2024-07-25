@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>Grace of od International Schools - GOGGIS </title>
+<title>Grace of International Schools - GOGGIS </title>
 
 
 
@@ -82,9 +82,10 @@
 											<li><a href="{{ url('about') }}">About Us</a></li>
 											<li><a href="{{ url('team') }}">Our Team</a></li>
 											<li><a href="{{ url('clubs') }}">School Clubs</a></li>
+											
+											<li><a href="{{ url('pupilsofweek') }}">Pupils of the Week</a></li>
 											<li><a href="{{ url('teacherofweek') }}">Teachers of the Week</a></li>
 											<li><a href="{{ url('parentsweek') }}">Parents of the Week</a></li>
-											<li><a href="{{ url('pupilsofweek') }}">Pupils of the Week</a></li>
 											
 										</ul>
 									</li>
@@ -182,9 +183,9 @@
 									<li><a href="{{ url('about') }}">About Us</a></li>
 											<li><a href="{{ url('team') }}">Our Team</a></li>
 											<li><a href="{{ url('clubs') }}">School Clubs</a></li>
+											<li><a href="{{ url('pupilsofweek') }}">Pupils of the Week</a></li>
 											<li><a href="{{ url('teacherofweek') }}">Teachers of the Week</a></li>
 											<li><a href="{{ url('parentsweek') }}">Parents of the Week</a></li>
-											<li><a href="{{ url('pupilsofweek') }}">Pupils of the Week</a></li>
 									</ul>
 								</li>
 								
