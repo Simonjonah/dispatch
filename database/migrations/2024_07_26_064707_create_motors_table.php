@@ -11,36 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('results', function (Blueprint $table) {
+        Schema::create('motors', function (Blueprint $table) {
             $table->id();
-            $table->string('teacher_id', 11)->nullable();
-            $table->string('ref_no', 20)->nullable();
-            $table->string('surname', 50)->nullable();
-            $table->string('middlename', 50)->nullable();
-            $table->string('fname', 50)->nullable();
-            $table->string('phone', 20)->nullable();
-            $table->string('section', 50)->nullable();
-            $table->string('academic_session', 15)->nullable();
-            $table->string('gender', 10)->nullable();
-            $table->string('centername', 20)->nullable();
-            $table->string('classname', 20)->nullable();
-            $table->text('images')->nullable();
-            $table->string('status', 12)->nullable();
-            $table->string('entrylevel', 30)->nullable();
-            $table->string('regnumber', 30)->nullable();
+            $table->string('teacher_id')->nullable();
+            $table->string('user_id')->nullable();
+            $table->string('academic_session')->nullable();
+            $table->string('section')->nullable();
+            $table->string('classname')->nullable();
+            $table->string('pins')->nullable();
+            $table->string('nextterm')->nullable();
+            $table->string('entrylevel')->nullable();
+            $table->string('regnumber')->nullable();
+            $table->string('headteacher_comment')->nullable();
             
-            $table->string('subjectname', 30);
-            $table->string('test_1', 5)->nullable();
-            $table->string('test_2', 5)->nullable();
-            $table->string('test_3', 5)->nullable();
-            $table->string('exams', 5)->nullable();
-            $table->string('category', 20)->nullable();
-            
+            $table->string('mentalalert1', 5)->nullable();
+            $table->string('mentalalert2', 5)->nullable();
+            $table->string('mentalalert3', 5)->nullable();
+            $table->string('mentalalert4', 5)->nullable();
+            $table->string('mentalalert5', 5)->nullable();
 
-            $table->string('exp', 5)->nullable();
-            $table->string('pra', 5)->nullable();
-            $table->string('app', 5)->nullable();
-           
             $table->string('punt1', 5)->nullable();
             $table->string('punt2', 5)->nullable();
             $table->string('punt3', 5)->nullable();
@@ -129,11 +118,17 @@ return new class extends Migration
             $table->string('dance3', 5)->nullable();
             $table->string('dance4', 5)->nullable();
             $table->string('dance5', 5)->nullable();
-            $table->text('teacher_comment')->nullable();
-            $table->text('comment')->nullable();
-            $table->string('tsurname')->nullable();
-            $table->string('tname')->nullable();
-            $table->string('pins')->nullable();
+
+            $table->string('paint1', 5)->nullable();
+            $table->string('paint2', 5)->nullable();
+            $table->string('paint3', 5)->nullable();
+            $table->string('paint4', 5)->nullable();
+            $table->string('paint5', 5)->nullable();
+
+            $table->string('schoolopen')->nullable();
+            $table->text('timespresent')->nullable();
+            $table->text('timeabsent')->nullable();
+     
             $table->timestamps();
         });
     }
@@ -143,6 +138,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('results');
+        Schema::dropIfExists('motors');
     }
 };

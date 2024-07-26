@@ -50,6 +50,7 @@ use App\Models\Club1;
 use App\Models\Facility;
 use App\Models\Testimony;
 use App\Models\Teacherofweek;
+use App\Models\Market;
 
 
 
@@ -73,9 +74,10 @@ Route::get('/', function () {
     $view_blogs = Blog::latest()->take(3)->where('status', 'approved')->get();
     $view_sliders = Mainslider::orderby('created_at', 'ASC')->get();
     $view_testimonies = Testimony::latest()->get();
+    $view_markets = Market::latest()->get();
     
 
-    return view('welcomes', compact('view_testimonies', 'view_sliders', 'view_teams', 'view_events', 'view_blogs'));
+    return view('welcomes', compact('view_markets', 'view_testimonies', 'view_sliders', 'view_teams', 'view_events', 'view_blogs'));
 });
 
 Route::get('/ourevents', function () {
@@ -175,6 +177,14 @@ Route::get('/viewsingleactivity/{ref_no}', function ($ref_no) {
     return view('pages.viewsingleactivity', compact('allactivities', 'view_singleact'));
 });
 
+Route::get('/viewmarketplace/{ref_no}', function ($ref_no) {
+    $view_singlemarket = Market::where('ref_no', $ref_no)->first();
+    // $view_singlemark = Market::where('ref_no', $ref_no)->get();
+    $view_pics = Market::latest()->take(20)->get();
+    $view_markets = Market::latest()->get();
+    return view('pages.viewmarketplace', compact('view_markets', 'view_singlemarket', 'view_pics'));
+});
+
 
 
 
@@ -226,8 +236,13 @@ Route::get('/admission/admissionform/{slug}', [StudycenterController::class, 'ad
 Route::post('/createteacher', [UserController::class, 'createteacher'])->name('createteacher');
 Route::get('/viewsingleevent/{ref_no}', [EventController::class, 'viewsingleevent'])->name('viewsingleevent');
 Route::get('/viewsinglemember/{ref_no}', [TeamController::class, 'viewsinglemember'])->name('viewsinglemember');
-
 Route::get('/singleblog/{slug}', [BlogController::class, 'singleblog'])->name('singleblog');
+
+Route::get('/addimage1/{ref_no}', [MarketController::class, 'addimage1'])->name('addimage1');
+Route::get('/addimage3/{ref_no}', [MarketController::class, 'addimage3'])->name('addimage3');
+Route::get('/addimage4/{ref_no}', [MarketController::class, 'addimage4'])->name('addimage4');
+Route::get('/addimage5/{ref_no}', [MarketController::class, 'addimage5'])->name('addimage5');
+
 
 Route::prefix('admin')->name('admin.')->group(function() {
 
@@ -242,6 +257,19 @@ Route::prefix('admin')->name('admin.')->group(function() {
     // dns1.web-hosting.com
     Route::middleware(['auth:admin'])->group(function() {
         
+        
+        Route::get('/marketdelete/{ref_no}', [MarketController::class, 'marketdelete'])->name('marketdelete');
+        Route::get('/marketsuspend/{ref_no}', [MarketController::class, 'marketsuspend'])->name('marketsuspend');
+        Route::get('/marketapproved/{ref_no}', [MarketController::class, 'marketapproved'])->name('marketapproved');
+        Route::put('/updatemarkets/{ref_no}', [MarketController::class, 'updatemarkets'])->name('updatemarkets');
+        Route::get('/editmarket/{ref_no}', [MarketController::class, 'editmarket'])->name('editmarket');
+        Route::get('/viewsingmarket/{ref_no}', [MarketController::class, 'viewsingmarket'])->name('viewsingmarket');
+        Route::get('/viewmarkets', [MarketController::class, 'viewmarkets'])->name('viewmarkets');
+        Route::put('/createimage5/{ref_no}', [MarketController::class, 'createimage5'])->name('createimage5');
+        Route::put('/createimage4/{ref_no}', [MarketController::class, 'createimage4'])->name('createimage4');
+        Route::put('/createimage3/{ref_no}', [MarketController::class, 'createimage3'])->name('createimage3');
+        Route::put('/createimage1/{ref_no}', [MarketController::class, 'createimage1'])->name('createimage1');
+        Route::post('/createmarkets', [MarketController::class, 'createmarkets'])->name('createmarkets');
         Route::get('/addmarkets', [MarketController::class, 'addmarkets'])->name('addmarkets');
         Route::get('/parentofyear', [TeacherofweekController::class, 'parentofyear'])->name('parentofyear');
         Route::get('/parentofmonth', [TeacherofweekController::class, 'parentofmonth'])->name('parentofmonth');

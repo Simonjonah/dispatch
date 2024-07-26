@@ -33,7 +33,7 @@
 				<!-- Services Block -->
 				<div class="services-block-three col-lg-4 col-md-6 col-sm-12">
 					<div class="inner-box wow bounceIn" data-wow-delay="0ms" data-wow-duration="1500ms">
-						<div class="icon-box">
+						<div class="icon-box" style="background-color: #e23013;">
 							<span class="icon flaticon-bar-chart"></span>
 						</div>
 						<h6><a href="#">Mission Statement</a></h6>
@@ -44,7 +44,7 @@
 				<!-- Services Block -->
 				<div class="services-block-three col-lg-4 col-md-6 col-sm-12">
 					<div class="inner-box wow bounceIn" data-wow-delay="300ms" data-wow-duration="1500ms">
-						<div class="icon-box">
+						<div class="icon-box" style="background-color: #e23013;">
 							<span class="icon flaticon-board"></span>
 						</div>
 						<h6><a href="#">Vision Statement</a></h6>
@@ -55,7 +55,7 @@
 				<!-- Services Block -->
 				<div class="services-block-three col-lg-4 col-md-12 col-sm-12">
 					<div class="inner-box wow bounceIn" data-wow-delay="600ms" data-wow-duration="1500ms">
-						<div class="icon-box">
+						<div class="icon-box" style="background-color: #e23013;">
 							<span class="icon flaticon-student"></span>
 						</div>
 						<h6><a href="#">Goals/Objectives</a></h6>
@@ -402,25 +402,15 @@
 	<!--Sponsors Section-->
 	<section class="sponsors-section">
 		<div class="auto-container">
-			
 			<div class="carousel-outer">
-                <!--Sponsors Slider-->
-                <ul class="sponsors-carousel owl-carousel owl-theme">
-                    <li><div class="image-box"><a href="#"><img src="images/clients/1.png" alt=""></a></div></li>
-                    <li><div class="image-box"><a href="#"><img src="images/clients/2.png" alt=""></a></div></li>
-                    <li><div class="image-box"><a href="#"><img src="images/clients/3.png" alt=""></a></div></li>
-                    <li><div class="image-box"><a href="#"><img src="images/clients/4.png" alt=""></a></div></li>
-                    <li><div class="image-box"><a href="#"><img src="images/clients/5.png" alt=""></a></div></li>
-                    <li><div class="image-box"><a href="#"><img src="images/clients/6.png" alt=""></a></div></li>
-					<li><div class="image-box"><a href="#"><img src="images/clients/1.png" alt=""></a></div></li>
-                    <li><div class="image-box"><a href="#"><img src="images/clients/2.png" alt=""></a></div></li>
-                    <li><div class="image-box"><a href="#"><img src="images/clients/3.png" alt=""></a></div></li>
-                    <li><div class="image-box"><a href="#"><img src="images/clients/4.png" alt=""></a></div></li>
-                    <li><div class="image-box"><a href="#"><img src="images/clients/5.png" alt=""></a></div></li>
-                    <li><div class="image-box"><a href="#"><img src="images/clients/6.png" alt=""></a></div></li>
-                </ul>
+				<ul class="sponsors-carousel owl-carousel owl-theme">
+					@foreach ($view_markets as $view_market)
+						@if ($view_market->status == 'approved')
+							<li><div class="image-box"><a href="{{ url('viewmarketplace/'.$view_market->ref_no) }}"><img style="width: 100%; height: 80px;" src="{{ URL::asset("/public/../$view_market->images1")}}" alt=""></a></div></li>
+						@endif
+					@endforeach
+				</ul>
             </div>
-			
 		</div>
 	</section>
 	<!--End Sponsors Section-->

@@ -16,8 +16,8 @@
 <link href="{{ asset('front/css/style.css') }}" rel="stylesheet">
 <link href="{{ asset('front/css/responsive.css') }}" rel="stylesheet">
 
-<link rel="shortcut icon" href="{{ asset('images/sch14.jpg')}}" type="image/x-icon">
-<link rel="icon" href="{{ asset('images/sch14.jpg') }}" type="image/x-icon">
+<link rel="shortcut icon" href="{{ asset('front/images/logo.jpg')}}" type="image/x-icon">
+<link rel="icon" href="{{ asset('front/images/logo.jpg') }}" type="image/x-icon">
 
 
 <!-- Responsive -->
@@ -59,7 +59,7 @@
             	<div class="clearfix">
                 	
                 	<div class="pull-left logo-box">
-                    	<div class="logo"><a href="{{ url('/') }}"><img style="height: 90px; width: 200px;" src="{{ asset('images/sch14.jpg') }}" alt="" title=""></a></div>
+                    	<div class="logo"><a href="{{ url('/') }}"><img style="height: 70px; width: 100px;" src="{{ asset('front/images/logo.jpg') }}" alt="gogis logo" title=""></a></div>
                     </div>
                    
                    	<div class="nav-outer clearfix">
@@ -95,7 +95,7 @@
 											
 										</ul>
 									</li>
-									<li><a href="{{ url('admissionform') }}">Admission</a></li> 
+									<li><a href="{{ url('#') }}">Admission</a></li> 
 
 									<li class="dropdown"><a href="#">Press Release</a>
 										<ul>
@@ -162,7 +162,7 @@
         	<div class="auto-container clearfix">
             	
                 	<div class="pull-left logo-box">
-                    	<div class="logo"><a href="home"><img style="height: 50px; width: 200px;" src="{{ asset('images/sch14.jpg') }}" alt="" title=""></a></div>
+                    	<div class="logo"><a href="{{ url('/') }}"><img style="height: 70px; width: 100px;" src="{{ asset('front/images/logo.jpg') }}" alt="" title=""></a></div>
                     </div>
                  
                 <!--Right Col-->
@@ -191,7 +191,7 @@
 								
 									<li><a href="{{ url('services') }}">Services</a></li>
 									
-									<li><a href="{{ url('admissionform') }}">Admission</a></li> 
+									<li><a href="{{ url('#') }}">Admission</a></li> 
 
 								<li class="dropdown"><a href="#">Press Release</a>
 									<ul>

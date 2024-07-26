@@ -12,7 +12,7 @@
                             <div class="footer-column col-lg-7 col-md-6 col-sm-12">
                                 <div class="footer-widget logo-widget">
 									<div class="logo">
-										<a href="home"><img style="height: 70px; width: 200px;" src="{{ asset('images/sch14.jpg') }}" alt="" /></a>
+										<a href="home"><img style="height: 70px; width: 100px;" src="{{ asset('front/images/logo.jpg') }}" alt="" /></a>
 									</div>
 									<!-- <div class="text">For additional information on Grace of od International Schools services. Please contact us using the information below.</div> -->
 									<ul class="list-style-two">
@@ -34,7 +34,7 @@
 									<h4>Links</h4>
 									<ul class="list-link">
 										<li><a href="{{ url('/') }}">Home</a></li>
-										<li><a href="{{ url('/services') }}services">Services</a></li>
+										<li><a href="{{ url('/services') }}">Services</a></li>
 										<li><a href="{{ url('/about') }}">About us</a></li>
 										<li><a href="{{ url('/') }}">Testimonials</a></li>
 										<li><a href="{{ url('/blog') }}">Press Release</a></li>

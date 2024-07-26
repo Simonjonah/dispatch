@@ -4995,12 +4995,12 @@ img{
 	-ms-transition: all 1000ms ease;
 	-o-transition: all 1000ms ease;
 	transition: all 1000ms ease;
-	background-image: -ms-linear-gradient(right, #45A401 0%, #9EE213 100%);
+	/* background-image: -ms-linear-gradient(right, #45A401 0%, #9EE213 100%);
 	background-image: -moz-linear-gradient(right, #45A401 0%, #9EE213 100%);
 	background-image: -o-linear-gradient(right, #45A401 0%, #9EE213 100%);
 	background-image: -webkit-gradient(linear, right top, left top, color-stop(0, #45A401), color-stop(100, #9EE213));
 	background-image: -webkit-linear-gradient(right, #45A401 0%, #9EE213 100%);
-	background-image: linear-gradient(to left, #45A401 0%, #9EE213 100%);
+	background-image: linear-gradient(to left, #45A401 0%, #9EE213 100%); */
 }
 
 .services-block-three .inner-box h6{

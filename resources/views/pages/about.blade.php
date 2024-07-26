@@ -25,7 +25,7 @@
 				<!-- Services Block -->
 				<div class="services-block-three col-lg-4 col-md-6 col-sm-12">
 					<div class="inner-box wow bounceIn" data-wow-delay="0ms" data-wow-duration="1500ms">
-						<div class="icon-box">
+						<div class="icon-box" style="background-color: #e23013;">
 							<span class="icon flaticon-bar-chart"></span>
 						</div>
 						<h6><a href="#">Mission Statement</a></h6>
@@ -36,7 +36,7 @@
 				<!-- Services Block -->
 				<div class="services-block-three col-lg-4 col-md-6 col-sm-12">
 					<div class="inner-box wow bounceIn" data-wow-delay="300ms" data-wow-duration="1500ms">
-						<div class="icon-box">
+						<div class="icon-box" style="background-color: #e23013;">
 							<span class="icon flaticon-board"></span>
 						</div>
 						<h6><a href="#">Vision Statement</a></h6>
@@ -47,7 +47,7 @@
 				<!-- Services Block -->
 				<div class="services-block-three col-lg-4 col-md-12 col-sm-12">
 					<div class="inner-box wow bounceIn" data-wow-delay="600ms" data-wow-duration="1500ms">
-						<div class="icon-box">
+						<div class="icon-box" style="background-color: #e23013;">
 							<span class="icon flaticon-student"></span>
 						</div>
 						<h6><a href="#">Goals/Objectives</a></h6>

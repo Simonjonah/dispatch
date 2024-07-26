@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('placeofbirth', 100)->nullable();
             $table->string('ref_no', 20)->nullable();
             $table->string('slug', 20)->nullable();
-            $table->string('status', 12)->nullable();
+            // $table->string('status', 12)->nullable();
             $table->text('images')->nullable();
             $table->string('email', 50)->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();

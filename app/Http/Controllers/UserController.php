@@ -410,14 +410,14 @@ class UserController extends Controller
         $reject_student = User::where('ref_no', $ref_no)->first();
         $reject_student->status = 'reject';
         $reject_student->save();
-        return redirect()->back()->with('success', 'you have approved successfully');
+        return redirect()->back()->with('success', 'you have rejected successfully');
     }
 
     public function rejectstudent1($ref_no1){
         $reject_student = User::where('ref_no1', $ref_no1)->first();
         $reject_student->status = 'reject';
         $reject_student->save();
-        return redirect()->back()->with('success', 'you have approved successfully');
+        return redirect()->back()->with('success', 'you have rejected successfully');
     }
     public function rejectedstudent(){
         $reject_students = User::where('status', 'reject')->where('assign1', 'student')->where('assign1', 'student')->get();

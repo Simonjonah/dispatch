@@ -31,7 +31,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <form action="{{ route('admin.createmarkets') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ url('admin/updatemarkets/'.$edit_markets->ref_no) }}" method="post" enctype="multipart/form-data">
                   @csrf
                   @if (Session::get('success'))
                   <div class="alert alert-success">
@@ -44,12 +44,14 @@
                   {{ Session::get('fail') }}
                   </div>
               @endif
+
+              @method('PUT')
                   <div class="row">
                     <div class="col-sm-6">
                       <div class="form-group">
-                        <label>Title</label>
+                        <label>Name</label>
                         <input type="text" class="form-control" @error('title')
-                        @enderror value="{{ old('title') }}" name="title" placeholder="Title">
+                        @enderror value="{{ $edit_markets->title }}" name="title" placeholder="Title">
                       </div>
                     </div>
                     @error('title')
@@ -61,7 +63,7 @@
                       <div class="form-group">
                         <label>Phone</label>
                         <input type="text" class="form-control" @error('phone')
-                        @enderror value="{{ old('phone') }}" name="phone" placeholder="Phone">
+                        @enderror value="{{ $edit_markets->phone }}" name="phone" placeholder="Phone">
                       </div>
                     </div>
                     @error('phone')
@@ -73,7 +75,7 @@
                       <div class="form-group">
                         <label>Email</label>
                         <input type="text" class="form-control" @error('email')
-                        @enderror value="{{ old('email') }}" name="email" placeholder="Email">
+                        @enderror value="{{ $edit_markets->email }}" name="email" placeholder="Email">
                       </div>
                     </div>
                     @error('email')
@@ -84,7 +86,7 @@
                       <div class="form-group">
                         <label>Facebook Link</label>
                         <input type="text" class="form-control" @error('facebook')
-                        @enderror value="{{ old('facebook') }}" name="facebook" placeholder="facebook">
+                        @enderror value="{{ $edit_markets->facebook }}" name="facebook" placeholder="facebook">
                       </div>
                     </div>
                     @error('facebook')
@@ -95,7 +97,7 @@
                       <div class="form-group">
                         <label>Twitter Link</label>
                         <input type="text" class="form-control" @error('twitter')
-                        @enderror value="{{ old('twitter') }}" name="twitter" placeholder="twitter">
+                        @enderror value="{{ $edit_markets->twitter }}" name="twitter" placeholder="twitter">
                       </div>
                     </div>
                     @error('twitter')
@@ -107,7 +109,7 @@
                       <div class="form-group">
                         <label>Linkedin Link</label>
                         <input type="text" class="form-control" @error('linkedin')
-                        @enderror value="{{ old('linkedin') }}" name="linkedin" placeholder="linkedin">
+                        @enderror value="{{ $edit_markets->linkedin }}" name="linkedin" placeholder="linkedin">
                       </div>
                     </div>
                     @error('linkedin')
@@ -118,7 +120,7 @@
                       <div class="form-group">
                         <label>Instagram</label>
                         <input type="text" class="form-control" @error('instagram')
-                        @enderror value="{{ old('instagram') }}" name="instagram" placeholder="instagram">
+                        @enderror value="{{ $edit_markets->instagram }}" name="instagram" placeholder="instagram">
                       </div>
                     </div>
                     @error('instagram')
@@ -130,7 +132,7 @@
                       <div class="form-group">
                         <label>Whatspp Link</label>
                         <input type="text" class="form-control" @error('whatsapp')
-                        @enderror value="{{ old('whatsapp') }}" name="whatsapp" placeholder="whatsapp">
+                        @enderror value="{{ $edit_markets->whatsapp }}" name="whatsapp" placeholder="whatsapp">
                       </div>
                     </div>
                     @error('whatsapp')
@@ -141,7 +143,7 @@
                       <div class="form-group">
                         <label>Address</label>
                         <input type="text" class="form-control" @error('address')
-                        @enderror value="{{ old('address') }}" name="address" placeholder="Address">
+                        @enderror value="{{ $edit_markets->address }}" name="address" placeholder="Address">
                       </div>
                     </div>
                     @error('address')
@@ -150,7 +152,10 @@
 
                     <div class="col-sm-6">
                       <div class="form-group">
-                        <label> Image</label>
+                      <td><img style="width: 30%; height: 70px;" class="profile-user-img img-fluid"
+                            src="{{ URL::asset("/public/../$edit_markets->images1")}}"
+                            alt="User profile picture"></td>
+                        
                         <input type="file" @error('images1')
                         @enderror value="{{ old('images1') }}" class="form-control" name="images1">
                       </div>
@@ -159,10 +164,73 @@
                     @error('images1')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror 
+
+                    
+                    <!-- <div class="col-sm-6">
+                      <div class="form-group">
+                      <td><img style="width: 30%; height: 70px;" class="profile-user-img img-fluid"
+                            src="{{ URL::asset("/public/../$edit_markets->images2")}}"
+                            alt="User profile picture"></td>
+                        
+                        <input type="file" @error('images2')
+                        @enderror value="{{ old('images2') }}" class="form-control" name="images2">
+                      </div>
+                  
+                    </div>
+                    @error('images2')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror 
+                     
+                    
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                      <td><img style="width: 30%; height: 70px;" class="profile-user-img img-fluid"
+                            src="{{ URL::asset("/public/../$edit_markets->images3")}}"
+                            alt="User profile picture"></td>
+                        
+                        <input type="file" @error('images3')
+                        @enderror value="{{ old('images3') }}" class="form-control" name="images3">
+                      </div>
+                  
+                    </div>
+                    @error('images3')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror 
+
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                      <td><img style="width: 30%; height: 70px;" class="profile-user-img img-fluid"
+                            src="{{ URL::asset("/public/../$edit_markets->images4")}}"
+                            alt="User profile picture"></td>
+                        
+                        <input type="file" @error('images4')
+                        @enderror value="{{ old('images4') }}" class="form-control" name="images4">
+                      </div>
+                  
+                    </div>
+                    @error('images4')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror 
+
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                      <td><img style="width: 30%; height: 70px;" class="profile-user-img img-fluid"
+                            src="{{ URL::asset("/public/../$edit_markets->images5")}}"
+                            alt="User profile picture"></td>
+                        
+                        <input type="file" @error('images5')
+                        @enderror value="{{ old('images5') }}" class="form-control" name="images5">
+                      </div>
+                  
+                    </div>
+                    @error('images5')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror 
+                      -->
                      
                     <div class="col-sm-6">
                        <textarea class="textarea" name="messages" class="form-control" @error('messages') is-invalid @enderror" placeholder="Place some text here"
-                      value="{{ old('messages') }}"    style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                      value="{{ old('messages') }}"    style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{!! $edit_markets->messages !!}</textarea>
                      </div>
                       @error('messages')
                       <span class="text-danger">{{ $message }}</span>
