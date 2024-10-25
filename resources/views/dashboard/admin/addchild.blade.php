@@ -97,10 +97,10 @@
 
 								<div class="form-group">
 									<h5>Term</h5>
-									<select name="entrylevel" class="form-control"  id="">
-										<option value="Pioneer Term">Pioneer Term</option>
-										<option value="Penultimate Term">Penultimate Term</option>
-										<option value="Premium Term">Premium Term</option>
+									<select name="term" class="form-control"  id="">
+										<option value="First Term">First Term</option>
+										<option value="Second Term">Second Term</option>
+										<option value="Third Term">Third Term</option>
 									</select>
 								</div>
               <div class="form-group">
@@ -134,7 +134,7 @@
           <div class="form-group">
                   <h5>Is there any Medical reports on your Child you will love the School to be aware of?</h5>
                   Yes <input value="Yes"  type="checkbox" name="medreports"> 
-                  No  <input value="No" type="checkbox" name="medreports">
+                  No  <input value="No" type="checkbox" name="medreports1">
                 </div>
 
                 <div class="form-group">
@@ -171,32 +171,32 @@
 
                   <label for="info">Hearing Disorder</label>
                   Mild <input value="Mild"  type="checkbox" name="hearing"> 
-                  Severe  <input value="Severe" type="checkbox" name="hearing">
-                  Deaf  <input value="Deaf" type="checkbox" name="hearing">
+                  Severe  <input value="Severe" type="checkbox" name="hearing1">
+                  Deaf  <input value="Deaf" type="checkbox" name="hearing2">
                   <br>
 
 
                   <label for="info">Orthoparedically Handicapped</label>
-                  Legs <input value="Legs"  type="checkbox" name="ortho"> 
+                  Legs <input value="Legs"  type="checkbox" name="ortho1"> 
                   Hands  <input value="Hands" type="checkbox" name="ortho">
                   <br>
 
                   <label for="info">Mentally Detarded</label>
                   Mild Case <input value="Mild Case"  type="checkbox" name="mentally"> 
-                  Severe Case  <input value="Severe Case" type="checkbox" name="mentally">
-                  Referral Case  <input value="Referral Case" type="checkbox" name="mentally">
+                  Severe Case  <input value="Severe Case" type="checkbox" name="mentally1">
+                  Referral Case  <input value="Referral Case" type="checkbox" name="mentally2">
                   <br>
               </div>
               <div class="form-group">
 								<h4>Is your Child Inquisitive or always Quiet?</h4>
                   Yes <input value="Yes"  type="checkbox" name="quiet"> <br>
-                  No  <input value="No"  type="checkbox" name="quiet">
+                  No  <input value="No"  type="checkbox" name="quiet1">
 							</div>
 
               <div class="form-group">
 								<h4>Is your Child Exceptionally Gifted?</h4>
                   Yes <input value="Yes"  type="checkbox" name="gifted"> <br>
-                  No  <input value="No"  type="checkbox" name="gifted">
+                  No  <input value="No"  type="checkbox" name="gifted1">
 							</div>
 					</div>
 					
@@ -215,25 +215,25 @@
 
 						<div class="form-group">
                   <h5>Has the child started school Already?</h5>
-              <select id="yesNo" name="yesNo" class="form-control">
+              <select id="yesNo" name="started_school" class="form-control">
                 <option value="no">No</option>
                 <option value="yes">Yes</option>
             </select>
 
         <div id="additionalInfo" style="display: none;">
             <label for="info">Name of School</label>
-            <input type="text" class="form-control" id="info" name="info" placeholder="Name of School">
+            <input type="text" class="form-control" id="info" name="school_name" placeholder="Name of School">
             <br>
             <label for="info">Class Admitted</label>
-            <input type="text" class="form-control" id="info" name="info" placeholder="Class Admitted">
+            <input type="text" class="form-control" id="info" name="class_attended" placeholder="Class Admitted">
             <label for="info">Evidence of Fee payment at last School Attended</label>
-            <input type="file" class="form-control" id="info" name="info" placeholder="Evidence of Fee payment at last School Attended">
+            <input type="file" class="form-control" id="info" name="payment_evid" placeholder="Evidence of Fee payment at last School Attended">
 
             <label for="info">Transfer Certificate Number</label>
-            <input type="text" class="form-control" id="info" name="info" placeholder="Transfer Certificate Number">
+            <input type="text" class="form-control" id="info" name="transfer_cert" placeholder="Transfer Certificate Number">
 
             <label for="info">Report Card of the Last School</label>
-            <input type="file" class="form-control" id="info" name="info" placeholder="Name of School">
+            <input type="file" class="form-control" id="info" name="report_card" placeholder="Name of School">
         
           </div>
         </div>
@@ -284,7 +284,7 @@
 
               <div class="form-group">
                   <h5>Do you want your chhild, while in Shool to be attended to by any person than you and the school staff?</h5>
-              <select id="attend" name="tr" class="form-control">
+              <select id="attend" name="tobeattended" class="form-control">
                 <option value="notAccepted">No</option>
                 <option value="accepted">Yes</option>
             </select>
@@ -326,7 +326,7 @@
 
               <div class="form-group">
 								<h4>Is your Child playful or Shy?</h4>
-                  Yes <input  type="checkbox" name="playful"> <br>
+                  Yes <input  type="checkbox" name="playful1"> <br>
                   No  <input  type="checkbox" name="playful">
 							</div>
              
