@@ -79,6 +79,7 @@ return new class extends Migration
             $table->string('aboutus', 30)->nullable();
             $table->string('birthcert')->nullable();
             $table->string('status')->nullable();
+            $table->string('livingwith1')->nullable();
             
             $table->string('religion', 100)->nullable();
             $table->string('state', 100)->nullable();
@@ -118,7 +119,7 @@ return new class extends Migration
             $table->string('mentally1')->nullable();
             $table->string('mentally')->nullable();
             $table->string('mentally2')->nullable();
-            // $table->string('quiet')->nullable();
+            $table->text('payment_evid')->nullable();
             // $table->string('quiet')->nullable();
             // $table->string('gifted')->nullable();
             $table->string('gifted1')->nullable();
@@ -134,7 +135,7 @@ return new class extends Migration
             $table->string('cistern1')->nullable();
             $table->string('game')->nullable();
             // $table->string('toys')->nullable();
-            // $table->string('playwith')->nullable();
+            $table->string('att')->nullable();
             $table->string('playwith1')->nullable();
             $table->string('playwith2')->nullable();
             $table->string('playwith3')->nullable();

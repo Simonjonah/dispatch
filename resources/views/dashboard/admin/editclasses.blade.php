@@ -69,8 +69,8 @@
                       <label for="exampleInputEmail1">Section</label>
                       <select name="section" class="form-control" required>
                         <option value="{{ $edit_clesses->section }}">{{ $edit_clesses->section }}</option>
-                        <option value="Creche">Creche</option>
                         <option value="Pre-Nursery">Pre-Nursery</option>
+                        <option value="Nursery">Nursery</option>
                         <option value="Primary">Primary</option>
                         
                       </select>

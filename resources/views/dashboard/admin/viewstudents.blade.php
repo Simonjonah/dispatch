@@ -89,8 +89,7 @@
                   {{ $view_students->landmark }} 
                   <p>School Address</p>
                   {{ $view_students->schooladdress }} 
-                  <p>Other Siblings in Brixtonn</p>
-                  {{ $view_students->brixtonsiblings }} 
+                 
                 </p>
                 
 
@@ -114,7 +113,7 @@
                   <li class="nav-item"><a class="nav-link active" href="#timeline" data-toggle="tab">Bio Data</a></li>
                   <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Father Details</a></li>
                   <li class="nav-item"><a class="nav-link" href="#mother" data-toggle="tab">Mother Details</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#olevels1" data-toggle="tab">Medical Reports</a></li>
+                  {{-- <li class="nav-item"><a class="nav-link" href="#olevels1" data-toggle="tab">Medical Reports</a></li> --}}
                   {{-- <li class="nav-item"><a class="nav-link" href="#olevels2" data-toggle="tab">Olevels 2nd sitting</a></li> --}}
 
                   <li class="nav-item"><a class="nav-link" href="#quali" data-toggle="tab">Qualifications</a></li>
@@ -205,7 +204,7 @@
 
                     <div class="form-group">
                       <label for="">Propose Month of Entry</label>
-                       <input type="text" class="form-control" value="{{ $view_students->monthofentry }}" id="">
+                       <input type="text" class="form-control" value="{{ $view_students->term }}" id="">
                     </div>
 
                     <div class="form-group">
@@ -214,7 +213,7 @@
                     </div>
                     <div class="form-group">
                       <label for="">Place of Birth</label>
-                       <input type="text" class="form-control" value="{{ $view_students->placeofbirth }}" id="">
+                       <input type="text" class="form-control" value="{{ $view_students->dob }}" id="">
                     </div>
 
                     <div class="form-group">
@@ -225,20 +224,20 @@
                   <!-- /.tab-pane -->
                   <div class="form-group">
                     <label for="">Take Action</label>
-                    <a href="{{ url('admin/studentpdf/'.$view_students->ref_no)  }}" class="btn btn-primary">Print form</a>
-                    {{-- <a href="{{ url('admin/medicalspdf/'.$view_students->ref_no)  }}" class="btn btn-warning">Print Medical reports</a> --}}
+                    <a href="{{ url('admin/studentpdf/'.$view_students->ref_no1)  }}" class="btn btn-primary">Print form</a>
+                    {{-- <a href="{{ url('admin/medicalspdf/'.$view_students->ref_no1)  }}" class="btn btn-warning">Print Medical reports</a> --}}
                     
-                    <th><a href="{{ url('admin/rejectstudent/'.$view_students->ref_no) }}" class="btn btn-sm bg-danger">
+                    <th><a href="{{ url('admin/rejectstudent/'.$view_students->ref_no1) }}" class="btn btn-sm bg-danger">
                       <i class="fas fa-user"></i>Reject
                     </a></th>
-                   <th><a href="{{ url('admin/suspendstudent/'.$view_students->ref_no) }}" class="btn btn-sm bg-warning">
+                   <th><a href="{{ url('admin/suspendstudent/'.$view_students->ref_no1) }}" class="btn btn-sm bg-warning">
                       <i class="fas fa-comments"></i>Suspend
                     </a></th>
 
                     <th> <a href="{{ url('admin/studentsaddmit1/'.$view_students->ref_no1) }}" class="btn btn-sm btn-primary">
                       <i class="fas fa-user"></i> Admit
                     </a></th>
-                    <th><a href="{{ url('admin/medicalspdf/'.$view_students->ref_no) }}" class="btn btn-info"><i class="fas fa-print">Print Medicals</i></a></th>
+                    {{-- <th><a href="{{ url('admin/medicalspdf/'.$view_students->ref_no1) }}" class="btn btn-info"><i class="fas fa-print">Print Medicals</i></a></th> --}}
                   </div>
                   
 
@@ -264,14 +263,14 @@
                                   </div>
 
                                   <div class="col-sm-2">
-                                    <a href="{{ URL::asset("/public/../$view_students->immune")}}?text=1" data-toggle="lightbox" data-title="Immunization" data-gallery="gallery">
-                                      <img style="width: 100%; height: 80%" src="{{ URL::asset("/public/../$view_students->immune")}}" class="img-fluid mb-2" alt="white sample"/>
+                                    <a href="{{ URL::asset("/public/../$view_students->birthcert")}}?text=1" data-toggle="lightbox" data-title="Immunization" data-gallery="gallery">
+                                      <img style="width: 100%; height: 80%" src="{{ URL::asset("/public/../$view_students->birthcert")}}" class="img-fluid mb-2" alt="white sample"/>
                                     </a>
                                   </div>
 
                                   <div class="col-sm-2">
-                                    <a href="{{ URL::asset("/public/../$view_students->birthcert")}}?text=1" data-toggle="lightbox" data-title="Birth Certificate" data-gallery="gallery">
-                                      <img style="width: 100%; height: 80%" src="{{ URL::asset("/public/../$view_students->birthcert")}}" class="img-fluid mb-2" alt="white sample"/>
+                                    <a href="{{ URL::asset("/public/../$view_students->payment_evid")}}?text=1" data-toggle="lightbox" data-title="Birth Certificate" data-gallery="gallery">
+                                      <img style="width: 100%; height: 80%" src="{{ URL::asset("/public/../$view_students->payment_evid")}}" class="img-fluid mb-2" alt="white sample"/>
                                     </a>
                                   </div>
 

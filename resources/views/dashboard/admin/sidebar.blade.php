@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('admin/home') }}" class="brand-link">
-      <img src="{{ asset('assets/dist/img/AdminLTELogo.jpg') }}" alt="AdminLTE Logo" class="brand-image "
+      <img src="{{ asset('front/images/logo.jpg') }}" alt="AdminLTE Logo" class="brand-image "
            style="opacity: .8">
       <span class="brand-text font-weight-light"><br>GOGIS  SCHOOLS </span>
     </a>
@@ -17,7 +17,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset('/public/../'.Auth::guard('admin')->user()->images)}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('front/images/logo.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="{{ url('admin/profile') }}" class="d-block">{{ Auth::guard('admin')->user()->name }}</a>
@@ -485,12 +485,20 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-            <li class="nav-item">
+              <li class="nav-item">
                 <a href="{{ url('admin/addpresubject') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Creche. Subject</p>
+                  <p>Add Pre-Nursery Subject</p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="{{ url('admin/viewprenurserysubject') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View Pre-Nursery Subject</p>
+                </a>
+              </li>
+
               <li class="nav-item">
                 <a href="{{ url('admin/addsubject') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -499,22 +507,22 @@
               </li>
              
               <li class="nav-item">
-                <a href="{{ url('admin/addhighscsubject') }}" class="nav-link">
+                <a href="{{ url('admin/viewnurserysubjects') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Prim Subject</p>
+                  <p>View Nursery Subjects</p>
                 </a>
               </li>
 
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="{{ url('admin/preschoolsubjects') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>View Creche Sub</p>
+                  <p>View Pre-Nursery Sub</p>
                 </a>
-              </li>
+              </li> --}}
               <li class="nav-item">
-                <a href="{{ url('admin/nurserysubjects') }}" class="nav-link">
+                <a href="{{ url('admin/addprimarysub') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>View Nursery Sub</p>
+                  <p>Add Primary Sub</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -525,12 +533,7 @@
               </li>
 
 
-              <!-- <li class="nav-item">
-                <a href="{{ url('admin/teachertosubjects') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Teacher to Subject</p>
-                </a>
-              </li> -->
+             
 
               <li class="nav-item">
                 <a href="{{ url('admin/allsubjects') }}" class="nav-link">
@@ -867,7 +870,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                End of Term Reports
+                Unapproved Term Reports
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -889,6 +892,36 @@
               </li>
             </ul>
           </li>
+
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Approved Term Reports
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              @foreach ($view_clesses as $view_clesse)
+                  <li class="nav-item">
+                    <a href="{{ url('admin/classapprovesresults/'.$view_clesse->classname) }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>{{ $view_clesse->classname }}</p>
+                    </a>
+                  </li>
+                  @endforeach
+
+              <li class="nav-item">
+                <a href="{{ url('admin/allresult') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View all Results</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">

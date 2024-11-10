@@ -90,7 +90,7 @@
                         </td>
 
                         <td>{{ $view_parent->email }}
-                        <small>Centername: {{ $view_parent->centername }}</small>
+                        <small>Section: {{ $view_parent->section }}</small>
                         </td>
                         <td><a href="{{ url('admin/addchild/'.$view_parent->ref_no) }}"
                             class='btn btn-success'>

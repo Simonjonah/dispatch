@@ -42,23 +42,23 @@
                     <th>Middlename</th>
                     <th>Surname</th>
                     <!-- <th>Adm</th> -->
-                    <th>Centername</th>
+                    <th>Section</th>
                     <th>Classname</th>
-                    <th>Entry Level</th>
+                    <th>Term</th>
                     <th>Gender</th>
 
                     <th>Images</th>
                     <th>Status</th>
                     <th>Action</th>
                     <th>Add Results</th>
-                    <th>Add MidtermResults</th>
+                    {{-- <th>Add MidtermResults</th> --}}
                     
                   </tr>
                   </thead>
                   <tbody>
 
                     @foreach ($view_terms as $view_term)
-                    @if ($view_term->centername == Auth::guard('web')->user()->centername && $view_term->entrylevel == Auth::guard('web')->user()->entrylevel && $view_term->classname == Auth::guard('web')->user()->classname && $view_term->role == Auth::guard('web')->user()->role = null)
+                    @if ($view_term->section == Auth::guard('web')->user()->section &&  $view_term->classname == Auth::guard('web')->user()->classname && $view_term->role == Auth::guard('web')->user()->role = null)
                         <tr>
                           <td>{{ $view_term->fname }}</td>
                           <td>{{ $view_term->middlename }}</td>
@@ -68,13 +68,13 @@
                           {{ $view_term->regnumber }}
                           @endif</small> </td>
 
-                          <td> {{ $view_term->centername }}
+                          <td>
 
                           <small>{{ $view_term->section }}</small>
                           </td>
                           <td> {{ $view_term->classname }}</td>
                           
-                          <td> {{ $view_term->entrylevel }}</td>
+                          <td> {{ $view_term->term }}</td>
                           <td> {{ $view_term->gender }}</td>
                           <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$view_term->images")}}" alt=""></td>
                           <td> <span class="badge badge-success">{{ $view_term->status }}</span></td>
@@ -88,10 +88,10 @@
                                Add Results
                            </a></td>
 
-                           <td><a href="{{ url('web/addmidtermresults/'.$view_term->id) }}"
+                           {{-- <td><a href="{{ url('web/addmidtermresults/'.$view_term->id) }}"
                               class='btn btn-warning'>
                                Add MidtermResults
-                           </a></td>
+                           </a></td> --}}
                          </a></td>
                         </tr>
                     @else
@@ -105,16 +105,16 @@
                       <th>First name</th>
                       <th>Middlename</th>
                       <th>Surname</th>
-                      <th>Centername</th>
+                      <th>Section</th>
                       <th>Classname</th>
-                      <th>Entry Level</th>
+                      <th>Term</th>
                       <th>Gender</th>
   
                       <th>Images</th>
                       <th>Status</th>
                       <th>Action</th>
                       <th>Add Results</th>
-                      <th>Add MidtermResults</th>
+                      {{-- <th>Add MidtermResults</th> --}}
                       
                     </tr>
                   </tfoot>
@@ -137,7 +137,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2014-2019 <a href="https://brixtonnschools.com.ng">Brixtonn.com.ng</a>.</strong> All rights
+    <strong>Copyright &copy; 2014-2019 <a href="#">GOGIS</a>.</strong> All rights
     reserved.
   </footer>
 

@@ -70,7 +70,7 @@
                         <h5>Section </h5>
                         <select required class="form-control" type="text" name="section">
                           
-                          <option value="Pre-Nursery">Pre-Nursery</option>
+                          <option value="Nursery">Nursery</option>
                         </select>
                       </div> 
                     </div>

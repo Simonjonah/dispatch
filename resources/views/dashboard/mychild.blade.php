@@ -54,7 +54,7 @@
   
                       <th>Admit No</th>
                       {{-- <th>Form No</th> --}}
-                      <th>Edit</th>
+                      {{-- <th>Edit</th> --}}
                       <th>Add Another Child</th>
        
                      
@@ -66,14 +66,14 @@
                   <tbody>
                   {{-- @if (Auth::guard('web')->user()->promotion == 'Pre-School Head') --}}
                     @foreach ($view_mychilds as $view_mychild)
-                    @if ($view_mychild->centername == Auth::guard('web')->user()->centername && $view_mychild->role == null)
+                    {{-- @if ($view_mychild->centername == Auth::guard('web')->user()->centername && $view_mychild->role == null) --}}
                       <tr>
                         <td>{{ $view_mychild->classname }}</td>
                         <td>{{ $view_mychild->middlename }}</td>
                         <td>{{ $view_mychild->fname }}</td>
-                        <td>{{ $view_mychild->entrylevel }}</td>
-                        <td>{{ $view_mychild->centername }}
-                        <small>{{ $view_mychild->section }}</small>
+                        <td>{{ $view_mychild->term }}</td>
+                        <td>{{ $view_mychild->section }}
+                        {{-- <small>{{ $view_mychild->section }}</small> --}}
                         </td>
   
                         <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$view_mychild->images")}}" alt=""></td>
@@ -97,12 +97,7 @@
                    
   
                       <td>{{ $view_mychild->regnumber }}</td>
-                        <td><a href="{{ url('web/editstudentbyparent/'.$view_mychild->ref_no1) }}"
-                          class='btn btn-info'>
-                          <i class="far fa-edit"></i>
-                      </a></td>  
                       
-                
                       <th> <a href="{{ url('web/registeryourchild/'.$view_mychild->ref_no) }}" class="btn btn-sm btn-primary">
                         <i class="fas fa-user"></i> 
                      
@@ -110,15 +105,10 @@
                     <td>{{ $view_mychild->created_at->format('D d, M Y, H:i')}}</td>
   
                       </tr>
-                      @else
-                        
-                      @endif  
+                      
                     
                   @endforeach
-                        {{-- @else
-                        
-                      @endif
-                 --}}
+                    
                   </tbody>
                   <tfoot>
                     <tr>
@@ -133,7 +123,7 @@
     
                         <th>Admit No</th>
                         {{-- <th>Form No</th> --}}
-                        <th>Edit</th>
+                        {{-- <th>Edit</th> --}}
                         <th>Add Another Child</th>
          
                        
@@ -161,7 +151,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2023 <a href="https://brixtonnschools.com.ng">brixtonnschools.com.ng</a>.</strong> All rights
+    <strong>Copyright &copy; 2023 <a href="#">GOGGIS.com.ng</a>.</strong> All rights
     reserved.
   </footer>
 

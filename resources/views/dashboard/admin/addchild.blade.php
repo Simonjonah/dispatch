@@ -39,7 +39,7 @@
 						<div class="contactform">
 							<form method="post" action="{{ url('admin/createadminbyparents') }}" enctype="multipart/form-data">
 							
-							@csrf
+							        @csrf
                             @if (Session::get('success'))
                             <div class="alert alert-success">
                                 {{ Session::get('success') }}
@@ -259,8 +259,8 @@
 						<div class="form-group">
 							<h5>Section </h5>
 							<select required class="form-control" type="text" name="section">
-                <option value="Creche">Creche</option>
                 <option value="Pre-Nursery">Pre-Nursery</option>
+                <option value="Nursery">Nursery</option>
                 <option value="Primary">Primary</option>
 																	
 							</select>

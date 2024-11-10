@@ -162,15 +162,27 @@ class ClassnameController extends Controller
     public function classresults($classname){
         $view_myresult = Classname::where('classname', $classname)->first();
         $view_myresults = Result::where('classname', $classname)
-        ->where('centername', 'Uyo')
         ->where('type', null)
+        ->where('status', null)
         ->latest()->get();
         $sessions = Academicsession::all();
         $view_classes = Classname::all();
-        $view_studycenters = Studycenter::all();
-        return view('dashboard.admin.classresults', compact('view_studycenters', 'view_classes', 'sessions', 'view_myresult', 'view_myresults'));
+        $view_pupils = User::where('classname', $classname)->where('assign1', 'student')->get();
+        return view('dashboard.admin.classresults', compact('view_pupils', 'view_classes', 'sessions', 'view_myresult', 'view_myresults'));
     }
 
+    public function classapprovesresults($classname){
+        $view_myresult = Classname::where('classname', $classname)->first();
+        $view_myresults = Result::where('classname', $classname)
+        ->where('type', null)
+        ->where('status', 'approved')
+        ->latest()->get();
+        $sessions = Academicsession::all();
+        $view_classes = Classname::all();
+        $view_pupils = User::where('classname', $classname)->where('assign1', 'student')->get();
+        return view('dashboard.admin.classapprovesresults', compact('view_pupils', 'view_classes', 'sessions', 'view_myresult', 'view_myresults'));
+    }
+    
     public function classresultsheads($classname){
         $view_myresults = Classname::where('classname', $classname)->first();
         $view_myresults = Result::where('classname', $classname)

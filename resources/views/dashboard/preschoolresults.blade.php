@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Brixtonn Schools Terminal Result</title>
+        <title>GRACE OF GOD INTERNATIONAL SCHOOL Terminal Result</title>
         <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
     </head>
 
@@ -91,19 +91,15 @@ table, tr, td{
 
     <tr>
         <th style="text-align: center; width: 120px; height: 100px; padding: 0px">
-            <img style="width: 100px; height: 50px;" src="{{ asset('images/sch14.jpg')}}">
+            <img style="width: 100px; height: 100px;" src="{{ asset('front/images/logo.jpg')}}">
         </th>
 
-        <th style="text-align: center; width: 450px;"><h1>BRIXTONN SCHOOLS</h1>
-            <p style="font-weight: normal; margin-bottom: -8px;">@if (Auth::guard('web')->user()->centername == 'Uyo')
-                13 F-Line Ewet Housing Estate, Uyo 
+        <th style="text-align: center; width: 450px;"><h1>GRACE OF GOD INTERNATIONAL SCHOOL - GOGIS</h1>
+            <p style="font-weight: normal; margin-bottom: -2px;">
+                61 Ntiendo Udosen Street, P.O.Box 2666 Uyo 
                 Akwa Ibom State, Nigeria <br>
-                Website: brixtonnschools.com.ng
-                @else
-                No. 4 Julius Nyerere Crescent, <br>  Abuja 
-                Nigeria <br>
-                Website: brixtonnschools.com.ng
-                @endif
+                Website: gogischools.org
+               
                 </p>
             {{-- <p  style="font-weight: normal; font-style:italic">Motor: Fostering Creativity and Development</p>  --}}
         </th>
@@ -115,7 +111,7 @@ table, tr, td{
    
 
         <tr>
-            <th colspan="2" style="text-align: center; text-transform: uppercase;">{{ $getyour_result->entrylevel }} REPORT FOR {{ $getyour_result->academic_session }} <br>
+            <th colspan="2" style="text-align: center; text-transform: uppercase;">{{ $getyour_result->term }} REPORT FOR {{ $getyour_result->academic_session }} <br>
                 {{ $getyour_result->surname }}, {{ $getyour_result->fname }} {{ $getyour_result->middlename }}
             </th>
             <th>-</th>
@@ -126,61 +122,24 @@ table, tr, td{
     <?php 
     $total_score = 0; ?>
 
-    <div class="container1j">
+    {{-- <div class="container1j">
         <div class="row1h">
             <div class="col1j">
                 <div class="term3h">
                     <table id="myTable">
                         <tr>
-                          <th>Subjects </th>
-                          <th>comments</th>
+                          <th>SUBJECTS </th>
+                          <th>GRADING SYSTEM</th>
                           
                         </tr>
-                        <td>COMMUNICATION AND LANGUAGE</td>
                    
                         @foreach ($getyour_results as $getyour_result)
                             @if ($getyour_result->status == 'approved')
-                            @if ($getyour_result->category == 'COMMUNICATION AND LANGUAGE')    
                         <tr>
                            <td style="width: 200px; text-align: left;">{{ $getyour_result->subjectname }}</td>
                            <td style="width: 450px;">{{ $getyour_result->comment }}</td>
                         </tr>
-                           @else
-                           @endif 
-                        
-                        @else 
-                        @endif
-                        @endforeach
-
-
-
-                        <td>PHYSICAL DEVELOPMENT</td>
-                        @foreach ($getyour_results as $getyour_result)
-                            @if ($getyour_result->status == 'approved')
-                            @if ($getyour_result->category == 'PHYSICAL DEVELOPMENT')    
-                        <tr>
-                           <td style="width: 200px; text-align: left;">{{ $getyour_result->subjectname }}</td>
-                           <td style="width: 450px;">{{ $getyour_result->comment }}</td>
-                        </tr>
-                           @else
-                           @endif 
-                        
-                        @else 
-                        @endif
-                        @endforeach
-
-
-
-                        <td>PERSONAL, SOCIAL AND EMOTIONAL DEVELOPMENT</td>
-                        @foreach ($getyour_results as $getyour_result)
-                            @if ($getyour_result->status == 'approved')
-                            @if ($getyour_result->category == 'PERSONAL, SOCIAL AND EMOTIONAL DEVELOPMENT')    
-                        <tr>
-                           <td style="width: 200px; text-align: left;">{{ $getyour_result->subjectname }}</td>
-                           <td style="width: 450px;">{{ $getyour_result->comment }}</td>
-                        </tr>
-                           @else
-                           @endif 
+                          
                         
                         @else 
                         @endif
@@ -190,75 +149,506 @@ table, tr, td{
 
                         
 
-                        <td>KNOWLEDGE TO UNDERSTAND OF THE WORLD (KUW)</td>
-                        @foreach ($getyour_results as $getyour_result)
-                            @if ($getyour_result->status == 'approved')
-                            @if ($getyour_result->category == 'KNOWLEDGE TO UNDERSTAND OF THE WORLD (KUW)')    
-                        <tr>
-                           <td style="width: 200px; text-align: left;">{{ $getyour_result->subjectname }}</td>
-                           <td style="width: 450px;">{{ $getyour_result->comment }}</td>
-                        </tr>
-                           @else
-                           @endif 
-                        
-                        @else 
-                        @endif
-                        @endforeach
 
-
-
-                        <td>MATH READINESS (NUMERACY)</td>
-                        @foreach ($getyour_results as $getyour_result)
-                            @if ($getyour_result->status == 'approved')
-                            @if ($getyour_result->category == 'MATH READINESS (MATHEMATICS)')    
-                        <tr>
-                           <td style="width: 200px; text-align: left;">{{ $getyour_result->subjectname }}</td>
-                           <td style="width: 450px;">{{ $getyour_result->comment }}</td>
-                        </tr>
-                           @else
-                           @endif 
-                        
-                        @else 
-                        @endif
-                        @endforeach
-
-
-
-                        <td>LANGUAGE DEVELOPMENT/PHONICS(LITERACY)</td>
-                        @foreach ($getyour_results as $getyour_result)
-                            @if ($getyour_result->status == 'approved')
-                            @if ($getyour_result->category == 'LANGUAGE DEVELOPMENT/PHONICS(LITERACY)')    
-                        <tr>
-                           <td style="width: 200px; text-align: left;">{{ $getyour_result->subjectname }}</td>
-                           <td style="width: 450px;">{{ $getyour_result->comment }}</td>
-                        </tr>
-                           @else
-                           @endif 
-                        
-                        @else 
-                        @endif
-                        @endforeach
-
-
-
-                        
-                        @foreach ($getyour_results as $getyour_result)
-                            @if ($getyour_result->status == 'approved')
-                            @if ($getyour_result->category == null)    
-                        <tr>
-                           <td style="width: 200px; text-align: left;">{{ $getyour_result->subjectname }}</td>
-                           <td style="width: 450px;">{{ $getyour_result->comment }}</td>
-                        </tr>
-                           @else
-                           @endif 
-                        
-                        @else 
-                        @endif
-                        @endforeach
 
           
                       </table>
-                     
+                      --}}
+                      <style>
+        
+                        .container .row .col .psy{
+                            width: 220px;
+                            display: inline-block;
+                        }
+                
+                        .topto{
+                          position: relative;
+                          top: -10px;
+                        }
+                
+                        .top2{
+                          position: relative;
+                          top: 1px;
+                        }
+                      </style>
+                      
+                      <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="psy">
+                                    <table class="topto table">
+                                        <tr>
+                                            <th>SUBJECTS</th>
+                                            <th colspan="5">GRADE SYSTEM</th>
+                                        </tr>
+                                         
+                                       
+                                         
+                                        @foreach ($getyour_results as $getyour_result)
+                                        @if ($getyour_result->status == 'approved')
+                                        <tr>
+                                          <td style="width: 120px; font-size: 16px; text-align: left; text-transform: uppercase">{{ $getyour_result->subjectname }}</td>
+                                          <td style="width: 120px; font-size: 16px;">{{ $getyour_result->comment }}</td>
+                                        </tr>
+                                        @else
+                                      
+                                        @endif
+                                    @endforeach
+                                       
+                                      </table>
+                                </div>
+                
+                                <div class="psy">
+                                    <table class="top2 table">
+                                        <tr>
+                                            <th>-</th>
+                                            <th colspan="5">KEY TO RATING</th>
+                                          </tr>
+                                         
+                                          <tr>
+                                            <td><b>BEHAVIOUR/SKILLS</b>
+                                            </td>
+                                            <td>1</td>
+                                            <td>2</td>
+                                            <td>3</td>
+                                            <td>4</td>
+                                            <td>5</td>
+                                          </tr>
+                                          <tr>
+                                            <td style="font-size: 16px;">Mental Alertness</td>
+                                                @if ($view_results->mentalalert1 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->mentalalert2 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->mentalalert3 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->mentalalert4 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                                                @if ($view_results->mentalalert5 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                                                
+                                          </tr>
+                        
+                                          <td style="font-size: 16px;">Punctuality</td>
+                                                @if ($view_results->punt1 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->punt2 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->punt3 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->punt4 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                
+                                                @if ($view_results->punt5 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                                          </tr>
+                                          <tr>
+                                              <td style="font-size: 16px;">Respect</td>
+                                              @if ($view_results->respect1 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->respect2 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->respect3 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->respect4 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                
+                                                @if ($view_results->respect5 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                                          </tr>
+                              
+                                          <tr>
+                                              <td style="font-size: 16px;">Neatness</td>
+                                              @if ($view_results->neat1 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->neat2 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->neat3 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->neat4 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                
+                                                @if ($view_results->neat5 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                              
+                                          </tr>
+                                              <td style="font-size: 16px;">Politeness</td>
+                                              @if ($view_results->polite1 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->polite2 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->polite3 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->polite4 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                
+                                                @if ($view_results->polite5 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                              
+                                            
+                                          </tr>
+                              
+                                          <tr>
+                                              <td style="font-size: 16px;">Honesty</td>
+                                              @if ($view_results->honesty1 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->honesty2 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->honesty3 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->honesty4 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                
+                                                @if ($view_results->honesty5 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                                          </tr>
+                                          <tr>
+                                              <td style="font-size: 16px;">Relationship with Peers</td>
+                                              @if ($view_results->relationship1 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->relationship2 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->relationship3 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->relationship4 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                
+                                                @if ($view_results->relationship5 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                                          </tr>
+                              
+                                          <tr>
+                                              <td style="font-size: 16px;">Williness</td>
+                                              @if ($view_results->williness1 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->williness2 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->williness3 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->williness4 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                
+                                                @if ($view_results->williness5 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                                          </tr>
+                              
+                                          <tr>
+                                              <td style="font-size: 16px;">Team Spirit</td>
+                                              @if ($view_results->teamspirit1 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->teamspirit2 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->teamspirit3 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->teamspirit4 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                
+                                                @if ($view_results->teamspirit5 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                                          </tr>
+                              
+                                          <tr>
+                                            <td style="font-size: 16px;">Verbal Skill</td>
+                                                @if ($view_results->verbal1 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->verbal2 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->verbal3 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->verbal4 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                
+                                                @if ($view_results->verbal5 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                                          </tr>
+                        
+                                          <td style="font-size: 16px;">Games & Sports</td>
+                                                @if ($view_results->sports1 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->sports2 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->sports3 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->sports4 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                
+                                                @if ($view_results->sports5 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                                               
+                                          </tr>
+                                          <tr>
+                                              <td style="font-size: 16px;">Arts & Craft</td>
+                                              @if ($view_results->arts1 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->arts2 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->arts3 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                        
+                                                @if ($view_results->arts4 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                
+                                                 @if ($view_results->arts5 == 'Yes')
+                                                <td style="font-size: 16px;"><i class="fas fa-check"></i> </td>
+                                                @else
+                                                <td style="font-size: 16px;"></td>
+                                                @endif
+                              
+                                              
+                                          </tr>
+                                        <tr>
+                                         
+                                      </table>
+                                </div>
+                
+                
+                                <div class="psy" style="margin-left: 0px">
+                                    <table class="table" style="margin-left: 0px">
+                                        <tr>
+                                          <th colspan="3">SOCIAL BEHAVIOUR AND MANIPULATING SKILLS (SBMS)</th>
+                                          <th colspan="2">KEY:</th>
+                                        </tr>
+                                        <tr>
+                
+                                          <td>1</td>
+                                          <td>2</td>
+                                          <td>3</td>
+                                          <td>4</td>
+                                          <td>5</td>
+                            
+                                        </tr> 
+                
+                                        <tr>
+                                            <td style="font-size: 16px;"> Poor</td>
+                                            <td style="font-size: 16px;"> V.Poor</td>
+                                            <td style="font-size: 16px;"> Fair</td>
+                                            <td style="font-size: 16px;"> Good</td>
+                                            <td style="font-size: 16px;"> Exellence</td>
+                                            
+                                            
+                                        </tr>
+                                       
+                                      </table>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      
+                
+                      </table>
+                
                     <span style="color: red"> Times School Opened: {{ $view_results->schoolopen }}</span> <br>
                   <span style="color: red">Times School Present:{{ $view_results->timespresent }}</span> <br>
                   <span style="color: red">Times School Absent: {{ $view_results->timeabsent }}</span> <br>
@@ -285,27 +675,33 @@ table, tr, td{
 
       <table>
         <tr>
-            <td>REG CODE:</td>
-            <td>{{ $getyour_result->regnumber }}</td>
-            <td>SEX:</td>
-            <td>{{ $getyour_result->user['gender'] }}</td>
+            <td style="font-size: 16px;">REG CODE:</td>
+            <td style="font-size: 16px;">{{ $getyour_result->regnumber }}</td>
+            <td style="font-size: 16px;">SEX:</td>
+            <td style="font-size: 16px;">{{ $getyour_result->user['gender'] }}</td>
            
         </tr>
 
         <tr>
-            <td>CLASS:</td>
-            <td>{{ $getyour_result->classname }}</td>
-            <td>TERM:</td>
-            <td>{{ $getyour_result->entrylevel }} </td>
+            <td style="font-size: 16px;">CLASS:</td>
+            <td style="font-size: 16px;">{{ $getyour_result->classname }}</td>
+            <td style="font-size: 16px;">TERM:</td>
+            <td style="font-size: 16px;">{{ $getyour_result->term }} </td>
              
-            <td>NEXT TERM BEGIN:</td>
-           <td>{{ $view_results->nextterm }}</td>
+            <td style="font-size: 16px;">NEXT TERM BEGIN:</td>
+           <td style="font-size: 16px;">{{ $view_results->nextterm }}</td>
         </tr>
         <tr>
-            <td>DATE OF BIRTH:</td>
-            <td>{{ $getyour_result->user['dob'] }}</td>
+            <td style="font-size: 16px;">DATE OF BIRTH:</td>
+            <td style="font-size: 16px;">{{ $getyour_result->user['dob'] }}</td>
             
         </tr>
+        <tr>
+            <td style="font-size: 16px;">NO. OF PUPILS IN CLASS:</td>
+            <td style="font-size: 16px;">{{ $totalstudentInClass }}</td>
+            
+        </tr>
+        
         
     
 
@@ -318,21 +714,18 @@ table, tr, td{
           
 
             <tr>
-                <td>Class Teacher's Comment</td>
-                <td>{{ $view_results->headteacher_comment}} </td>
+                <td style="font-size: 16px;">Class Teacher's Comment</td>
+                <td style="font-size: 16px;">{{ $view_results->headteacher_comment}} </td>
 
            
             </tr>
                 
-            <td>HOS's Comment</td>
-                <td>{{ $getyour_result->teacher_comment }} </td>
+            <td style="font-size: 16px;">HOS's Comment</td>
+                <td style="font-size: 16px;">{{ $getyour_result->headteacher_comment }} </td>
 
-                <td> @if ($getyour_result->centername == 'Uyo')
-                <img style="width: 50px; height: 50px;" src="{{ asset('assets/dist/img/signature.jpeg')}}">
-            @else
-            <img style="width: 50px; height: 50px;" src="{{ asset('assets/dist/img/abuja.jpg')}}">
-                
-            @endif</td>
+                <td> 
+                <img style="width: 50px; height: 50px;" src="{{ asset('assets/dist/img/signature.png')}}">
+           </td>
             <tr>
 
             </tr>

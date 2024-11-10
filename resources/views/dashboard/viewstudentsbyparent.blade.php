@@ -204,8 +204,8 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="">Propose Month of Entry</label>
-                       <input type="text" class="form-control" value="{{ $view_student->monthofentry }}" id="">
+                      <label for="">Term</label>
+                       <input type="text" class="form-control" value="{{ $view_student->term }}" id="">
                     </div>
 
                     <div class="form-group">
@@ -214,7 +214,7 @@
                     </div>
                     <div class="form-group">
                       <label for="">Place of Birth</label>
-                       <input type="text" class="form-control" value="{{ $view_student->placeofbirth }}" id="">
+                       <input type="text" class="form-control" value="{{ $view_student->dob }}" id="">
                     </div>
 
                     <div class="form-group">

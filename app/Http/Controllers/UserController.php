@@ -53,14 +53,13 @@ class UserController extends Controller
             $path = $request->file('images')->store('resourceimages');
     
             // Update the image path in the post
-            $add_adimission->images = $path;
         }else{
     
             $path = 'noimage.jpg';
         }
         $add_adimission = new User();
 
-        // $add_adimission['images'] = $path;
+        $add_adimission['images'] = $path;
         $add_adimission->surname = $request->surname;
         // $add_adimission->centername = $request->centername;
         $add_adimission->slug = $request->slug;
@@ -94,8 +93,8 @@ class UserController extends Controller
     }
 
     public function addparentshead(){
-        $addcenters = Studycenter::all();
-        return view('dashboard.addparentshead', compact('addcenters'));
+        
+        return view('dashboard.addparentshead');
     }
 
     public function secondregistration($ref_no){
@@ -346,23 +345,29 @@ class UserController extends Controller
     public function editstudent($ref_no1){
         $edit_students = User::where('ref_no1', $ref_no1)->first();
         $add_class = Classname::all();
-        $view_centers = Studycenter::all();
-        return view('dashboard.admin.editstudent', compact('view_centers', 'add_class', 'edit_students'));
+        $view_sessions = Academicsession::all();
+        return view('dashboard.admin.editstudent', compact('view_sessions', 'add_class', 'edit_students'));
     }
 
     public function updateadmission(Request $request, $ref_no1){
         $edit_students = User::where('ref_no1', $ref_no1)->first();
        
         $request->validate([
+
             'fname' => ['nullable', 'string', 'max:255'],
             'surname' => ['nullable', 'string'],
-            // 'email' => ['nullable', 'string'],
-            // 'centername' => ['nullable', 'string'],
-            //'phone' => ['nullable', 'string'],
+            'user_id' => ['nullable', 'string'],
             'middlename' => ['nullable', 'string'],
             'monthofentry' => ['nullable', 'string'],
-            'centername' => ['nullable', 'string'],
+            
             'placeofbirth' => ['nullable', 'string'],
+            'state' => ['nullable', 'string'],
+            'att' => ['nullable', 'string'],
+            'attendedtime' => ['nullable', 'string'],
+            'medreports1' => ['nullable', 'string'],
+            'livingwith' => ['nullable', 'string'],
+            'handicap' => ['nullable', 'string'],
+            'sighted' => ['nullable', 'string'],
             'gender' => ['nullable', 'string'],
             'section' => ['nullable', 'string'],
             'dob' => ['nullable', 'string'],
@@ -370,28 +375,90 @@ class UserController extends Controller
             'state' => ['nullable', 'string'],
             'religion' => ['nullable', 'string'],
             'term' => ['nullable', 'string'],
-            'images' => 'nullable|mimes:jpg,png,jpeg'
+            'ref_no' => ['nullable', 'string'],
+            'academic_session' => ['nullable', 'string'],
+            'images' => 'nullable|mimes:jpg,png,jpeg',
+
+            'hearing1' => ['nullable', 'string'],
+            'speech' => ['nullable', 'string'],
+            'ortho1' => ['nullable', 'string'],
+            'mentally' => ['nullable', 'string'],
+            'quiet' => ['nullable', 'string'],
+            'quiet1' => ['nullable', 'string'],
+
+            'gifted' => ['nullable', 'string'],
+            'started_school' => ['nullable', 'string'],
+            'school_name' => ['nullable', 'string'],
+            'class_attended' => ['nullable', 'string'],
+            'transfer_cert' => ['nullable', 'string'],
+            'tobeattended' => ['nullable', 'string'],
+            'attended' => ['nullable', 'string'],
+            'cistern' => ['nullable', 'string'],
+            'game' => ['nullable', 'string'],
+            'toys' => ['nullable', 'string'],
+            'playwith' => ['nullable', 'string'],
+            'spent' => ['nullable', 'string'],
+            'playful1' => ['nullable', 'string'],
+            'playwith1' => ['nullable', 'string'],
+            'playwith' => ['nullable', 'string'],
+            'playwith2' => ['nullable', 'string'],
+            'playwith3' => ['nullable', 'string'],
+            'playwith4' => ['nullable', 'string'],
+            'playwith5' => ['nullable', 'string'],
+            'livingwith1' => ['nullable', 'string'],
+            'lga' => ['nullable', 'string'],
+            'birthcert' => 'nullable|mimes:jpg,png,jpeg,pdf',
+            'payment_evid' => 'nullable|mimes:jpg,png,jpeg,pdf',
+            'report_card' => 'nullable|mimes:jpg,png,jpeg,pdf',
+            
         ]);
-        // dd($request->all());
-        if ($request->hasFile('images')) {
+
+        if ($request->hasFile('birthcert')) {
+            $pathcert = $request->file('birthcert')->store('resourceimages');
+            $edit_students['birthcert'] = $pathcert;
+
+            }else{
+            $pathcert = 'noimage.jpg';
+        }
+
+       if ($request->hasFile('images')) {
             // Store the new images
             $path = $request->file('images')->store('resourceimages');
-    
-            // Update the image path in the post
-            $edit_students->images = $path;
-        }else{
-    
+            $edit_students['images'] = $path;
+            }else{
+
             $path = 'noimage.jpg';
         }
-        
 
+        if ($request->hasFile('payment_evid')) {
+            $pathpayment = $request->file('payment_evid')->store('resourceimages');
+            
+            $edit_students['payment_evid'] = $pathpayment;
+            }else{
+            $pathpayment = 'noimage.jpg';
+        }
+
+        if ($request->hasFile('report_card')) {
+            $pathreport = $request->file('report_card')->store('resourceimages');
+            
+            $edit_students['report_card'] = $pathreport;
+            }else{
+            $pathreport = 'noimage.jpg';
+           
+        }
+
+     
         // $edit_students['images'] = $path;
+        // $edit_students['birthcert'] = $pathcert;
+        // $edit_students['payment_evid'] = $pathpayment;
+        // $edit_students['report_card'] = $pathreport;
+        
         $edit_students->surname = $request->surname;
-        // $edit_students->centername = $request->centername;
+      
         $edit_students->fname = $request->fname;
+       
         $edit_students->middlename = $request->middlename;
-        // $edit_students->email = $request->email;
-        // $edit_students->phone = $request->phone;
+        $edit_students->ref_no = $request->ref_no;
         $edit_students->dob = $request->dob;
         $edit_students->placeofbirth = $request->placeofbirth;
         $edit_students->monthofentry = $request->monthofentry;
@@ -401,13 +468,46 @@ class UserController extends Controller
         $edit_students->state = $request->state;
         $edit_students->term = $request->term;
         $edit_students->classname = $request->classname;
+        $edit_students->academic_session = $request->academic_session;
+        $edit_students->att = $request->att;
+        $edit_students->attendedtime = $request->attendedtime;
+        $edit_students->medreports1 = $request->medreports1;
+        $edit_students->livingwith = $request->livingwith;
+        $edit_students->handicap = $request->handicap;
 
-        $edit_students->update();
-        return redirect()->route('secondregistration', ['ref_no' =>$edit_students->ref_no]); 
+        $edit_students->sighted = $request->sighted;
+        $edit_students->speech = $request->speech;
+        $edit_students->hearing1 = $request->hearing1;
+        $edit_students->ortho1 = $request->ortho1;
+        $edit_students->mentally = $request->mentally;
+        $edit_students->quiet1 = $request->quiet1;
+        $edit_students->gifted = $request->gifted;
+        $edit_students->started_school = $request->started_school;
+
+        $edit_students->school_name = $request->school_name;
+        $edit_students->class_attended = $request->class_attended;
+        $edit_students->transfer_cert = $request->transfer_cert;
+        $edit_students->tobeattended = $request->tobeattended;
+        $edit_students->attended = $request->attended;
+        $edit_students->cistern = $request->cistern;
+
+        $edit_students->game = $request->game;
+        $edit_students->toys = $request->toys;
+        $edit_students->playwith = $request->playwith;
+        $edit_students->spent = $request->spent;
+        $edit_students->playful1 = $request->playful1;
+        $edit_students->livingwith1 = $request->livingwith1;
+        $edit_students->lga = $request->lga;
+        
+        $edit_students->save();
+
+        return redirect()->back()->with('success', 'You have added the child to the parent successfully');
+        // return redirect()->route('medicalreports', ['ref_no' =>$add_child->ref_no]); 
 
     }
-    public function rejectstudent($ref_no){
-        $reject_student = User::where('ref_no', $ref_no)->first();
+
+    public function rejectstudent($ref_no1){
+        $reject_student = User::where('ref_no1', $ref_no1)->first();
         $reject_student->status = 'reject';
         $reject_student->save();
         return redirect()->back()->with('success', 'you have rejected successfully');
@@ -423,8 +523,8 @@ class UserController extends Controller
         $reject_students = User::where('status', 'reject')->where('assign1', 'student')->where('assign1', 'student')->get();
         return view('dashboard.admin.rejectedstudent', compact('reject_students'));
     }
-    public function suspendstudent($ref_no){
-        $suspend_student = User::where('ref_no', $ref_no)->first();
+    public function suspendstudent($ref_no1){
+        $suspend_student = User::where('ref_no1', $ref_no1)->first();
         $suspend_student->status = 'suspend';
         $suspend_student->save();
         return redirect()->back()->with('success', 'you have approved successfully');
@@ -496,8 +596,14 @@ class UserController extends Controller
     public function editstudentbyparent($ref_no1){
         $edit_student = User::where('ref_no1', $ref_no1)->first();
         $add_class = Classname::all();
-        $acas = Academicsession::all();
-        return view('dashboard.editstudentbyparent', compact('acas', 'add_class', 'edit_student'));
+        $view_sessions = Academicsession::all();
+        return view('dashboard.editstudentbyparent', compact('view_sessions', 'add_class', 'edit_student'));
+    }
+
+
+    public function teacherdelete($ref_no){
+        $edit_student = User::where('ref_no', $ref_no)->delete();
+        return redirect()->back()->with('success', 'You have successfully deleted the teacher');
     }
 
     
@@ -546,13 +652,13 @@ class UserController extends Controller
                 return redirect()->back()->with('error', 'you have fail to registered');
         }
     }
-    public function studentpdf($ref_no){
-        $print_students = User::where('ref_no', $ref_no)->first();
+    public function studentpdf($ref_no1){
+        $print_students = User::where('ref_no1', $ref_no1)->first();
         return view('dashboard.admin.studentpdf', compact('print_students'));
     }
 
-    public function medicalspdf($ref_no){
-        $printmedi_students = User::where('ref_no', $ref_no)->first();
+    public function medicalspdf($ref_no1){
+        $printmedi_students = User::where('ref_no1', $ref_no1)->first();
         return view('dashboard.admin.medicalspdf', compact('printmedi_students'));
     }
     public function allstudents(){
@@ -759,25 +865,23 @@ class UserController extends Controller
     public function home(){
 
         $countyourresults = Result::where('teacher_id', auth::guard('web')->id())->count();
-        $countqueries = Query::where('user_id', auth::guard('web')->id())
-        ->where('status', null)
-        ->count();
-        $countreplyqueries = Query::where('user_id', auth::guard('web')->id())
-        ->where('status', 'reply')
-        ->count();
-        $countmysubjects = Teacherassign::where('user_id', auth::guard('web')->id())->count();
-        $countmyquestions = Question::where('user_id', auth::guard('web')->id())->count();
+       
+        // $countreplyqueries = Query::where('user_id', auth::guard('web')->id())
+        // ->where('status', 'reply')
+        // ->count();
+        $countmysubjects = Subject::where('section', auth::guard('web')->user()->section)->count();
+        // $countmyquestions = Question::where('user_id', auth::guard('web')->id())->count();
         
         
         $view_childrens = User::where('user_id', auth::guard('web')->id())->get();
-        return view('dashboard/home', compact('view_childrens', 'countmyquestions', 'countmysubjects', 'countreplyqueries', 'countqueries', 'countyourresults'));
+        return view('dashboard/home', compact('view_childrens', 'countmysubjects', 'countyourresults'));
     }
 
     public function profile($ref_no){
         $view_profile = User::where('ref_no', $ref_no)->first();
         $view_classes = Classname::all();
-        $view_centernames = Studycenter::all();
-        return view('dashboard.profile', compact('view_centernames', 'view_classes', 'view_profile'));
+        // $view_centernames = Studycenter::all();
+        return view('dashboard.profile', compact('view_classes', 'view_profile'));
     }
 
     public function admisionletter(){
@@ -828,7 +932,7 @@ class UserController extends Controller
         $addteachers->phone = $request->phone;
         $addteachers->section = $request->section;
         $addteachers->gender = $request->gender;
-        
+        $addteachers->assign = 'teacher';
         $addteachers->role = 'teacher';
         $addteachers->status = 'teacher';
         $addteachers->term = $request->term;
@@ -866,7 +970,7 @@ class UserController extends Controller
 
 
         public function pioneerterm(){
-            $view_terms = User::where('term', 'Pioneer Term')
+            $view_terms = User::where('term', 'First Term')
             ->where('assign1', 'student')
             ->latest()->get();
           
@@ -874,7 +978,7 @@ class UserController extends Controller
         }
 
         public function penultimateterm(){
-            $view_terms = User::where('term', 'Penultimate Term')->where('assign1', 'student')
+            $view_terms = User::where('term', 'Second Term')->where('assign1', 'student')
             ->latest()->get();
             return view('dashboard.penultimateterm', compact('view_terms'));
         }
@@ -912,7 +1016,7 @@ class UserController extends Controller
         }
         
         public function premiumterm(){
-            $view_terms = User::where('term', 'Premium Term')->latest()->get();
+            $view_terms = User::where('term', 'Third Term')->latest()->get();
           
             return view('dashboard.premiumterm', compact('view_terms'));
         }
@@ -1297,6 +1401,8 @@ class UserController extends Controller
     
     public function updatebiodata(Request $request, $ref_no){
         $edit_bio = User::where('ref_no', $ref_no)->first();
+        // dd($request->all());
+
         $request->validate([
             'fname' => ['required', 'string', 'max:255'],
             'section' => ['required', 'string', 'max:255'],
@@ -1306,8 +1412,7 @@ class UserController extends Controller
             'fatheraddress' => ['required', 'string', 'max:255'],
             'term' => ['required', 'string', 'max:255'],
             'classname' => ['required', 'string', 'max:255'],
-            // 'centername' => ['required', 'string', 'max:255'],
-            'images' => 'required|mimes:jpg,png,jpeg,jfif',
+            'images' => 'nullable|mimes:jpg,png,jpeg,jfif',
         ]);
         // dd($request->all());
         if ($request->hasFile('images')) {
@@ -1485,35 +1590,35 @@ class UserController extends Controller
             'fathersurname' => ['required', 'string'],
             'fathername' => ['required', 'string'],
             'fathermiddlename' => ['required', 'string'],
-            'title' => ['required', 'string'],
+            'maritalstatus' => ['required', 'string'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone' => ['required', 'string', 'unique:users'],
-
             'nationality' => ['required', 'string'],
             'fatheremployer' => ['required', 'string'],
             'fatheraddress' => ['required', 'string'],
             'mothersurname' => ['required', 'string'],
             'mothername' => ['required', 'string'],
             'mothermiddlename' => ['required', 'string'],
-            'mothertitle' => ['required', 'string'],
+            'mothertongue' => ['required', 'string'],
             'motherphone' => ['nullable', 'string'],
-            'mothernationality' => ['required', 'string'],
+            'femergeno' => ['required', 'string'],
+            'semergeno' => ['required', 'string'],
             'motheremployer' => ['required', 'string'],
-            'motheremail' => ['nullable', 'string'],
+            'motheremail' => ['nullable', 'string', 'unique:users'],
             'motheraddress' => ['required', 'string'],
-            'password' => ['required', 'string'],
+            'whobring' => ['required', 'string'],
+            'religion' => ['required', 'string'],
+            // 'password' => ['required', 'string'],
 
-            
         ]);
 
         // dd($request->all());
       
         $add_parent = new user();
-        $add_parent->section = $request->section;
         $add_parent->fathersurname = $request->fathersurname;
         $add_parent->fathername = $request->fathername;
         $add_parent->fathermiddlename = $request->fathermiddlename;
-        $add_parent->title = $request->title;
+        $add_parent->maritalstatus = $request->maritalstatus;
         $add_parent->phone = $request->phone;
         $add_parent->nationality = $request->nationality;
         $add_parent->fatheremployer = $request->fatheremployer;
@@ -1522,18 +1627,20 @@ class UserController extends Controller
         $add_parent->mothersurname = $request->mothersurname;
         $add_parent->mothername = $request->mothername;
         $add_parent->mothermiddlename = $request->mothermiddlename;
-        $add_parent->mothertitle = $request->mothertitle;
+        $add_parent->femergeno = $request->femergeno;
+        $add_parent->semergeno = $request->semergeno;
         $add_parent->motherphone = $request->motherphone;
         $add_parent->mothernationality = $request->mothernationality;
         $add_parent->motheremployer = $request->motheremployer;
         $add_parent->motheremail = $request->motheremail;
         $add_parent->motheraddress = $request->motheraddress;
-        // $add_parent->centername = $request->centername;
+        $add_parent->mothertongue = $request->mothertongue;
+        $add_parent->religion = $request->religion;
+        $add_parent->whobring = $request->whobring;
+        $add_parent->section = $request->section;
         $add_parent->assign = 'parent';
-        $add_parent->password = \Hash::make($request->password);
-        
+        $add_parent->password = \Hash::make($request->phone);
         $add_parent->ref_no = substr(rand(0,time()),0, 9);
-
         $add_parent->save();
 
         return redirect()->back()->with('success', 'You have added a parent sucessfully');
@@ -1579,13 +1686,12 @@ class UserController extends Controller
             $path = $request->file('images')->store('resourceimages');
     
             // Update the image path in the post
-            $add_child->images = $path;
         }else{
     
             $path = 'noimage.jpg';
         }
         $add_child = new User();
-        // $add_child['images'] = $path;
+        $add_child['images'] = $path;
         $add_child->surname = $request->surname;
         // $add_child->centername = $request->centername;
         $add_child->user_id = $request->user_id;
@@ -1612,7 +1718,7 @@ class UserController extends Controller
 
     public function viewchildren ($ref_no){
         $parent = User::where('ref_no', $ref_no)->first();
-        $view_childrens = User::where('ref_no', $ref_no)->get();
+        $view_childrens = User::where('ref_no', $ref_no)->where('assign1', 'student')->get();
         return view('dashboard.admin.viewchildren', compact('parent', 'view_childrens'));
     }
 
@@ -1620,42 +1726,108 @@ class UserController extends Controller
         $edit_student = User::where('ref_no1', $ref_no1)->first();
        
         $request->validate([
-            'fname' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string'],
-            'academic_session' => ['required', 'string'],
+
+            'fname' => ['nullable', 'string', 'max:255'],
+            'surname' => ['nullable', 'string'],
+            'user_id' => ['nullable', 'string'],
+            'middlename' => ['nullable', 'string'],
+            'monthofentry' => ['nullable', 'string'],
             
-            // 'phone' => ['required', 'string'],
-            'middlename' => ['required', 'string'],
-            'monthofentry' => ['required', 'string'],
+            'placeofbirth' => ['nullable', 'string'],
+            'state' => ['nullable', 'string'],
+            'att' => ['nullable', 'string'],
+            'attendedtime' => ['nullable', 'string'],
+            'medreports1' => ['nullable', 'string'],
+            'livingwith' => ['nullable', 'string'],
+            'handicap' => ['nullable', 'string'],
+            'sighted' => ['nullable', 'string'],
+            'gender' => ['nullable', 'string'],
+            'section' => ['nullable', 'string'],
+            'dob' => ['nullable', 'string'],
+            'classname' => ['nullable', 'string'],
+            'state' => ['nullable', 'string'],
+            'religion' => ['nullable', 'string'],
+            'term' => ['nullable', 'string'],
+            'ref_no' => ['nullable', 'string'],
+            'academic_session' => ['nullable', 'string'],
+            'images' => 'nullable|mimes:jpg,png,jpeg',
+
+            'hearing1' => ['nullable', 'string'],
+            'speech' => ['nullable', 'string'],
+            'ortho1' => ['nullable', 'string'],
+            'mentally' => ['nullable', 'string'],
+            'quiet' => ['nullable', 'string'],
+            'quiet1' => ['nullable', 'string'],
+
+            'gifted' => ['nullable', 'string'],
+            'started_school' => ['nullable', 'string'],
+            'school_name' => ['nullable', 'string'],
+            'class_attended' => ['nullable', 'string'],
+            'transfer_cert' => ['nullable', 'string'],
+            'tobeattended' => ['nullable', 'string'],
+            'attended' => ['nullable', 'string'],
+            'cistern' => ['nullable', 'string'],
+            'game' => ['nullable', 'string'],
+            'toys' => ['nullable', 'string'],
+            'playwith' => ['nullable', 'string'],
+            'spent' => ['nullable', 'string'],
+            'playful1' => ['nullable', 'string'],
+            'playwith1' => ['nullable', 'string'],
+            'playwith' => ['nullable', 'string'],
+            'playwith2' => ['nullable', 'string'],
+            'playwith3' => ['nullable', 'string'],
+            'playwith4' => ['nullable', 'string'],
+            'playwith5' => ['nullable', 'string'],
+            'livingwith1' => ['nullable', 'string'],
+            'lga' => ['nullable', 'string'],
+            'birthcert' => 'nullable|mimes:jpg,png,jpeg',
+            'payment_evid' => 'nullable|mimes:jpg,png,jpeg',
+            'report_card' => 'nullable|mimes:jpg,png,jpeg',
             
-            'placeofbirth' => ['required', 'string'],
-            'gender' => ['required', 'string'],
-            'section' => ['required', 'string'],
-            'dob' => ['required', 'string'],
-            'classname' => ['required', 'string'],
-            'state' => ['required', 'string'],
-            'religion' => ['required', 'string'],
-            'term' => ['required', 'string'],
-            'images' => 'nullable|mimes:jpg,png,jpeg'
         ]);
 
-       // dd($request->all());
+        if ($request->hasFile('birthcert')) {
+            $pathcert = $request->file('birthcert')->store('resourceimages');
+            $add_child['birthcert'] = $pathcert;
+
+            }else{
+            $pathcert = 'noimage.jpg';
+        }
+
        if ($request->hasFile('images')) {
-        // Store the new images
-        $path = $request->file('images')->store('resourceimages');
+            // Store the new images
+            $path = $request->file('images')->store('resourceimages');
 
-        // Update the image path in the post
-        $edit_student->images = $path;
-    }else{
+            $add_child['images'] = $path;
+            }else{
 
-        $path = 'noimage.jpg';
-    }
+            $path = 'noimage.jpg';
+        }
+
+        if ($request->hasFile('payment_evid')) {
+            $pathpayment = $request->file('payment_evid')->store('resourceimages');
+            $add_child['payment_evid'] = $pathpayment;
+
+            }else{
+            $pathpayment = 'noimage.jpg';
+        }
+
+        if ($request->hasFile('report_card')) {
+            $pathreport = $request->file('report_card')->store('resourceimages');
+            $add_child['report_card'] = $pathreport;
+
+            }else{
+            $pathreport = 'noimage.jpg';
+        }
+
+        // $add_child['images'] = $path;
+        // $add_child['birthcert'] = $pathcert;
+        
         $edit_student->surname = $request->surname;
-        // $edit_student->centername = $request->centername;
+        // $edit_student->user_id = $edit_student->user_id;
         $edit_student->fname = $request->fname;
         $edit_student->middlename = $request->middlename;
-        $edit_student->academic_session = $request->academic_session;
-        // $edit_student->phone = $request->phone;
+        $edit_student->ref_no = $request->ref_no;
         $edit_student->dob = $request->dob;
         $edit_student->placeofbirth = $request->placeofbirth;
         $edit_student->monthofentry = $request->monthofentry;
@@ -1665,12 +1837,43 @@ class UserController extends Controller
         $edit_student->state = $request->state;
         $edit_student->term = $request->term;
         $edit_student->classname = $request->classname;
+        $edit_student->academic_session = $request->academic_session;
+       
+        $edit_student->att = $request->att;
+        $edit_student->attendedtime = $request->attendedtime;
+        $edit_student->medreports1 = $request->medreports1;
+        $edit_student->livingwith = $request->livingwith;
+        $edit_student->handicap = $request->handicap;
 
+        $edit_student->sighted = $request->sighted;
+        $edit_student->speech = $request->speech;
+        $edit_student->hearing1 = $request->hearing1;
+        $edit_student->ortho1 = $request->ortho1;
+        $edit_student->mentally = $request->mentally;
+        $edit_student->quiet1 = $request->quiet1;
+        $edit_student->gifted = $request->gifted;
+        $edit_student->started_school = $request->started_school;
+
+        $edit_student->school_name = $request->school_name;
+        $edit_student->class_attended = $request->class_attended;
+        $edit_student->transfer_cert = $request->transfer_cert;
+        $edit_student->tobeattended = $request->tobeattended;
+        $edit_student->attended = $request->attended;
+        $edit_student->cistern = $request->cistern;
+
+        $edit_student->game = $request->game;
+        $edit_student->toys = $request->toys;
+        $edit_student->playwith = $request->playwith;
+        $edit_student->spent = $request->spent;
+        $edit_student->playful1 = $request->playful1;
+        $edit_student->livingwith1 = $request->livingwith1;
+        $edit_student->lga = $request->lga;
         $edit_student->update();
-        return redirect()->back()->with('success', 'You have successfully updated your child record');
-        // return redirect()->route('secondregistration', ['ref_no' =>$edit_student->ref_no]); 
+
+        return redirect()->back()->with('success', 'You have added the child to the parent successfully');
 
     }
+
 
 
     public function registeryourchild($ref_no){
@@ -1682,42 +1885,102 @@ class UserController extends Controller
 
 
     public function createadminbyparents (Request $request){
+    //    dd($request->all());
+
         $request->validate([
-            'fname' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string'],
-            'user_id' => ['required', 'string'],
-            'middlename' => ['required', 'string'],
-            'monthofentry' => ['required', 'string'],
+
+            'fname' => ['nullable', 'string', 'max:255'],
+            'surname' => ['nullable', 'string'],
+            'user_id' => ['nullable', 'string'],
+            'middlename' => ['nullable', 'string'],
+            'monthofentry' => ['nullable', 'string'],
             
-            'placeofbirth' => ['required', 'string'],
-            'gender' => ['required', 'string'],
-            'section' => ['required', 'string'],
-            'dob' => ['required', 'string'],
-            'classname' => ['required', 'string'],
-            'state' => ['required', 'string'],
-            'religion' => ['required', 'string'],
-            'term' => ['required', 'string'],
-            'ref_no' => ['required', 'string'],
-            'academic_session' => ['required', 'string'],
+            'placeofbirth' => ['nullable', 'string'],
+            'state' => ['nullable', 'string'],
+            'att' => ['nullable', 'string'],
+            'attendedtime' => ['nullable', 'string'],
+            'medreports1' => ['nullable', 'string'],
+            'livingwith' => ['nullable', 'string'],
+            'handicap' => ['nullable', 'string'],
+            'sighted' => ['nullable', 'string'],
+            'gender' => ['nullable', 'string'],
+            'section' => ['nullable', 'string'],
+            'dob' => ['nullable', 'string'],
+            'classname' => ['nullable', 'string'],
+            'state' => ['nullable', 'string'],
+            'religion' => ['nullable', 'string'],
+            'term' => ['nullable', 'string'],
+            'ref_no' => ['nullable', 'string'],
+            'academic_session' => ['nullable', 'string'],
+            'images' => 'nullable|mimes:jpg,png,jpeg',
+
+            'hearing1' => ['nullable', 'string'],
+            'speech' => ['nullable', 'string'],
+            'ortho1' => ['nullable', 'string'],
+            'mentally' => ['nullable', 'string'],
+            'quiet' => ['nullable', 'string'],
+            'quiet1' => ['nullable', 'string'],
+
+            'gifted' => ['nullable', 'string'],
+            'started_school' => ['nullable', 'string'],
+            'school_name' => ['nullable', 'string'],
+            'class_attended' => ['nullable', 'string'],
+            'transfer_cert' => ['nullable', 'string'],
+            'tobeattended' => ['nullable', 'string'],
+            'attended' => ['nullable', 'string'],
+            'cistern' => ['nullable', 'string'],
+            'game' => ['nullable', 'string'],
+            'toys' => ['nullable', 'string'],
+            'playwith' => ['nullable', 'string'],
+            'spent' => ['nullable', 'string'],
+            'playful1' => ['nullable', 'string'],
+            'playwith1' => ['nullable', 'string'],
+            'playwith' => ['nullable', 'string'],
+            'playwith2' => ['nullable', 'string'],
+            'playwith3' => ['nullable', 'string'],
+            'playwith4' => ['nullable', 'string'],
+            'playwith5' => ['nullable', 'string'],
             
-            'images' => 'nullable|mimes:jpg,png,jpeg'
+            'birthcert' => 'nullable|mimes:jpg,png,jpeg',
+            'payment_evid' => 'nullable|mimes:jpg,png,jpeg',
+            'report_card' => 'nullable|mimes:jpg,png,jpeg',
+            
         ]);
 
-       // dd($request->all());
+        if ($request->hasFile('birthcert')) {
+            $pathcert = $request->file('birthcert')->store('resourceimages');
+            }else{
+            $pathcert = 'noimage.jpg';
+        }
+
        if ($request->hasFile('images')) {
-        // Store the new images
-        $path = $request->file('images')->store('resourceimages');
+            // Store the new images
+            $path = $request->file('images')->store('resourceimages');
 
-        // Update the image path in the post
-        $add_child->images = $path;
-    }else{
+            }else{
 
-        $path = 'noimage.jpg';
-    }
+            $path = 'noimage.jpg';
+        }
+
+        if ($request->hasFile('payment_evid')) {
+            $pathpayment = $request->file('payment_evid')->store('resourceimages');
+            }else{
+            $pathpayment = 'noimage.jpg';
+        }
+
+        if ($request->hasFile('report_card')) {
+            $pathreport = $request->file('report_card')->store('resourceimages');
+            }else{
+            $pathreport = 'noimage.jpg';
+        }
+
         $add_child = new User();
-        // $add_child['images'] = $path;
+        $add_child['images'] = $path;
+        $add_child['birthcert'] = $pathcert;
+        $add_child['payment_evid'] = $pathpayment;
+        $add_child['report_card'] = $pathreport;
+        
         $add_child->surname = $request->surname;
-        // $add_child->centername = $request->centername;
         $add_child->user_id = $request->user_id;
         $add_child->fname = $request->fname;
         $add_child->middlename = $request->middlename;
@@ -1729,14 +1992,43 @@ class UserController extends Controller
         $add_child->section = $request->section;
         $add_child->religion = $request->religion;
         $add_child->state = $request->state;
+        $add_child->status = 'admitted';
         $add_child->term = $request->term;
         $add_child->classname = $request->classname;
         $add_child->academic_session = $request->academic_session;
         $add_child->assign1 = 'student';
         $add_child->ref_no1 = substr(rand(0,time()),0, 9);
+        $add_child->att = $request->att;
+        $add_child->attendedtime = $request->attendedtime;
+        $add_child->medreports1 = $request->medreports1;
+        $add_child->livingwith = $request->livingwith;
+        $add_child->handicap = $request->handicap;
+        $add_child->sighted = $request->sighted;
+        $add_child->speech = $request->speech;
+        $add_child->hearing1 = $request->hearing1;
+        $add_child->ortho1 = $request->ortho1;
+        $add_child->mentally = $request->mentally;
+        $add_child->quiet1 = $request->quiet1;
+        $add_child->gifted = $request->gifted;
+        $add_child->started_school = $request->started_school;
 
+        $add_child->school_name = $request->school_name;
+        $add_child->class_attended = $request->class_attended;
+        $add_child->transfer_cert = $request->transfer_cert;
+        $add_child->tobeattended = $request->tobeattended;
+        $add_child->attended = $request->attended;
+        $add_child->cistern = $request->cistern;
+        $add_child->livingwith1 = $request->livingwith1;
+        $add_child->lga = $request->lga;
+        $add_child->game = $request->game;
+        $add_child->toys = $request->toys;
+        $add_child->playwith = $request->playwith;
+        $add_child->spent = $request->spent;
+        $add_child->playful1 = $request->playful1;
         $add_child->save();
-        return redirect()->route('medicalreports', ['ref_no' =>$add_child->ref_no]); 
+
+        return redirect()->back()->with('success', 'You have added the child to the parent successfully');
+        // return redirect()->route('medicalreports', ['ref_no' =>$add_child->ref_no]); 
 
     }
 
@@ -1745,42 +2037,100 @@ class UserController extends Controller
 
     public function createstudentbyparent (Request $request){
         $request->validate([
-            'fname' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string'],
-            'user_id' => ['required', 'string'],
-            'middlename' => ['required', 'string'],
-            'monthofentry' => ['required', 'string'],
+
+            'fname' => ['nullable', 'string', 'max:255'],
+            'surname' => ['nullable', 'string'],
+            'user_id' => ['nullable', 'string'],
+            'middlename' => ['nullable', 'string'],
+            'monthofentry' => ['nullable', 'string'],
             
-            'placeofbirth' => ['required', 'string'],
-            'gender' => ['required', 'string'],
-            'section' => ['required', 'string'],
-            'dob' => ['required', 'string'],
-            'classname' => ['required', 'string'],
-            'state' => ['required', 'string'],
-            'religion' => ['required', 'string'],
-            'term' => ['required', 'string'],
-            'ref_no' => ['required', 'string'],
-            'academic_session' => ['required', 'string'],
+            'placeofbirth' => ['nullable', 'string'],
+            'state' => ['nullable', 'string'],
+            'att' => ['nullable', 'string'],
+            'attendedtime' => ['nullable', 'string'],
+            'medreports1' => ['nullable', 'string'],
+            'livingwith' => ['nullable', 'string'],
+            'handicap' => ['nullable', 'string'],
+            'sighted' => ['nullable', 'string'],
+            'gender' => ['nullable', 'string'],
+            'section' => ['nullable', 'string'],
+            'dob' => ['nullable', 'string'],
+            'classname' => ['nullable', 'string'],
+            'state' => ['nullable', 'string'],
+            'religion' => ['nullable', 'string'],
+            'term' => ['nullable', 'string'],
+            'ref_no' => ['nullable', 'string'],
+            'academic_session' => ['nullable', 'string'],
+            'images' => 'nullable|mimes:jpg,png,jpeg',
+
+            'hearing1' => ['nullable', 'string'],
+            'speech' => ['nullable', 'string'],
+            'ortho1' => ['nullable', 'string'],
+            'mentally' => ['nullable', 'string'],
+            'quiet' => ['nullable', 'string'],
+            'quiet1' => ['nullable', 'string'],
+
+            'gifted' => ['nullable', 'string'],
+            'started_school' => ['nullable', 'string'],
+            'school_name' => ['nullable', 'string'],
+            'class_attended' => ['nullable', 'string'],
+            'transfer_cert' => ['nullable', 'string'],
+            'tobeattended' => ['nullable', 'string'],
+            'attended' => ['nullable', 'string'],
+            'cistern' => ['nullable', 'string'],
+            'game' => ['nullable', 'string'],
+            'toys' => ['nullable', 'string'],
+            'playwith' => ['nullable', 'string'],
+            'spent' => ['nullable', 'string'],
+            'playful1' => ['nullable', 'string'],
+            'playwith1' => ['nullable', 'string'],
+            'playwith' => ['nullable', 'string'],
+            'playwith2' => ['nullable', 'string'],
+            'playwith3' => ['nullable', 'string'],
+            'playwith4' => ['nullable', 'string'],
+            'playwith5' => ['nullable', 'string'],
+            'livingwith1' => ['nullable', 'string'],
+            'lga' => ['nullable', 'string'],
+            'birthcert' => 'nullable|mimes:jpg,png,jpeg',
+            'payment_evid' => 'nullable|mimes:jpg,png,jpeg',
+            'report_card' => 'nullable|mimes:jpg,png,jpeg',
             
-            'images' => 'nullable|mimes:jpg,png,jpeg'
         ]);
 
-        // dd($request->all());
-        // dd($request->all());
-        if ($request->hasFile('images')) {
+        if ($request->hasFile('birthcert')) {
+            $pathcert = $request->file('birthcert')->store('resourceimages');
+            }else{
+            $pathcert = 'noimage.jpg';
+        }
+
+       if ($request->hasFile('images')) {
             // Store the new images
             $path = $request->file('images')->store('resourceimages');
-    
-            // Update the image path in the post
-            $add_child->images = $path;
-        }else{
-    
+
+            }else{
+
             $path = 'noimage.jpg';
         }
+
+        if ($request->hasFile('payment_evid')) {
+            $pathpayment = $request->file('payment_evid')->store('resourceimages');
+            }else{
+            $pathpayment = 'noimage.jpg';
+        }
+
+        if ($request->hasFile('report_card')) {
+            $pathreport = $request->file('report_card')->store('resourceimages');
+            }else{
+            $pathreport = 'noimage.jpg';
+        }
+
         $add_child = new User();
-        // $add_child['images'] = $path;
+        $add_child['images'] = $path;
+        $add_child['birthcert'] = $pathcert;
+        $add_child['payment_evid'] = $pathpayment;
+        $add_child['report_card'] = $pathreport;
+        
         $add_child->surname = $request->surname;
-        // $add_child->centername = $request->centername;
         $add_child->user_id = $request->user_id;
         $add_child->fname = $request->fname;
         $add_child->middlename = $request->middlename;
@@ -1792,14 +2142,46 @@ class UserController extends Controller
         $add_child->section = $request->section;
         $add_child->religion = $request->religion;
         $add_child->state = $request->state;
+        $add_child->status = 'admitted';
         $add_child->term = $request->term;
         $add_child->classname = $request->classname;
         $add_child->academic_session = $request->academic_session;
         $add_child->assign1 = 'student';
         $add_child->ref_no1 = substr(rand(0,time()),0, 9);
+        $add_child->att = $request->att;
+        $add_child->attendedtime = $request->attendedtime;
+        $add_child->medreports1 = $request->medreports1;
+        $add_child->livingwith = $request->livingwith;
+        $add_child->handicap = $request->handicap;
 
+        $add_child->sighted = $request->sighted;
+        $add_child->speech = $request->speech;
+        $add_child->hearing1 = $request->hearing1;
+        $add_child->ortho1 = $request->ortho1;
+        $add_child->mentally = $request->mentally;
+        $add_child->quiet1 = $request->quiet1;
+        $add_child->gifted = $request->gifted;
+        $add_child->started_school = $request->started_school;
+
+        $add_child->school_name = $request->school_name;
+        $add_child->class_attended = $request->class_attended;
+        $add_child->transfer_cert = $request->transfer_cert;
+        $add_child->tobeattended = $request->tobeattended;
+        $add_child->attended = $request->attended;
+        $add_child->cistern = $request->cistern;
+
+        $add_child->game = $request->game;
+        $add_child->toys = $request->toys;
+        $add_child->playwith = $request->playwith;
+        $add_child->spent = $request->spent;
+        $add_child->playful1 = $request->playful1;
+        $add_child->livingwith1 = $request->livingwith1;
+        $add_child->lga = $request->lga;
+        
         $add_child->save();
-        return redirect()->route('medicalreports', ['ref_no' =>$add_child->ref_no]); 
+
+        return redirect()->back()->with('success', 'You have added the child to the parent successfully');
+        // return redirect()->route('medicalreports', ['ref_no' =>$add_child->ref_no]); 
 
     }
 
@@ -1822,14 +2204,14 @@ class UserController extends Controller
      }
 
      public function viewchildrenbyhead($ref_no){
-        
-        $viewchildrens = User::where('ref_no', $ref_no)->get();
-        $view_studycenters = Studycenter::all();
-         return view('dashboard.viewchildrenbyhead', compact('view_studycenters', 'viewchildrens'));
+        $parent = User::where('ref_no', $ref_no)->first();
+        $viewchildrens = User::where('ref_no', $ref_no)->where('assign1', 'student')->get();
+
+         return view('dashboard.viewchildrenbyhead', compact('parent', 'viewchildrens'));
      }
 
-     public function addregnumber1($id){
-        $add_regs = User::where('id', $id)->first();
+     public function addregnumber1($ref_no1){
+        $add_regs = User::where('ref_no1', $ref_no1)->first();
          return view('dashboard.addregnumber1', compact('add_regs'));
      }
      

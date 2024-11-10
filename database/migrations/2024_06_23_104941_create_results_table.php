@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('results', function (Blueprint $table) {
             $table->id();
             $table->string('teacher_id', 11)->nullable();
+            $table->string('user_id', 11)->nullable();
             $table->string('ref_no', 20)->nullable();
             $table->string('surname', 50)->nullable();
             $table->string('middlename', 50)->nullable();
@@ -123,7 +124,8 @@ return new class extends Migration
             $table->string('music4', 5)->nullable();
             $table->string('music5', 5)->nullable();
 
-
+            
+            $table->string('type')->nullable();
             $table->string('dance1', 5)->nullable();
             $table->string('dance2', 5)->nullable();
             $table->string('dance3', 5)->nullable();
@@ -134,6 +136,7 @@ return new class extends Migration
             $table->string('tsurname')->nullable();
             $table->string('tname')->nullable();
             $table->string('pins')->nullable();
+            $table->string('headteacher_comment')->nullable();
             $table->timestamps();
         });
     }

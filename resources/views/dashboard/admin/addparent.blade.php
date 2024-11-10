@@ -137,9 +137,9 @@
                 <div class="form-group">
                       <label for="exampleInputEmail1">Section</label>
                       <select name="section" class="form-control" required>
-                      <option value="Creche">Creche</option>
-                      <option value="Pre-Nursery">Pre-Nursery</option>
-                      <option value="Primary">Primary</option>
+                        <option value="Pre-Nursery">Pre-Nursery</option>
+                        <option value="Nursery">Nursery</option>
+                        <option value="Primary">Primary</option>
                       </select>
                     </div>
                     @error('section')

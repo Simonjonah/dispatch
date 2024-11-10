@@ -106,7 +106,7 @@
                           <li class="dropdown-item"><a href="{{ url('admin/teacherapprove/'.$view_teacher->ref_no) }}">Approved</a></li>
                           <li class="dropdown-item"><a href="{{ url('admin/teachersuspend/'.$view_teacher->ref_no) }}">Suspend</a></li>
                           <li class="dropdown-item"><a href="{{ url('admin/teachersacked/'.$view_teacher->ref_no) }}">Sacked</a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/teacherquery/'.$view_teacher->ref_no) }}">Query</a></li>
+                          <li class="dropdown-item"><a href="{{ url('admin/addchild/'.$view_teacher->ref_no) }}">Add My Child</a></li>
                         </ul>
                       </div></td>
                        

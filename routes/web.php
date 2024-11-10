@@ -3,6 +3,10 @@
 use App\Http\Controllers\AcademicsessionController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\PasswordResetController;
+
 // use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\QueryController;
@@ -111,7 +115,9 @@ Route::get('/services', function () {
 });
 
 Route::get('/checkresult', function () {
-    return view('pages.checkresult');
+    $view_sessions = Academicsession::latest()->get();
+    $view_classes = Classname::all();
+    return view('pages.checkresult', compact('view_classes', 'view_sessions'));
 });
 Route::get('/academics', function () {
     return view('pages.academics');
@@ -149,6 +155,10 @@ Route::get('/admissionform', function () {
     return view('pages.admissionform');
 });
 
+
+// Route::post('/password/email', [PasswordResetController::class, 'sendResetLink'])->name('password.email');
+
+
 Route::get('/teacherofweek', function () {
     $view_teachersofweeks = Teacherofweek::where('role', 'Teacher of the Week')->latest()->get();
     $view_teachersofmonths = Teacherofweek::where('role', 'Teacher of the Month')->latest()->get();
@@ -177,6 +187,9 @@ Route::get('/viewsingleactivity/{ref_no}', function ($ref_no) {
     return view('pages.viewsingleactivity', compact('allactivities', 'view_singleact'));
 });
 
+Route::post('generatllePDF', [ResultController::class, 'generatllePDF'])->name('generatllePDF');
+
+
 Route::get('/viewmarketplace/{ref_no}', function ($ref_no) {
     $view_singlemarket = Market::where('ref_no', $ref_no)->first();
     // $view_singlemark = Market::where('ref_no', $ref_no)->get();
@@ -186,6 +199,13 @@ Route::get('/viewmarketplace/{ref_no}', function ($ref_no) {
 });
 
 
+Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
+Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
+Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])->name('password.reset');
+Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.update');
+
+
+// Route::post('/password/email', [PasswordResetController::class, 'sendResetLink'])->name('password.email');
 
 
 Route::get('/printadmissionform/{ref_no}', [UserController::class, 'printadmissionform'])->name('printadmissionform');
@@ -341,7 +361,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::put('updatesubject/{id}', [SubjectController::class, 'updatesubject'])->name('updatesubject');
         Route::get('editsubject/{id}', [SubjectController::class, 'editsubject'])->name('editsubject');
         Route::get('viewteacherquery/{id}', [QueryController::class, 'viewteacherquery'])->name('viewteacherquery');
-        Route::get('printquery/{id}', [QueryController::class, 'printquery'])->name('printquery');
+        Route::get('teacherdelete/{ref_no}', [UserController::class, 'teacherdelete'])->name('teacherdelete');
         Route::put('addquerytoteacher/{ref_no}', [QueryController::class, 'addquerytoteacher'])->name('addquerytoteacher');
         Route::get('allteachers', [UserController::class, 'allteachers'])->name('allteachers');
         Route::get('queriedteachers', [QueryController::class, 'queriedteachers'])->name('queriedteachers');
@@ -373,12 +393,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/viewclassestables', [ClassnameController::class, 'viewclassestables'])->name('viewclassestables');
         Route::get('/addclass', [ClassnameController::class, 'addclass'])->name('addclass');
     
-        Route::get('/studycenter1', [StudycenterController::class, 'studycenter1'])->name('studycenter1');
-        Route::post('/createstudycenter', [StudycenterController::class, 'createstudycenter'])->name('createstudycenter');
-        Route::get('/studycentertables', [StudycenterController::class, 'studycentertables'])->name('studycentertables');
-        Route::get('/studycentapproved/{id}', [StudycenterController::class, 'studycentapproved'])->name('studycentapproved');
-        Route::get('/studycentsuspend/{id}', [StudycenterController::class, 'studycentsuspend'])->name('studycentsuspend');
-        Route::get('/studycentdelete/{id}', [StudycenterController::class, 'studycentdelete'])->name('studycentdelete');
+        
         Route::post('/createam', [TeamController::class, 'createam'])->name('createam');
         Route::get('/addteam', [TeamController::class, 'addteam'])->name('addteam');
         Route::get('/viewteam', [TeamController::class, 'viewteam'])->name('viewteam');
@@ -434,24 +449,24 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/slideredelete/{id}', [MainsliderController::class, 'slideredelete'])->name('slideredelete');
         
         Route::get('/adminprogress', [UserController::class, 'adminprogress'])->name('adminprogress');
-        Route::get('/viewstudents/{ref_no}', [UserController::class, 'viewstudents'])->name('viewstudents');
+        Route::get('/viewstudents/{ref_no1}', [UserController::class, 'viewstudents'])->name('viewstudents');
         Route::get('/editstudent/{id}', [UserController::class, 'editstudent'])->name('editstudent');
         Route::put('/updateadmission/{ref_no1}', [UserController::class, 'updateadmission'])->name('updateadmission');
-        Route::get('/rejectstudent/{ref_no}', [UserController::class, 'rejectstudent'])->name('rejectstudent');
+        Route::get('/rejectstudent/{ref_no1}', [UserController::class, 'rejectstudent'])->name('rejectstudent');
         Route::get('/rejectstudent1/{ref_no1}', [UserController::class, 'rejectstudent1'])->name('rejectstudent1');
        
         Route::get('rejectedstudent', [UserController::class, 'rejectedstudent'])->name('rejectedstudent');
-        Route::get('studentsapprove/{ref_no}', [UserController::class, 'studentsapprove'])->name('studentsapprove');
-        Route::get('suspendstudent/{ref_no}', [UserController::class, 'suspendstudent'])->name('suspendstudent');
+        Route::get('studentsapprove/{ref_no1}', [UserController::class, 'studentsapprove'])->name('studentsapprove');
+        Route::get('suspendstudent/{ref_no1}', [UserController::class, 'suspendstudent'])->name('suspendstudent');
         Route::get('suspendstudents', [UserController::class, 'suspendstudents'])->name('suspendstudents');
-        Route::get('studentsaddmit/{ref_no}', [UserController::class, 'studentsaddmit'])->name('studentsaddmit');
+        Route::get('studentsaddmit/{ref_no1}', [UserController::class, 'studentsaddmit'])->name('studentsaddmit');
         Route::get('admittedstudents', [UserController::class, 'admittedstudents'])->name('admittedstudents');
         Route::get('allstudents', [UserController::class, 'allstudents'])->name('allstudents');
         Route::get('deletestudent/{ref_no}', [UserController::class, 'deletestudent'])->name('deletestudent');
         Route::get('/addregno/{id}', [UserController::class, 'addregno'])->name('addregno');
         Route::put('/addingregno/{id}', [UserController::class, 'addingregno'])->name('addingregno');
-        Route::get('/studentpdf/{ref_no}', [UserController::class, 'studentpdf'])->name('studentpdf');
-        Route::get('/medicalspdf/{ref_no}', [UserController::class, 'medicalspdf'])->name('medicalspdf');
+        Route::get('/studentpdf/{ref_no1}', [UserController::class, 'studentpdf'])->name('studentpdf');
+        Route::get('/medicalspdf/{ref_no1}', [UserController::class, 'medicalspdf'])->name('medicalspdf');
         Route::get('/allstudentpdf', [UserController::class, 'allstudentpdf'])->name('allstudentpdf');
         Route::get('/allcrechepdf', [UserController::class, 'allcrechepdf'])->name('allcrechepdf');
         Route::get('/allnurserypdf', [UserController::class, 'allnurserypdf'])->name('allnurserypdf');
@@ -510,22 +525,9 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/allsubjects', [SubjectController::class, 'allsubjects'])->name('allsubjects');
         Route::get('/setsubjectquestions', [SubjectController::class, 'setsubjectquestions'])->name('setsubjectquestions');
         Route::get('/addquestions/{id}', [SubjectController::class, 'addquestions'])->name('addquestions');
-        Route::post('/addquestions', [QuestionController::class, 'addquestions'])->name('addquestions');
-        Route::post('/addbyadminquestion', [QuestionController::class, 'addbyadminquestion'])->name('addbyadminquestion');
-        Route::get('/questionbyadmin', [QuestionController::class, 'questionbyadmin'])->name('questionbyadmin');
-        Route::get('/viewsinglequestionz/{id}', [QuestionController::class, 'viewsinglequestionz'])->name('viewsinglequestionz');
-        Route::get('/editquestionzadmin/{id}', [QuestionController::class, 'editquestionzadmin'])->name('editquestionzadmin');
-        Route::get('/questionzapprove/{id}', [QuestionController::class, 'questionzapprove'])->name('questionzapprove');
-        Route::get('/questionzsunapprove/{id}', [QuestionController::class, 'questionzsunapprove'])->name('questionzsunapprove');
-        Route::put('/updateadminquestion/{id}', [QuestionController::class, 'updateadminquestion'])->name('updateadminquestion');
-        Route::get('/uyoquestions', [QuestionController::class, 'uyoquestions'])->name('uyoquestions');
-        Route::get('/abujaquestions', [QuestionController::class, 'abujaquestions'])->name('abujaquestions');
-        Route::get('/teachersquestion/{user_id}', [QuestionController::class, 'teachersquestion'])->name('teachersquestion');
         
         
-        Route::get('/addnidnetcoursesl1stsem', [RegistercourseController::class, 'addnidnetcoursesl1stsem'])->name('addnidnetcoursesl1stsem');
-        Route::get('/viewnetworkcourses', [RegistercourseController::class, 'viewnetworkcourses'])->name('viewnetworkcourses');
-        Route::get('/viewallpaymentfirst', [StudentController::class, 'viewallpaymentfirst'])->name('viewallpaymentfirst');
+       
         Route::get('/approvedresultsad/{id}', [ResultController::class, 'approvedresultsad'])->name('approvedresultsad');
         Route::get('/editresultadmin/{id}', [ResultController::class, 'editresultadmin'])->name('editresultadmin');
         Route::put('/updateresultad/{id}', [ResultController::class, 'updateresultad'])->name('updateresultad');
@@ -570,6 +572,10 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/deletestudent1/{ref_no1}', [UserController::class, 'deletestudent1'])->name('deletestudent1');
         
         Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
+        Route::get('/viewprenurserysubject', [SubjectController::class, 'viewprenurserysubject'])->name('viewprenurserysubject');
+        Route::get('/viewnurserysubjects', [SubjectController::class, 'viewnurserysubjects'])->name('viewnurserysubjects');
+        Route::get('/addprimarysub', [SubjectController::class, 'addprimarysub'])->name('addprimarysub');
+        Route::get('/classapprovesresults/{classname}', [ClassnameController::class, 'classapprovesresults'])->name('classapprovesresults');
         
         
         Route::get('/logout', [AdminController::class, 'logout'])->name('logout'); 
@@ -589,6 +595,7 @@ Route::prefix('web')->name('web.')->group(function() {
     });
     
     Route::middleware(['auth:web'])->group(function() {
+        Route::view('/passwordretrieve', 'dashboard.passwordretrieve')->name('passwordretrieve');
         
         Route::post('/createstudentbyparent', [UserController::class, 'createstudentbyparent'])->name('createstudentbyparent');
         Route::get('/mychild', [UserController::class, 'mychild'])->name('mychild');
@@ -614,7 +621,7 @@ Route::prefix('web')->name('web.')->group(function() {
         Route::get('viewallbyheadspayment', [TransactionController::class, 'viewallbyheadspayment'])->name('viewallbyheadspayment');
         
         // Route::put('/addingregnoheads/{id}', [UserController::class, 'addingregnoheads'])->name('addingregnoheads');
-        Route::get('/addregnumber1/{id}', [UserController::class, 'addregnumber1'])->name('addregnumber1');
+        Route::get('/addregnumber1/{ref_no1}', [UserController::class, 'addregnumber1'])->name('addregnumber1');
         Route::put('/updtateregnumber/{id}', [UserController::class, 'updtateregnumber'])->name('updtateregnumber');
         Route::get('/viewchildrenbyhead/{ref_no}', [UserController::class, 'viewchildrenbyhead'])->name('viewchildrenbyhead');
         Route::get('/registeryourchild/{ref_no}', [UserController::class, 'registeryourchild'])->name('registeryourchild');
@@ -672,14 +679,7 @@ Route::prefix('web')->name('web.')->group(function() {
         Route::get('/mysubjectsguestion', [TeacherassignController::class, 'mysubjectsguestion'])->name('mysubjectsguestion');
         Route::get('/studentpayment/{classname}', [UserController::class, 'studentpayment'])->name('studentpayment');
         
-        Route::get('/editquestion/{id}', [QuestionController::class, 'editquestion'])->name('editquestion');
-        Route::put('/updatequestion/{id}', [QuestionController::class, 'updatequestion'])->name('updatequestion');
-        
-        Route::get('/mysquestions', [QuestionController::class, 'mysquestions'])->name('mysquestions');
-        Route::post('/createquestion', [QuestionController::class, 'createquestion'])->name('createquestion');
-        Route::get('/setquestion/{id}', [QuestionController::class, 'setquestion'])->name('setquestion');
-        Route::get('/viewquestion/{id}', [QuestionController::class, 'viewquestion'])->name('viewquestion');
-        Route::get('/viewquestion/{id}', [QuestionController::class, 'viewquestion'])->name('viewquestion');
+       
         Route::get('/printresult/{id}', [ResultController::class, 'printresult'])->name('printresult');
         Route::get('/mysubjects', [TeacherassignController::class, 'mysubjects'])->name('mysubjects');
         Route::post('/yourresult', [ResultController::class, 'yourresult'])->name('yourresult');
@@ -715,12 +715,7 @@ Route::prefix('web')->name('web.')->group(function() {
         Route::get('/highschoolsection', [UserController::class, 'highschoolsection'])->name('highschoolsection');
         
         Route::get('/classes/{classname}', [ClassnameController::class, 'classes'])->name('classes');
-        Route::get('/queryrepliedview', [QueryController::class, 'queryrepliedview'])->name('queryrepliedview');
-        Route::get('/printquery1/{id}', [QueryController::class, 'printquery1'])->name('printquery1');
-        Route::put('/replyquery/{id}', [QueryController::class, 'replyquery'])->name('replyquery');
-        Route::get('/viewqueryreply/{id}', [QueryController::class, 'viewqueryreply'])->name('viewqueryreply');
-        Route::get('/viewquery/{id}', [QueryController::class, 'viewquery'])->name('viewquery');
-        Route::get('/checkyourquery', [QueryController::class, 'checkyourquery'])->name('checkyourquery');
+
         Route::get('/teacherviewresults/{user_id}', [ResultController::class, 'teacherviewresults'])->name('teacherviewresults');
         Route::get('/pioneertermresults', [ResultController::class, 'pioneertermresults'])->name('pioneertermresults');
         Route::get('/premiumterm', [UserController::class, 'premiumterm'])->name('premiumterm');
@@ -756,10 +751,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 
-Route::get('password/reset', [UserController::class, 'showLinkRequestForm'])->name('password.request');
-Route::post('password/email', [UserController::class, 'sendResetLinkEmail'])->name('password.email');
-Route::get('password/reset/{token}', [UserController::class, 'showResetForm'])->name('password.reset');
-Route::post('password/reset', [UserController::class, 'resetPassword'])->name('password.update');
 
 Route::get('/registerteacher', [UserController::class, 'registerteacher'])->name('registerteacher');
 

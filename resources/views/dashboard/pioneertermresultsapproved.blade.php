@@ -21,7 +21,7 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-    @if (Auth::guard('web')->user()->section == 'Early Years Foundation Stage (EYFS)')
+    @if (Auth::guard('web')->user()->section == 'Pre-Nursery')
       <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -64,7 +64,7 @@
                   <tbody>
 
                     @foreach ($view_myresults as $view_myresult)
-                        @if ($view_myresult->centername == Auth::guard('web')->user()->centername)
+                        @if ($view_myresult->section == Auth::guard('web')->user()->section)
                         <tr>
                             <td>{{ $view_myresult->user['surname'] }}
                             
@@ -606,85 +606,87 @@
 </html>
 
 <div class="modal fade" id="modal-default">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Check Result of A Child</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="{{ url('web/checkresultbyheads') }}" method="post">
-            @csrf
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Check Result of A Child</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      @php
+        use App\Models\User;
+        $viewmy_pupils = User::where('classname', auth::user()->classname)->where('assign1', 'student')->get();
+      @endphp
+      <div class="modal-body">
+        <form action="{{ url('web/checkresultbyheads') }}" method="post">
+          @csrf
+          <div class="form-group">
+              <label for="">Admission No</label>
+              <select name="regnumber" id="" class="form-control">
+              @foreach ($viewmy_pupils as $viewmy_pupil)
+                @if ($viewmy_pupil->section == Auth::guard('web')->user()->section)
+                  <option value="{{ $viewmy_pupil->regnumber }}">{{ $viewmy_pupil->fname }} {{ $viewmy_pupil->surname }} {{ $viewmy_pupil->regnumber }}</option>
+                @endif
+            @endforeach
+              </select>
+
+              
+            </div>
+
             <div class="form-group">
-                <label for="">Admission No</label>
-                
-                <select name="regnumber" id="" class="form-control">
-                @foreach ($view_myresults as $view_myresult)
-                        @if ($view_myresult->centername == Auth::guard('web')->user()->centername)
-                    <option value="{{ $view_myresult->regnumber }}">{{ $view_myresult->fname }} {{ $view_myresult->surname }} {{ $view_myresult->regnumber }}</option>
-                    @endif
-              @endforeach
-                </select>
+              <label for="">Term</label>
+              <select name="term" id="" class="form-control">
+                  <option value="First Term">First Term</option>
+                  <option value="Second Term">Second Term</option>
+                  <option value="Third Term">Third Term</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="">Class</label>
+              <select name="classname" id="" class="form-control">
 
-                
-              </div>
+                @foreach ($view_classes as $view_classe)
+                <option value="{{ $view_classe->classname }}">{{ $view_classe->classname }}</option>
+                  
+                @endforeach
+              </select>
+            </div>
 
-              <div class="form-group">
-                <label for="">Entrylevel</label>
-                <select name="entrylevel" id="" class="form-control">
-                    <option value="Pioneer Term">Pioneer Term</option>
-                    <option value="Penultimate Term">Penultimate Term</option>
-                    <option value="Premium Term">Premium Term</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="">Class</label>
-                <select name="classname" id="" class="form-control">
+            <div class="form-group">
+              <label for="">Select Section</label>
+              <select name="section" id="" class="form-control">
+                <option value="Pre-Nursery">Pre-Nursery</option>
+              <option value="Nursery">Nursery</option>
+              <option value="Primary">Primary</option>
+                  
+              </select>
+            </div>
 
-                  @foreach ($view_classes as $view_classe)
-                  <option value="{{ $view_classe->classname }}">{{ $view_classe->classname }}</option>
-                    
-                  @endforeach
-                </select>
-              </div>
+            <div class="form-group">
+              <label for="">Admission No</label>
+              <select name="academic_session" id="" class="form-control">
+                @foreach ($view_sessions as $view_session)
+                <option value="{{ $view_session->academic_session }}">{{ $view_session->academic_session }}</option>
+                  
+                @endforeach
+              </select>
+            </div>
 
-              <div class="form-group">
-                <label for="">Select Section</label>
-                <select name="section" id="" class="form-control">
-                  <option value="Early Years Foundation Stage (EYFS)">Early Years (EYFS)</option>
-                <option value="Primary">Primary</option>
-								<option value="High School">High School</option>
-                    
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label for="">Admission No</label>
-                <select name="academic_session" id="" class="form-control">
-                  @foreach ($view_sessions as $view_session)
-                  <option value="{{ $view_session->academic_session }}">{{ $view_session->academic_session }}</option>
-                    
-                  @endforeach
-                </select>
-              </div>
-
-              <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Check</button>
-              </div>
-          </form>
-        </div>
-        
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Check</button>
+            </div>
+        </form>
       </div>
       
     </div>
-    <!-- /.modal-dialog -->
+    
   </div>
-  <!-- /.modal -->
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 
 
 
 
-  

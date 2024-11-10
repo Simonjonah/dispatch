@@ -69,7 +69,7 @@
                       <div class="form-group">
                         <h5>Section </h5>
                         <select required class="form-control" type="text" name="section">
-                          <option value="Creche">Creche</option>
+                          <option value="Pre-Nursery">Pre-Nursery</option>
                         </select>
                       </div> 
                     </div>

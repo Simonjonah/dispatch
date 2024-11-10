@@ -17,10 +17,11 @@ return new class extends Migration
             $table->string('user_id')->nullable();
             $table->string('academic_session')->nullable();
             $table->string('section')->nullable();
+            $table->string('type')->nullable();
             $table->string('classname')->nullable();
             $table->string('pins')->nullable();
             $table->string('nextterm')->nullable();
-            $table->string('entrylevel')->nullable();
+            $table->string('term')->nullable();
             $table->string('regnumber')->nullable();
             $table->string('headteacher_comment')->nullable();
             

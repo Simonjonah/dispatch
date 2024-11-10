@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Moto;
+// use App\Models\Moto;
+use App\Models\Motor;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class MotoController extends Controller
 {
@@ -20,12 +21,12 @@ class MotoController extends Controller
 
 
           if (Auth::guard('web')->user()->section == 'High School') {
-            $add_assignteacher = new Moto();
+            $add_assignteacher = new Motor();
             $add_assignteacher->user_id = $request->user_id;
             $add_assignteacher->teacher_id = $request->teacher_id;
             $add_assignteacher->regnumber = $request->regnumber;
             $add_assignteacher->academic_session = $request->academic_session;
-            $add_assignteacher->entrylevel = $request->entrylevel;
+            $add_assignteacher->term = $request->term;
             $add_assignteacher->classname = $request->classname;
             $add_assignteacher->section = $request->section;
             $add_assignteacher->schoolopen = $request->schoolopen;
@@ -113,13 +114,13 @@ class MotoController extends Controller
              $add_assignteacher->save();
           }else
 
-         $add_assignteacher = new Moto();
+         $add_assignteacher = new Motor();
 
          $add_assignteacher->user_id = $request->user_id;
          $add_assignteacher->teacher_id = $request->teacher_id;
          $add_assignteacher->regnumber = $request->regnumber;
          $add_assignteacher->academic_session = $request->academic_session;
-         $add_assignteacher->entrylevel = $request->entrylevel;
+         $add_assignteacher->term = $request->term;
          $add_assignteacher->classname = $request->classname;
          $add_assignteacher->section = $request->section;
          $add_assignteacher->schoolopen = $request->schoolopen;
@@ -239,7 +240,7 @@ class MotoController extends Controller
           $add_assignteacher->teacher_id = $request->teacher_id;
           $add_assignteacher->regnumber = $request->regnumber;
           $add_assignteacher->academic_session = $request->academic_session;
-          $add_assignteacher->entrylevel = $request->entrylevel;
+          $add_assignteacher->term = $request->term;
           $add_assignteacher->classname = $request->classname;
           $add_assignteacher->section = $request->section;
           $add_assignteacher->schoolopen = $request->schoolopen;
@@ -260,7 +261,7 @@ class MotoController extends Controller
        $add_assignteacher->teacher_id = $request->teacher_id;
        $add_assignteacher->regnumber = $request->regnumber;
        $add_assignteacher->academic_session = $request->academic_session;
-       $add_assignteacher->entrylevel = $request->entrylevel;
+       $add_assignteacher->term = $request->term;
        $add_assignteacher->classname = $request->classname;
        $add_assignteacher->section = $request->section;
        $add_assignteacher->schoolopen = $request->schoolopen;

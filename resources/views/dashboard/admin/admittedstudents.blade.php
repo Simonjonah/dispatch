@@ -196,12 +196,7 @@
                     <th>View</th>
                     <th>Edit</th>
                     <th>Status</th>
-                    <th>Reject</th>
-                
-                    <th>Suspend</th>
-                    <th>Admit</th>
-                    <th>Print</th>
-                    <th>Print Med</th>
+                   
                     <th>Delete</th>
                     <th>Date</th>
 
@@ -240,7 +235,7 @@
                        
                        
 
-                       <th><a href="{{ url('admin/rejectstudent1/'.$admit_student->ref_no1) }}" class="btn btn-sm bg-teal">
+                       {{-- <th><a href="{{ url('admin/rejectstudent1/'.$admit_student->ref_no1) }}" class="btn btn-sm bg-teal">
                         <i class="fas fa-user"></i>
                       </a></th>
                      <th><a href="{{ url('admin/suspendstudent1/'.$admit_student->ref_no1) }}" class="btn btn-sm bg-teal">
@@ -251,7 +246,7 @@
                         <i class="fas fa-user"></i> 
                       </a></th>
                       <th><a href="{{ url('admin/allstudentpdf1/'.$admit_student->ref_no1) }}" class="btn btn-success"><i class="fas fa-print"></i></a></th>
-                      <th><a href="{{ url('admin/medicalspdf1/'.$admit_student->ref_no1) }}" class="btn btn-info"><i class="fas fa-print">Print Medicals</i></a></th>
+                      <th><a href="{{ url('admin/medicalspdf1/'.$admit_student->ref_no1) }}" class="btn btn-info"><i class="fas fa-print">Print Medicals</i></a></th> --}}
                        <td><a href="{{ url('admin/deletestudent1/'.$admit_student->ref_no1) }}"
                         class='btn btn-danger'>
                          <i class="far fa-trash-alt"></i>
@@ -281,12 +276,7 @@
                       <th>View</th>
                       <th>Edit</th>
                       <th>Status</th>
-                      <th>Reject</th>
-                  
-                      <th>Suspend</th>
-                      <th>Admit</th>
-                      <th>Print</th>
-                      <th>Print Med</th>
+                     
                       <th>Delete</th>
                       <th>Date</th>
   
@@ -311,7 +301,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+    <strong>Copyright &copy; 2024 <a href="#">Gogis</a>.</strong> All rights
     reserved.
   </footer>
 

@@ -126,7 +126,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2014-2019 <a href="https://brixtonnschools.com.ng">Brixtonn.com.ng</a>.</strong> All rights
+    <strong>Copyright &copy; 2024 <a href="#">GOGIS</a>.</strong> All rights
     reserved.
   </footer>
 

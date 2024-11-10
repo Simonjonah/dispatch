@@ -105,10 +105,10 @@
                           <li class="dropdown-item"><a href="{{ url('admin/allcrechepdf') }}">Print All Creche</a></li>
                           <li class="dropdown-item"><a href="{{ url('admin/allnurserypdf') }}">Print All Nursery</a></li>
                           <li class="dropdown-item"><a href="{{ url('admin/allprimarypdf') }}">Print All Primary</a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/allhighschpdf') }}">Print All High School</a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/alluyocentpdf') }}">Print All Uyo Center</a></li>
+                          {{-- <li class="dropdown-item"><a href="{{ url('admin/allhighschpdf') }}">Print All High School</a></li> --}}
+                          {{-- <li class="dropdown-item"><a href="{{ url('admin/alluyocentpdf') }}">Print All Uyo Center</a></li>
                           <li class="dropdown-item"><a href="{{ url('admin/allabujapdf') }}">Print All Abuja Center</a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/allstudentpdf') }}">Print All Student</a></li>
+                          <li class="dropdown-item"><a href="{{ url('admin/allstudentpdf') }}">Print All Student</a></li> --}}
                          
                         </ul>
                       </div></td>
@@ -197,7 +197,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2023 <a href="https://brixtoonschool.com.ng">Brixtonn</a>.</strong> All rights
+    <strong>Copyright &copy; 2023 <a href="#">Gogis</a>.</strong> All rights
     reserved.
   </footer>
 

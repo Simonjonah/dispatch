@@ -126,9 +126,9 @@
         <label for="">Select Section</label>
         <div class="input-group mb-3">
           <select required class="form-control" type="text" name="section">
-            <option value="Creche">Creche</option>
             <option value="Pre-Nursery">Pre-Nursery</option>
-            <option value="Primary">Primary</option>
+                <option value="Nursery">Nursery</option>
+                <option value="Primary">Primary</option>
           </select>
           <div class="input-group-append">
             <div class="input-group-text">

@@ -8,13 +8,13 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>@if (Auth::guard('web')->user()->status == null)
-              Please {{ Auth::guard('web')->user()->surname }}, {{ Auth::guard('web')->user()->fname }} your admission is under review we will get bact to you shortly!
+              Please {{ Auth::guard('web')->user()->fathersurname }}, {{ Auth::guard('web')->user()->fathername }} your admission is under review we will get bact to you shortly!
             @elseif (Auth::guard('web')->user()->status == 'reject')
-              <small class="btn btn-danger">Dear {{ Auth::guard('web')->user()->fname }} You have been rejected in the Brixtonn School you can do well to contact us through info@brixtonnschools.com.ng</small>
+              <small class="btn btn-danger">Dear {{ Auth::guard('web')->user()->fathername }} You have been rejected in the Brixtonn School you can do well to contact us through info@brixtonnschools.com.ng</small>
               @elseif (Auth::guard('web')->user()->status == 'suspend')
-              <small class="btn btn-warning" style="color: #000">Dear {{ Auth::guard('web')->user()->surname }}, {{ Auth::guard('web')->user()->fname }} {{ Auth::guard('web')->user()->middlename }} You have been suspended in the Brixtonn School you can do well to contact us through info@brixtonnschools.com.ng</small>
+              <small class="btn btn-warning" style="color: #000">Dear {{ Auth::guard('web')->user()->fathersurname }}, {{ Auth::guard('web')->user()->fathername }} {{ Auth::guard('web')->user()->fathermiddlename }} You have been suspended in the Brixtonn School you can do well to contact us through info@goggis.com.ng</small>
               @elseif (Auth::guard('web')->user()->status == 'admitted')
-              <small class="btn btn-success">Dear {{ Auth::guard('web')->user()->surname }}, {{ Auth::guard('web')->user()->fname }} {{ Auth::guard('web')->user()->middlename }} Congratulations! You been given admission in BRIXTONN SCHOOLS</small>
+              <small class="btn btn-success">Dear {{ Auth::guard('web')->user()->fathersurname }}, {{ Auth::guard('web')->user()->fathername }} {{ Auth::guard('web')->user()->fathermiddlename }} Congratulations! You been given admission in GIGGIS</small>
               Please Print your admission letter and pay school fees throgh this account
               @else
                 
@@ -47,7 +47,7 @@
                        alt="User profile picture">
                 </div>
 
-                <h3 class="profile-username text-center">{{ Auth::guard('web')->user()->surname }} {{ Auth::guard('web')->user()->fname }}  {{ Auth::guard('web')->user()->middlename }}</h3>
+                <h3 class="profile-username text-center">{{ Auth::guard('web')->user()->fathersurname }} {{ Auth::guard('web')->user()->fathername }}  {{ Auth::guard('web')->user()->fathermiddlename }}</h3>
 
                 <p class="text-muted text-center"> {{ Auth::guard('web')->user()->email }}</p>
 
@@ -55,9 +55,9 @@
                   <li class="list-group-item">
                     <b>Class</b> <a class="float-right">{{ Auth::guard('web')->user()->classname  }}</a>
                   </li>
-                  <li class="list-group-item">
+                  {{-- <li class="list-group-item">
                     <b>Center Name</b> <a class="float-right">{{ Auth::guard('web')->user()->centername  }}</a>
-                  </li>
+                  </li> --}}
 
                   <li class="list-group-item">
                     <b>Section</b> <a class="float-right">{{ Auth::guard('web')->user()->section  }}</a>
@@ -66,7 +66,7 @@
                     <b>Reg. Number</b> <a class="float-right">{{ Auth::guard('web')->user()->regnumber  }}</a>
                   </li>
                   <li class="list-group-item">
-                    <b>Entry Level</b> <a class="float-right">{{ Auth::guard('web')->user()->entrylevel  }}</a>
+                    <b>Class</b> <a class="float-right">{{ Auth::guard('web')->user()->classname  }}</a>
                   </li>
                 </ul>
                   @if (Auth::guard('web')->user()->status == null)
@@ -181,7 +181,7 @@
                     </div>
                   </div>
                   <!-- /.tab-pane -->
-
+                  @if (Auth::guard('web')->user()->assign == 'teacher')
                   <div class="tab-pane" id="settings">
                     <form class="form-horizontal" action="{{ url('web/updatebiodata/'.Auth::guard('web')->user()->ref_no) }}" method="post" enctype="multipart/form-data">
                       @csrf
@@ -209,7 +209,7 @@
                       <div class="form-group row">
                         <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
-                          {{-- <input type="email" name="email" value="{{ Auth::guard('web')->user()->email }}" class="form-control" id="inputEmail" placeholder="Email"> --}}
+                          <input type="email" disabled name="email" value="{{ Auth::guard('web')->user()->email }}" class="form-control" id="inputEmail" placeholder="Email">
                         </div>
                       </div>
                       <div class="form-group row">
@@ -220,24 +220,25 @@
                       </div>
 
                       <div class="form-group row">
-                        <label for="inputName2" value="" class="col-sm-2 col-form-label">Entry Level</label>
+                        <label for="inputName2" value="" class="col-sm-2 col-form-label">Term</label>
                         <div class="col-sm-10">
-                          <select name="entrylevel" class="form-control" id="">
-                            <option value="{{ Auth::guard('web')->user()->entrylevel }}">{{ Auth::guard('web')->user()->entrylevel }}</option>
-                            <option value="Pioneer Term">Pioneer Term</option>
-                            <option value="Penultimate Term">Penultimate Term</option>
-                            <option value="Premium Term">Premium Term</option>
+                          <select name="term" class="form-control" id="">
+                            <option value="{{ Auth::guard('web')->user()->term }}">{{ Auth::guard('web')->user()->term }}</option>
+                            <option value="First Term">First Term</option>
+                            <option value="Second Term">Second Term</option>
+                            <option value="Third Term">Third Term</option>
                           </select>
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="inputName2" value="" class="col-sm-2 col-form-label">Entry Level</label>
+                        <label for="inputName2" value="" class="col-sm-2 col-form-label">Section</label>
                         <div class="col-sm-10">
                           <select name="section" class="form-control" id="">
                             <option value="{{ Auth::guard('web')->user()->section }}">{{ Auth::guard('web')->user()->section }}</option>
-                            <option value="Early Years Foundation Stage (EYFS)">Early Years (EYFS)</option>
+                            <option value="Pre-Nursery">Pre-Nursery</option>
+                            <option value="Nursery">Nursery</option>
+
                             <option value="Primary">Primary</option>
-                            <option value="High School">High School</option>
                           </select>
                         </div>
                       </div>
@@ -246,7 +247,7 @@
                       <div class="form-group row">
                         <label for="inputName2" value="{{ Auth::guard('web')->user()->images }}" class="col-sm-2 col-form-label">Picture</label>
                         <div class="col-sm-10">
-                          <input type="file" class="form-control" required name="images" id="inputName2" placeholder="profileimage">
+                          <input type="file" class="form-control"  name="images" id="inputName2" placeholder="profileimage">
                         </div>
                       </div>
                      
@@ -262,7 +263,7 @@
                             </select>
                         </div>
                       </div>
-                      <div class="form-group row">
+                      {{-- <div class="form-group row">
                         <label for="inputSkills" class="col-sm-2 col-form-label">Center Name</label>
                         <div class="col-sm-10">
                           <select name="centername" class="form-control">
@@ -272,7 +273,7 @@
                               @endforeach
                             </select>
                         </div>
-                      </div>
+                      </div> --}}
 
                       <div class="form-group row">
                         <label for="inputSkills" class="col-sm-2 col-form-label">Phone</label>
@@ -286,6 +287,113 @@
                     </form>
                   </div>
                   <!-- /.tab-pane -->
+                  @else
+                    <div class="tab-pane" id="settings">
+                    <form class="form-horizontal" action="{{ url('web/updatebiodata/'.Auth::guard('web')->user()->ref_no) }}" method="post" enctype="multipart/form-data">
+                      @csrf
+                      
+                      @method('PUT')
+
+                      <div class="form-group row">
+                        <label for="inputName" class="col-sm-2 col-form-label"> First Name</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="fathername" value="{{ Auth::guard('web')->user()->fathername }}" class="form-control" id="inputName" placeholder="First Name">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputName" class="col-sm-2 col-form-label"> Middle Name</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="middlename" value="{{ Auth::guard('web')->user()->fathermiddlename }}" class="form-control" id="inputName" placeholder="Last Name">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputName" class="col-sm-2 col-form-label"> SurName</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="surname" value="{{ Auth::guard('web')->user()->fathersurname }}" class="form-control" id="inputName" placeholder="First Name">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                          <input type="email" disabled name="email" value="{{ Auth::guard('web')->user()->email }}" class="form-control" id="inputEmail" placeholder="Email">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputName2" value="{{ Auth::guard('web')->user()->fatheraddress }}" class="col-sm-2 col-form-label">Address</label>
+                        <div class="col-sm-10">
+                          <input required type="text" class="form-control" value="{{ Auth::guard('web')->user()->fatheraddress }}" name="fatheraddress" id="inputName2" placeholder="Address">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label for="inputName2" value="" class="col-sm-2 col-form-label">Term</label>
+                        <div class="col-sm-10">
+                          <select name="entrylevel" class="form-control" id="">
+                            <option value="{{ Auth::guard('web')->user()->term }}">{{ Auth::guard('web')->user()->term }}</option>
+                            <option value="First Term">First Term</option>
+                            <option value="Second Term">Second Term</option>
+                            <option value="Third Term">Third Term</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputName2" value="" class="col-sm-2 col-form-label">Section</label>
+                        <div class="col-sm-10">
+                          <select name="section" class="form-control" id="">
+                            <option value="{{ Auth::guard('web')->user()->section }}">{{ Auth::guard('web')->user()->section }}</option>
+                            <option value="Creche">Creche</option>
+                            <option value="Pre-Nursery">Pre-Nursery</option>
+                            <option value="Primary">Primary</option>
+                          </select>
+                        </div>
+                      </div>
+                      <img class="image rounded-circle" src="{{ asset('/public/../'.Auth::guard('web')->user()->images)}}" alt="profile_image" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">
+
+                      <div class="form-group row">
+                        <label for="inputName2" value="{{ Auth::guard('web')->user()->images }}" class="col-sm-2 col-form-label">Picture</label>
+                        <div class="col-sm-10">
+                          <input type="file" class="form-control"  name="images" id="inputName2" placeholder="profileimage">
+                        </div>
+                      </div>
+                     
+                      <div class="form-group row">
+                        <label for="inputSkills" class="col-sm-2 col-form-label">Class</label>
+                        <div class="col-sm-10">
+                          <select name="classname" class="form-control">
+                              <option value="{{ Auth::guard('web')->user()->classname }}">{{ Auth::guard('web')->user()->classname }}</option>
+                              @foreach ($view_classes as $view_classe)
+                              <option value="{{ $view_classe->classname }}">{{ $view_classe->classname }}</option>
+                                
+                              @endforeach
+                            </select>
+                        </div>
+                      </div>
+                      {{-- <div class="form-group row">
+                        <label for="inputSkills" class="col-sm-2 col-form-label">Center Name</label>
+                        <div class="col-sm-10">
+                          <select name="centername" class="form-control">
+                              <option value="{{ Auth::guard('web')->user()->centername }}">{{ Auth::guard('web')->user()->centername }}</option>
+                              @foreach ($view_centernames as $view_centername)
+                              <option value="{{ $view_classe->centername }}">{{ $view_centername->centername }}</option>
+                              @endforeach
+                            </select>
+                        </div>
+                      </div> --}}
+
+                      <div class="form-group row">
+                        <label for="inputSkills" class="col-sm-2 col-form-label">Phone</label>
+                        <div class="col-sm-10">
+                          <input type="number" name="phone" value="{{ Auth::guard('web')->user()->phone }}" class="form-control" id="inputSkills" placeholder="Phone">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- /.tab-pane -->
+                  @endif
+                  
                 </div>
                 <!-- /.tab-content -->
               </div><!-- /.card-body -->

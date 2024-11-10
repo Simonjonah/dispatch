@@ -152,7 +152,7 @@
                       <tbody>
     
                         @foreach ($view_childrens as $view_children)
-                          @if ($view_children->status = 'admitted')
+                          
                           <tr>
                             <td>{{ $view_children->surname }}</td>
                             <td>{{ $view_children->fname }}</td>
@@ -191,9 +191,7 @@
                          <td>{{ $view_children->created_at->format('D d, M Y, H:i')}}</td>
     
                           </tr>
-                          @else
-                            
-                          @endif
+                         
                         @endforeach
                      
                      
@@ -281,14 +279,14 @@
         <!-- small box -->
         <div class="small-box bg-warning">
           <div class="inner">
-            <h3>{{ $countqueries }}</h3>
+            <h3>0</h3>
 
             <p>Your Query</p>
           </div>
           <div class="icon">
             <i class="ion ion-person-add"></i>
           </div>
-          <a href="{{ url('web/checkyourquery') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -296,14 +294,14 @@
         <!-- small box -->
         <div class="small-box bg-danger">
           <div class="inner">
-            <h3>{{ $countreplyqueries }}</h3>
+            <h3>0</h3>
 
             <p>Replied Query</p>
           </div>
           <div class="icon">
             <i class="ion ion-pie-graph"></i>
           </div>
-          <a href="{{ route('web.queryrepliedview') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -312,7 +310,7 @@
         <!-- small box -->
         <div class="small-box bg-secondary">
           <div class="inner">
-            <h3>{{ $countmyquestions }}</h3>
+            <h3>0</h3>
 
             <p>Questions</p>
           </div>
@@ -320,7 +318,7 @@
             <i class="ion ion-person"></i>
 
           </div>
-          <a href="{{ route('web.mysquestions') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -352,24 +350,24 @@
             <th>Surname</th>
             <th>Firstname</th>
             <th>Middlename</th>
-            <th>Center</th>
+            <th>Section</th>
             <th>Status</th>
           </tr>
           
           </thead>
           <tbody>
           <tr>
-            <td><a href="{{ url('web/profile/'.Auth::guard('web')->user()->ref_no1)  }}">{{ Auth::guard('web')->user()->ref_no1  }}</a></td>
+            <td><a href="{{ url('web/profile/'.Auth::guard('web')->user()->ref_no)  }}">{{ Auth::guard('web')->user()->ref_no  }}</a></td>
             <td>{{ Auth::guard('web')->user()->surname  }}</td>
             <td>{{ Auth::guard('web')->user()->fname  }}</td>
             <td>{{ Auth::guard('web')->user()->middlename  }}</td>
-            <td>{{ Auth::guard('web')->user()->centername  }}</td>
+            <td>{{ Auth::guard('web')->user()->section  }}</td>
            <td> @if (Auth::guard('web')->user()->status = null)
             <span class="badge badge-info">Admission in progress</span>
             @elseif (Auth::guard('web')->user()->status = 'admitted')
-            <span class="badge badge-success">Admtted</span>
+            <span class="badge badge-success">Employed</span>
             @elseif (Auth::guard('web')->user()->status = 'reject')
-            <span class="badge badge-danger">Admtted</span>
+            <span class="badge badge-danger">Rejected</span>
             @elseif (Auth::guard('web')->user()->status = 'approved')
             <span class="badge badge-success">Approved</span>
             @elseif (Auth::guard('web')->user()->status = 'suspend')
@@ -386,7 +384,7 @@
     </div>
     <!-- /.card-body -->
     <div class="card-footer clearfix">
-      <a href="{{ url('web/profile/'.Auth::guard('web')->user()->ref_no1)  }}" class="btn btn-sm btn-info float-left">View Profile</a>
+      <a href="{{ url('web/profile/'.Auth::guard('web')->user()->ref_no)  }}" class="btn btn-sm btn-info float-left">View Profile</a>
       {{-- <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a> --}}
     </div>
     <!-- /.card-footer -->

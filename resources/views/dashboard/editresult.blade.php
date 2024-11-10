@@ -19,7 +19,7 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-      @if (Auth::guard('web')->user()->section == 'Early Years Foundation Stage (EYFS)')
+      @if (Auth::guard('web')->user()->section == 'Pre-Nursery')
         
     <section class="content">
       <div class="container-fluid">
@@ -40,25 +40,20 @@
               <!-- info row -->
               <div class="row invoice-info">
                 <div class="col-sm-2 invoice-col">
-                    <img style="width: 80px; height: 80px;" src="{{ asset('images/sch14.jpg') }}" alt=""> <br>
+                    <img style="width: 80px; height: 80px;" src="{{ asset('front/images/logo.jpg') }}" alt=""> <br>
 
                 
                 </div> 
                 <!-- /.col -->
                <div class="col-sm-8 invoice-col" style="text-align: center">
                  
-                  <h1><strong>BRIXTONN SCHOOLS</strong></h1>
+                  <h1><strong>GRACE OF GOD INT'L SCHOOL</strong></h1>
                   
                   <address>
                     
-                    @if ($edit_result->centername == 'Uyo')
-                    13 F-Line Ewet Housing Estate, Uyo 
-                    Akwa Ibom State, Nigeria <br>
-                    Website: brixtonnschools.com.ng
-                    @else
-                    No. 4 Julius Nyerere Crescent, <br>  Abuja 
-                    Nigeria 
-                    @endif
+                    61 Ntiendo Udosen Street, Off Udo Umana Uyo <br>
+                    Website: www.gogischools.org
+                    
                     <br>
                   </address>
                 </div>
@@ -162,23 +157,19 @@
                 
                 </div> 
                 <!-- /.col -->
-               <div class="col-sm-8 invoice-col" style="text-align: center">
+                <div class="col-sm-8 invoice-col" style="text-align: center">
                  
-                  <h1><strong>BRIXTONN SCHOOLS</strong></h1>
+                  <h1><strong>GRACE OF GOD INT'L SCHOOL</strong></h1>
                   
                   <address>
                     
-                    @if ($edit_result->centername == 'Uyo')
-                    13 F-Line Ewet Housing Estate, Uyo 
-                    Akwa Ibom State, Nigeria <br>
-                    Website: brixtonnschools.com.ng
-                    @else
-                    No. 4 Julius Nyerere Crescent, <br>  Abuja 
-                    Nigeria 
-                    @endif
+                    61 Ntiendo Udosen Street, Off Udo Umana Uyo <br>
+                    Website: www.gogischools.org
+                    
                     <br>
                   </address>
                 </div>
+                <!-- /.col -->
                 <!-- /.col -->
                 <div class="col-sm-2 invoice-col">
                     <img style="width: 100px; height: 100px;" src="{{ URL::asset("/public/../$edit_result->images")}}" alt="">
@@ -277,28 +268,24 @@
               <!-- info row -->
               <div class="row invoice-info">
                 <div class="col-sm-2 invoice-col">
-                    <img style="width: 80px; height: 80px;" src="{{ asset('images/sch14.jpg') }}" alt=""> <br>
+                    <img style="width: 80px; height: 80px;" src="{{ asset('front/images/logo.jpg') }}" alt=""> <br>
 
                 
                 </div> 
                 <!-- /.col -->
-               <div class="col-sm-8 invoice-col" style="text-align: center">
+                <div class="col-sm-8 invoice-col" style="text-align: center">
                  
-                  <h1><strong>BRIXTONN HIGH SCHOOLS</strong></h1>
+                  <h1><strong>GRACE OF GOD INT'L SCHOOL</strong></h1>
                   
                   <address>
                     
-                    @if ($edit_result->centername == 'Uyo')
-                    13 F-Line Ewet Housing Estate, Uyo 
-                    Akwa Ibom State, Nigeria <br>
-                    Website: brixtonnschools.com.ng
-                    @else
-                    No. 4 Julius Nyerere Crescent, <br>  Abuja 
-                    Nigeria 
-                    @endif
+                    61 Ntiendo Udosen Street, Off Udo Umana Uyo <br>
+                    Website: www.gogischools.org
+                    
                     <br>
                   </address>
                 </div>
+                <!-- /.col -->
                 <!-- /.col -->
                 <div class="col-sm-2 invoice-col">
                     <img style="width: 100px; height: 100px;" src="{{ URL::asset("/public/../$edit_result->images")}}" alt="">
@@ -327,8 +314,7 @@
                             <thead>
                             <tr>
                               <th>Subjects</th>
-                              <th>Continous Assessment 1</th>
-                              <th>Continous Assessment 2</th>
+                              <th>Continous Assessment 30%</th>
                               
                               <th>Exams</th>
                             </tr>
@@ -340,7 +326,7 @@
                                       <td>{{ $edit_result->subjectname }}</td>
 
                                       <td><input type="number" value="{{ $edit_result->test_1 }}" class="form-control" name="test_1" placeholder="Test 1"></td>
-                                      <td><input type="number" value="{{ $edit_result->test_2 }}" class="form-control" name="test_2" placeholder="Test 2"></td>
+                                      {{-- <td><input type="number" value="{{ $edit_result->test_2 }}" class="form-control" name="test_2" placeholder="Test 2"></td> --}}
                                       <td><input type="number" value="{{ $edit_result->exams }}" class="form-control" name="exams" placeholder="Exams"></td>
                                       {{-- <td><input type="hidden" name="teacher_id[]" value="{{ Auth::guard('web')->user()->id }}" placeholder="Teacher ID"></td> --}}
                                       

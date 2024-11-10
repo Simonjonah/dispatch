@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('web/home') }}" class="brand-link">
-      <img src="{{ asset('assets/dist/img/AdminLTELogo.jpg') }}" alt="webLTE Logo" class="brand-image "
+      <img src="{{ asset('front/images/logo.jpg') }}" alt="webLTE Logo" class="brand-image "
            style="opacity: .8">
       <span class="brand-text font-weight-light"> GOGIS</span>
     </a>
@@ -61,7 +61,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          {{-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -77,20 +77,7 @@
                   <p>Your Class {{ Auth::guard('web')->user()->classname }}</p>
                 </a>
               </li>
-              {{-- <li class="nav-item">
-                <a href="{{ url('studentpayment') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pensulate Term</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="{{ url('studentpayment') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Premium Term</p>
-                </a>
-              </li> --}}
-
+              
               <li class="nav-item">
                 <a href="{{ url('web/paymenthistory') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -99,11 +86,11 @@
               </li>
              
             </ul>
-          </li>
+          </li> --}}
 
           
 
-          <li class="nav-item has-treeview">
+          {{-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
@@ -121,7 +108,7 @@
             
             </ul>
           </li>
-          
+           --}}
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-book"></i>
@@ -227,7 +214,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          {{-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -243,19 +230,7 @@
                   <p>Pioneer Term</p>
                 </a>
               </li>
-              <!-- <li class="nav-item">
-                <a href="{{ url('web/payment') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Penultimate Term</p>
-                </a>
-              </li> -->
-
-              <!-- <li class="nav-item">
-                <a href="{{ url('payment') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Premium Term</p>
-                </a>
-              </li> -->
+              
 
               <li class="nav-item">
                 <a href="{{ url('payment') }}" class="nav-link">
@@ -294,7 +269,7 @@
             </a>
           </li>
 
-
+ --}}
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -305,12 +280,12 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a href="{{ url('web/checkmidtermresult') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Check MidTerm  Result</p>
                 </a>
-              </li>
+              </li> --}}
 
               <li class="nav-item">
                 <a href="{{ url('web/checkresult') }}" class="nav-link">
@@ -408,33 +383,33 @@
               <p>
                 Classes
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">6</span>
+                <span class="badge badge-info right"></span>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{ url('/web/pioneerterm') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Pioneer Term</p>
+                  <p>First Term</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ url('/web/penultimateterm') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Penultimate Term</p>
+                  <p>Second Term</p>
                 </a>
               </li>
 
               <li class="nav-item">
                 <a href="{{ url('/web/premiumterm') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Premium Term</p>
+                  <p>Third Term</p>
                 </a>
               </li>
 
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          {{-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
@@ -446,7 +421,7 @@
               <li class="nav-item">
                 <a href="{{ url('web/pioneermidtermresults') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Pioneer MidTerm Result</p>
+                  <p>First MidTerm Result</p>
                 </a>
               </li>
 
@@ -489,7 +464,7 @@
             
             </ul>
           </li>
-          
+           --}}
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -503,14 +478,14 @@
               <li class="nav-item">
                 <a href="{{ url('web/pioneertermresults') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Pioneer Term Result</p>
+                  <p>First Term Result</p>
                 </a>
               </li>
 
               <li class="nav-item">
                 <a href="{{ url('web/pioneertermresultsapproved') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>PioneerTerm Result Appr</p>
+                  <p>First Result Appr</p>
                 </a>
               </li>
 
@@ -519,28 +494,28 @@
               <li class="nav-item">
                 <a href="{{ url('web/penultimatetermresults') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Pensultimate Term Result</p>
+                  <p>Second Term Result</p>
                 </a>
               </li>
 
               <li class="nav-item">
                 <a href="{{ url('web/penultimatetermresultsapproved') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Pensultimate Result Appr</p>
+                  <p>Second Result Appr</p>
                 </a>
               </li>
 
               <li class="nav-item">
                 <a href="{{ url('web/premiumtermresults') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Premium Term Result</p>
+                  <p>Third Term Result</p>
                 </a>
               </li>
             
               <li class="nav-item">
                 <a href="{{ url('web/tpremiumprimarytermresults') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Premium Term Result Appr</p>
+                  <p>Third Term Result Appr</p>
                 </a>
               </li>
             
@@ -549,7 +524,7 @@
           
           
           
-          <li class="nav-item has-treeview">
+          {{-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
@@ -573,7 +548,7 @@
               </li>
               
             </ul>
-          </li>
+          </li> --}}
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -594,12 +569,54 @@
               <li class="nav-item">
                 <a href="{{ url('web/viewstudentsclubytacher') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p> View Your Club Students</p>
+                  <p> View Your Club </p>
                 </a>
               </li>
               
             </ul>
           </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Parents Section
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+            <li class="nav-item">
+              <a href="{{ url('web/addparentshead') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Add Parent</p>
+                </a>
+              </li>
+
+             
+
+              <li class="nav-item">
+                @foreach ($classnames as $classname)
+                  @if ($classname->section === 'Primary Head')
+                  <a href="{{ url('web/parentbyheads/'.$classname->section) }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> {{ $classname->classname }} Parents</p>
+                </a>
+                  @else
+                  @endif
+                @endforeach
+              </li>
+
+              <li class="nav-item">
+              <a href="{{ url('web/viewparentshead') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> View Parent</p>
+                </a>
+              </li>
+              
+            </ul>
+          </li>
+
+          
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -981,7 +998,7 @@
                 </li>
 
                 @elseif (Auth::guard('web')->user()->promotion == 'Primary Head')
-                <li class="nav-item has-treeview">
+              <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>

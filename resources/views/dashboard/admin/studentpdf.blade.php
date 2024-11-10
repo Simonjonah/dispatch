@@ -38,18 +38,13 @@
       <div class="col-sm-4 invoice-col">
        
         <address>
-          <strong>BRIXTONN SCHOOLS</strong><br>
-          @if ($print_students->centername = 'Uyo')
-          30 Ewet Housing, Uyo <br>
+          <strong>GOGGIS SCHOOLS</strong><br>
+         
+          Grace of of International Schools - GOGGIS,
+          61 Ntiendo Udosen Street, <br> Off Udo Umana Uyo Akwa Ibom, Nigeria, Uyo <br>
           Akwa Ibom State, Nigeria
-          @else
-          30 Asokoro, Abuja <br>
-          Nigeria 
-          @endif
-          <br>
-          {{-- San Francisco, CA 94107<br>
-          Phone: (804) 123-5432<br>
-          Email: info@almasaeedstudio.com --}}
+         
+          
         </address>
       </div>
       <!-- /.col -->
@@ -62,7 +57,7 @@
           Phone: {{ $print_students->phone }}<br>
           Email: {{ $print_students->email }}<br>
           Form No: {{ $print_students->ref_no }}<br>
-          Student ID: {{ $print_students->ref_no }}<br>
+          Student ID: {{ $print_students->ref_no1 }}<br>
         </address>
       </div>
       <!-- /.col -->

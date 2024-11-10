@@ -19,7 +19,7 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-      @if ($edit_resultadmin->section == 'Early Years Foundation Stage (EYFS)')
+      @if ($edit_resultadmin->section == 'Pre-Nursery')
         
     <section class="content">
       <div class="container-fluid">
@@ -40,25 +40,21 @@
               <!-- info row -->
               <div class="row invoice-info">
                 <div class="col-sm-2 invoice-col">
-                    <img style="width: 80px; height: 80px;" src="{{ asset('images/sch14.jpg') }}" alt=""> <br>
+                    <img style="width: 80px; height: 80px;" src="{{ asset('front/images/logo.jpg') }}" alt=""> <br>
 
                 
                 </div> 
                 <!-- /.col -->
                <div class="col-sm-8 invoice-col" style="text-align: center">
                  
-                  <h1><strong>BRIXTONN SCHOOLS</strong></h1>
+                  <h1><strong>GRACE OF GOD INTERNATIONAL SCHOOL</strong></h1>
                   
                   <address>
                     
-                    @if ($edit_resultadmin->centername == 'Uyo')
-                    13 F-Line Ewet Housing Estate, Uyo 
+                    61 Ntiedo Udosen Street, Uyo 
                     Akwa Ibom State, Nigeria <br>
-                    Website: brixtonnschools.com.ng
-                    @else
-                    No. 4 Julius Nyerere Crescent, <br>  Abuja 
-                    Nigeria 
-                    @endif
+                    Website: gogischools.org
+                    
                     <br>
                   </address>
                 </div>

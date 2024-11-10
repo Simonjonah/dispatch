@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Result of {{ $view_studentsubject->fname }} {{ $view_studentsubject->middlename }} {{ $view_studentsubject->surname }} in {{ $view_studentsubject->classname }} {{ $view_studentsubject->entrylevel }} {{ $view_studentsubject->section }}  {{ $view_studentsubject->regnumber }} Section</h1>
+            <h1>Result of {{ $view_studentsubject->fname }} {{ $view_studentsubject->middlename }} {{ $view_studentsubject->surname }} in {{ $view_studentsubject->classname }} {{ $view_studentsubject->term }} {{ $view_studentsubject->section }}  {{ $view_studentsubject->regnumber }} Section</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -39,26 +39,15 @@
               <!-- info row -->
               <div class="row invoice-info">
                 <div class="col-lg-2 col-md-6 col-sm-4 invoice-col">
-                    <img style="width: 80px; height: 80px;" src="{{ asset('images/sch14.jpg') }}" alt=""> <br>
-
-                
+                    <img style="width: 80px; height: 80px;" src="{{ asset('front/images/logo.jpg') }}" alt=""> <br>
                 </div> 
                 <!-- /.col -->
                <div class="col-lg-8 col-md-6 col-sm-4 invoice-col">
                  
-                  <h1><strong>BRIXTONN SCHOOLS</strong></h1>
-                  
-                  <address>
-                    
-                    @if ($view_studentsubject->centername == 'Uyo')
-                    13 F-Line Ewet Housing Estate, Uyo 
-                    Akwa Ibom State, Nigeria <br>
-                    Website: brixtonnschools.com.ng
-                    @else
-                    No. 4 Julius Nyerere Crescent, <br>  Abuja 
-                    Nigeria 
-                    @endif
-                    <br>
+                  <address style="text-align: center">
+                    <h2><strong>Grace of International Schools - GOGIS</strong></h2>
+                    61 Ntiendo Udosen Street, 
+                    Off Udo Umana Uyo Akwa Ibom, Nigeria
                   </address>
                 </div>
                 <!-- /.col -->
@@ -72,7 +61,7 @@
               <!-- Table row -->
               <div class="row">
                     <div class="col-12 table-responsive">
-                      @if ($view_studentsubject->section === 'Primary')
+                      @if ($view_studentsubject->section === 'Nursery')
                       <form action="{{ url('web/createresults') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @if (Session::get('success'))
@@ -91,27 +80,22 @@
                             <tr>
                               {{-- <th>S/N</th> --}}
                               <th>Subjects</th>
-                              <th>Assessment Test 1</th>
-                              <th>Assessment Test 2</th>
-                              <!-- <th>Ca 3</th> -->
-                              <th>Exams</th>
+                              <th>Assessment Test 30%</th>
+                              <th>Examination 70%</th>
                               
                             </tr>
                             </thead>
                             <tbody>
 
 
-                            <td>LITERACY</td>
+                            <td>MATHEMATICAL SKILL</td>
                             @foreach ($view_teachersubjects as $view_teachersubject)
-                              @if ($view_teachersubject->section == 'Primary')
+                              @if ($view_teachersubject->section == 'Nursery')
                               <tr>
-                                @if ($view_teachersubject->category == 'LITERACY')
+                                @if ($view_teachersubject->category == 'MATHEMATICAL SKILL')
                                 <td>{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
-                                <td><input type="text" class="form-control" name="test_1[]" placeholder="Assesssment test 1"></td>
-                                <td><input type="text" class="form-control" name="test_2[]" placeholder="Assessment test 2"></td>
-                                <td><input type="text" class="form-control" name="exams[]" placeholder="Exams Score"></td>
-                                <td><input type="text" class="form-control" name="comment[]" placeholder="Teacher's Remarks"></td>
-                               
+                                <td><input required type="number" max="30" class="form-control" name="test_1[]" placeholder="Assesssment test 30%"></td>
+                                <td><input required type="number" max="70" class="form-control" name="exams[]" placeholder="Exams Score 70%"></td>
                                 @else
                                 @endif
                               </tr>
@@ -121,16 +105,14 @@
                             @endforeach
 
                              
-                        <td>NUMERACY</td>
+                        <td>LANGUAGE SKILL</td>
                             @foreach ($view_teachersubjects as $view_teachersubject)
-                              @if ($view_teachersubject->section == 'Primary')
+                              @if ($view_teachersubject->section == 'Nursery')
                               <tr>
-                                @if ($view_teachersubject->category == 'NUMERACY')
+                                @if ($view_teachersubject->category == 'LANGUAGE SKILL')
                                 <td>{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
-                                <td><input type="text" class="form-control" name="test_1[]" placeholder="Assesssment test 1"></td>
-                                <td><input type="text" class="form-control" name="test_2[]" placeholder="Assessment test 2"></td>
-                                <td><input type="text" class="form-control" name="exams[]" placeholder="Exams Score"></td>
-                                <td><input type="text" class="form-control" name="comment[]" placeholder="Teacher's Remarks"></td>
+                                <td><input required type="number" max="30" class="form-control" name="test_1[]" placeholder="Assesssment test 30%"></td>
+                                <td><input required type="number" max="70" class="form-control" name="exams[]" placeholder="Exams Score 70%"></td>
                                
                                 @else
                                 @endif
@@ -140,17 +122,14 @@
                               @endif
                             @endforeach
 
-                            <td>No Category</td>
+                            <td>NURSERY RHYMES</td>
                             @foreach ($view_teachersubjects as $view_teachersubject)
-                              @if ($view_teachersubject->section == 'Primary')
+                              @if ($view_teachersubject->section == 'Nursery')
                               <tr>
-                                @if ($view_teachersubject->category == 'None')
+                                @if ($view_teachersubject->category == 'NURSERY RHYMES')
                                 <td>{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
-                                <td><input type="text" class="form-control" name="test_1[]" placeholder="Assesssment test 1"></td>
-                                <td><input type="text" class="form-control" name="test_2[]" placeholder="Assessment test 2"></td>
-                                <td><input type="text" class="form-control" name="exams[]" placeholder="Exams Score"></td>
-                                <td><input type="text" class="form-control" name="comment[]" placeholder="Teacher's Remarks"></td>
-                                
+                                <td><input required type="number" max="30" class="form-control" name="test_1[]" placeholder="Assesssment test 30%"></td>
+                                <td><input required type="number" max="70" class="form-control" name="exams[]" placeholder="Exams Score 70%"></td>
                                 @else
                                 @endif
                               </tr>
@@ -161,14 +140,12 @@
 
                             <td>CCA</td>
                             @foreach ($view_teachersubjects as $view_teachersubject)
-                              @if ($view_teachersubject->section == 'Primary')
+                              @if ($view_teachersubject->section == 'Nursery')
                               <tr>
-                                @if ($view_teachersubject->category == 'CCA')
+                                @if ($view_teachersubject->category == 'FRENCH')
                                 <td>{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
-                                <td><input type="text" class="form-control" name="test_1[]" placeholder="Assesssment test 1"></td>
-                                <td><input type="text" class="form-control" name="test_2[]" placeholder="Assessment test 2"></td>
-                                <td><input type="text" class="form-control" name="exams[]" placeholder="Exams Score"></td>
-                                <td><input type="text" class="form-control" name="comment[]" placeholder="Teacher's Remarks"></td>
+                                <td><input required type="number" max="30" class="form-control" name="test_1[]" placeholder="Assesssment test 30%"></td>
+                                <td><input required type="number" max="70" class="form-control" name="exams[]" placeholder="Exams Score 70%"></td>
                                 @else
                                 @endif
                               </tr>
@@ -177,9 +154,9 @@
                                   <input type="hidden" name="teacher_id[]" value="{{ Auth::guard('web')->user()->id }}" placeholder="Teacher ID">
                                   <input type="hidden" name="classname[]" value="{{ $view_studentsubject->classname }}" placeholder="ID">
                                   <input type="hidden" name="category[]" value="{{ $view_teachersubject->category }}" placeholder="ID">
-                                  <input type="hidden" name="centername[]" value="{{ $view_studentsubject->centername }}" placeholder="ID">
+                                  {{-- <input type="hidden" name="centername[]" value="{{ $view_studentsubject->centername }}" placeholder="ID"> --}}
                                   <input type="hidden" name="user_id[]" value="{{ $view_studentsubject->id }}" placeholder="ID">
-                                  <input type="hidden" name="entrylevel[]" value="{{ $view_studentsubject->entrylevel }}" placeholder="entrylevel">
+                                  <input type="hidden" name="term[]" value="{{ $view_studentsubject->term }}" placeholder="term">
                                   <input type="hidden" name="academic_session[]" value="{{ $view_studentsubject->academic_session }}" placeholder="academic_session">
                                   <input type="hidden" name="section[]" value="{{ $view_studentsubject->section }}" placeholder="academic_session">
                                   <input type="hidden" name="regnumber[]" value="{{ $view_studentsubject->regnumber }}" placeholder="regnumber">
@@ -210,7 +187,7 @@
                   Submit 
               </button>
                   
-                  @elseif($view_studentsubject->section === 'Early Years Foundation Stage (EYFS)')
+                  @elseif($view_studentsubject->section === 'Pre-Nursery')
                   <form action="{{ url('web/createresults') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @if (Session::get('success'))
@@ -227,56 +204,18 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                          <th>Subjects</th>
-                          <th>Comments</th>
-                          <!-- <th>Ca 2</th>
-                          <th>Ca 3tr</th>
-                          <th>Exarrtthhms</th> -->
-                          
+                          <th>SUBJECTS</th>
+                          <th>GRADING SYSTEM</th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        <td>COMMUNICATION AND LANGUAGE</td>
                             @foreach ($view_teachersubjects as $view_teachersubject)
-                              @if ($view_teachersubject->section == 'Early Years Foundation Stage (EYFS)')
+                              @if ($view_teachersubject->section == 'Pre-Nursery')
                               <tr>
-                                @if ($view_teachersubject->category == 'COMMUNICATION AND LANGUAGE')
                                 <td style="width: 20px">{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
-                                <td><textarea cols="4" rows="4" class="form-control" name="comment[]" placeholder="Comments"></textarea> </td>
-                                @else
-                                @endif
-                              </tr>
-                              <tr>
-                              @else
-                              @endif
-                            @endforeach
-
-                             
-                        <td>PHYSICAL DEVELOPMENT</td>
-                            @foreach ($view_teachersubjects as $view_teachersubject)
-                              @if ($view_teachersubject->section == 'Early Years Foundation Stage (EYFS)')
-                              <tr>
-                                @if ($view_teachersubject->category == 'PHYSICAL DEVELOPMENT')
-                                <td style="width: 20px">{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
-                                <td><textarea cols="4" rows="4" class="form-control" name="comment[]" placeholder="Comments"></textarea> </td>
-                                @else
-                                @endif
-                              </tr>
-                              <tr>
-                              @else
-                              @endif
-                            @endforeach
-
-                            <td>PERSONAL, SOCIAL AND EMOTIONAL DEVELOPMENT</td>
-                            @foreach ($view_teachersubjects as $view_teachersubject)
-                              @if ($view_teachersubject->section == 'Early Years Foundation Stage (EYFS)')
-                              <tr>
-                                @if ($view_teachersubject->category == 'PERSONAL, SOCIAL AND EMOTIONAL DEVELOPMENT')
-                                <td style="width: 20px">{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
-                                <td><textarea cols="4" rows="4" class="form-control" name="comment[]" placeholder="Comments"></textarea> </td>
-                                @else
-                                @endif
+                                <td><textarea required cols="4" rows="4" class="form-control" name="comment[]" placeholder="ENTER GRADE"></textarea> </td>
+                                
                               </tr>
                               <tr>
                               @else
@@ -284,47 +223,11 @@
                             @endforeach
 
 
-                            <td>LANGUAGE DEVELOPMENT(LITERACY)</td>
-                            @foreach ($view_teachersubjects as $view_teachersubject)
-                              @if ($view_teachersubject->section == 'Early Years Foundation Stage (EYFS)')
-                              <tr>
-                                @if ($view_teachersubject->category == 'LANGUAGE DEVELOPMENT(LITERACY)')
-                                <td style="width: 20px">{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
-                                <td><textarea cols="4" rows="4" class="form-control" name="comment[]" placeholder="Comments"></textarea> </td>
-                                @else
-                                @endif
-                              </tr>
-                              <tr>
-                              @else
-                              @endif
-                            @endforeach
 
 
-                            <td>MATH READINESS (NUMERACY)</td>
                             @foreach ($view_teachersubjects as $view_teachersubject)
-                              @if ($view_teachersubject->section == 'Early Years Foundation Stage (EYFS)')
-                              <tr>
-                                @if ($view_teachersubject->category == 'MATH READINESS (NUMERACY)')
-                                <td style="width: 20px">{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
-                                <td><textarea cols="4" rows="4" class="form-control" name="comment[]" placeholder="Comments"></textarea> </td>
-                                @else
-                                @endif
-                              </tr>
-                              <tr>
-                              @else
-                              @endif
-                            @endforeach
-
-                            <td>KNOWLEDGE TO UNDERSTAND THE WORLD (KUW)</td>
-                            @foreach ($view_teachersubjects as $view_teachersubject)
-                              @if ($view_teachersubject->section == 'Early Years Foundation Stage (EYFS)')
-                              <tr>
-                                @if ($view_teachersubject->category == 'KNOWLEDGE TO UNDERSTAND THE WORLD (KUW)')
-                                <td style="width: 20px">{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
-                                <td><textarea cols="4" rows="4" class="form-control" name="comment[]" placeholder="Comments"></textarea> </td>
-                                @else
-                                @endif
-                              </tr>
+                              @if ($view_teachersubject->section == 'Pre-Nursery')
+                              
                               <tr>
                               
                                   <input type="hidden" name="teacher_id[]" value="{{ Auth::guard('web')->user()->id }}" placeholder="Teacher ID">
@@ -332,7 +235,7 @@
                                   <input type="hidden" name="category[]" value="{{ $view_teachersubject->category }}" placeholder="ID">
                                   <input type="hidden" name="centername[]" value="{{ $view_studentsubject->centername }}" placeholder="ID">
                                   <input type="hidden" name="user_id[]" value="{{ $view_studentsubject->id }}" placeholder="ID">
-                                  <input type="hidden" name="entrylevel[]" value="{{ $view_studentsubject->entrylevel }}" placeholder="entrylevel">
+                                  <input type="hidden" name="term[]" value="{{ $view_studentsubject->term }}" placeholder="term">
                                   <input type="hidden" name="academic_session[]" value="{{ $view_studentsubject->academic_session }}" placeholder="academic_session">
                                   <input type="hidden" name="section[]" value="{{ $view_studentsubject->section }}" placeholder="academic_session">
                                   <input type="hidden" name="regnumber[]" value="{{ $view_studentsubject->regnumber }}" placeholder="regnumber">
@@ -352,25 +255,13 @@
                             @endforeach
 
                                 
-                            @foreach ($view_teachersubjects as $view_teachersubject)
-                              @if ($view_teachersubject->section == 'Early Years Foundation Stage (EYFS)')
-                              <tr>
-                                @if ($view_teachersubject->category == 'None')
-                                <td style="width: 20px">{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
-                                <td><textarea cols="4" rows="4" class="form-control" name="comment[]" placeholder="Comments"></textarea> </td>
-                                @else
-                                @endif
-                              </tr>
-                              <tr>
-                              @else
-                              @endif
-                            @endforeach
+
                         
   
                         </tbody>
                       </table>
                  
-                  @elseif($view_studentsubject->section === 'High School')
+                  @elseif($view_studentsubject->section === 'Primary')
 
                 <form action="{{ url('web/createresults') }}" method="post" enctype="multipart/form-data">
                   @csrf
@@ -388,24 +279,24 @@
                   <table class="table table-striped">
                       <thead>
                       <tr>
-                        <th>Subjects Title</th>
-                        <th>Assesssment Test 1</th>
-                        <th>Assessment Test 2</th>
+                        <th>Subjects</th>
+                        <th>Assesssment Test 30%</th>
+                        {{-- <th>Assessment Test 2</th> --}}
                         <!-- <th>Test 3</th> -->
-                        <th>Exams</th>
+                        <th>Examination 70%</th>
                         
                       </tr>
                       </thead>
                       <tbody>
 
                           @foreach ($view_teachersubjects as $view_teachersubject)
-                            @if ($view_teachersubject->section == 'High School')
+                            @if ($view_teachersubject->section == 'Primary')
                             <tr>
                                 <td>{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
-                                <td><input type="text" class="form-control" name="test_1[]" placeholder="Assesssment Test 1"></td>
-                                <td><input type="text" class="form-control" name="test_2[]" placeholder="Assessment Test 2"></td>
+                                <td><input max="30" type="number" class="form-control" name="test_1[]" placeholder="Assesssment Test 1"></td>
+                                {{-- <td><input type="text" class="form-control" name="test_2[]" placeholder="Assessment Test 2"></td> --}}
                                 <!-- <td><input type="number" class="form-control" name="test_3[]" placeholder="Test 3"></td> -->
-                                <td><input type="number" class="form-control" name="exams[]" placeholder="Exams Score"></td>
+                                <td><input max="70" type="number" class="form-control" name="exams[]" placeholder="Exams Score"></td>
                                <input type="hidden" name="classname[]" value="{{ $view_studentsubject->classname }}" placeholder="ID">
                                <input type="hidden" name="centername[]" value="{{ $view_studentsubject->centername }}" placeholder="ID">
                                 <input type="hidden" name="section[]" value="{{ Auth::guard('web')->user()->section }}" placeholder="Teacher ID">
@@ -415,7 +306,7 @@
                                 <input type="hidden" name="tsurname[]" value="{{ Auth::guard('web')->user()->surname }}" placeholder="Teacher ID">
                                 <input type="hidden" name="teacher_id[]" value="{{ Auth::guard('web')->user()->id }}" placeholder="Teacher ID">
                                 <input type="hidden" name="user_id[]" value="{{ $view_studentsubject->id }}" placeholder="ID">
-                                <input type="hidden" name="entrylevel[]" value="{{ $view_studentsubject->entrylevel }}" placeholder="entrylevel">
+                                <input type="hidden" name="term[]" value="{{ $view_studentsubject->term }}" placeholder="term">
                                 <input type="hidden" name="academic_session[]" value="{{ $view_studentsubject->academic_session }}" placeholder="academic_session">
                                 <input type="hidden" name="section[]" value="{{ $view_studentsubject->section }}" placeholder="academic_session">
                                 <input required type="hidden" name="regnumber[]" value="{{ $view_studentsubject->regnumber }}" placeholder="regnumber">

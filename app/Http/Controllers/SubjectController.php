@@ -38,6 +38,23 @@ class SubjectController extends Controller
         $view_subjects = Subject::where('section', 'Primary')->get();
         return view('dashboard.admin.viewsubject', compact('view_subjects'));
     }
+
+    public function viewprenurserysubject(){
+        $view_presubjects = Subject::where('section', 'Pre-nursery')->get();
+        return view('dashboard.admin.viewprenurserysubject', compact('view_presubjects'));
+    }
+
+    public function viewnurserysubjects(){
+        $view_nurserysubjects = Subject::where('section', 'Nursery')->get();
+        return view('dashboard.admin.viewnurserysubjects', compact('view_nurserysubjects'));
+    }
+    public function addprimarysub(){
+        
+        return view('dashboard.admin.addprimarysub');
+    }
+    
+
+    
     public function editsubject($id){
         $edit_subject = Subject::find($id);
         return view('dashboard.admin.editsubject', compact('edit_subject'));
@@ -53,7 +70,7 @@ class SubjectController extends Controller
         $request->validate([
             'subjectname' => ['required', 'string', 'max:255'],
             'section' => ['required', 'string', 'max:255'],
-            'category' => ['required', 'string', 'max:255'],
+            'category' => ['nullable', 'string', 'max:255'],
             
         ]);
         $edit_subject->subjectname = $request->subjectname;

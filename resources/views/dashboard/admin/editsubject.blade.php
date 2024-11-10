@@ -83,7 +83,7 @@
               <div class="col-lg-6 col-md-6 col-sm-23">
                       <div class="form-group">
                         <h5>Category </h5>
-                        <select required class="form-control" type="text" name="category">
+                        <select class="form-control" type="text" name="category">
                         <option value="{{ $edit_subject->category }}">{{ $edit_subject->category }}</option>
                         
                         <option value="MATHEMATICAL SKILL">MATHEMATICAL SKILL</option>

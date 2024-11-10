@@ -64,14 +64,14 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @if (Auth::guard('web')->user()->promotion = 'Center Head')
+                    {{-- @if (Auth::guard('web')->user()->promotion = 'Center Head') --}}
                         @foreach ($viewchildrens as $viewchildren)
-                            @if ($viewchildren->centername = Auth::guard('web')->user()->centername)
+                            @if ($viewchildren->classname = Auth::guard('web')->user()->classname)
                             <tr>
                                 <td>{{ $viewchildren->classname }} </td>
                                 <td>{{ $viewchildren->middlename }}</td>
                                 <td>{{ $viewchildren->fname }}</td>
-                                <td>{{ $viewchildren->entrylevel }}
+                                <td>{{ $viewchildren->term }}
 
                                 <a class="btn btn-info" href="{{ url('web/addregnumber1/'.$viewchildren->ref_no1) }}">Add Admission No</a>
                                 </td>
@@ -136,9 +136,9 @@
                             @endif
                         
                         @endforeach
-                    @else
+                    {{-- @else
                         
-                    @endif
+                    @endif --}}
                 
                   </tbody>
                   <tfoot>
@@ -187,7 +187,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2023 <a href="https://brixtonnschools.com.ng">brixtonnschools.com.ng</a>.</strong> All rights
+    <strong>Copyright &copy; 2024 <a href="#">GOGIS</a>.</strong> All rights
     reserved.
   </footer>
 
@@ -260,7 +260,7 @@
              </select>
           </div>
 
-          <div class="form-group">
+          {{-- <div class="form-group">
             <label for="">Select Study Center</label>
 
             <select class="form-control" name="centername" id="">
@@ -268,7 +268,7 @@
               <option value="{{ $view_studycenter->centername }}">{{ $view_studycenter->centername }}</option>
             @endforeach
             </select>
-         </div>
+         </div> --}}
         
       </div>
       <div class="modal-footer justify-content-between">

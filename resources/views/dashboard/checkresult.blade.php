@@ -46,7 +46,7 @@
                       <th>Classes</th>
                       <th>Name</th>
                       <th>Term</th>
-                      <th>Centername</th>
+                      <th>Section</th>
                       <th>Images</th>
                       <th>Check Result</th>
                       <th>Status</th>
@@ -69,8 +69,8 @@
                       <tr>
                         <td>{{ $check_result->classname }}</td>
                         <td>{{ $check_result->surname }}, {{ $check_result->fname }} {{ $check_result->middlename }}</td>
-                        <td>{{ $check_result->entrylevel }}</td>
-                        <td>{{ $check_result->centername }}
+                        <td>{{ $check_result->term }}</td>
+                        <td>{{ $check_result->section }}
                         <small>Section: {{ $check_result->section }}</small>
                         </td>
   
@@ -115,7 +115,7 @@
                       <th>Classes</th>
                       <th>Name</th>
                       <th>Term</th>
-                      <th>Centername</th>
+                      <th>Section</th>
                       <th>Images</th>
                       <th>Check Result</th>
                       <th>Status</th>
@@ -150,7 +150,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2023 <a href="https://brixtonnschools.com.ng">brixtonnschools.com.ng</a>.</strong> All rights
+    <strong>Copyright &copy; 2023 <a href="">GOGIS</a>.</strong> All rights
     reserved.
   </footer>
 
@@ -251,23 +251,14 @@
         
               <div class="form-group">
                 <h5>Term</h5>
-                <select name="entrylevel" class="form-control"  id="">
-                  <option value="Pioneer Term">Pioneer Term</option>
-                  <option value="Penultimate Term">Penultimate Term</option>
-                  <option value="Premium Term">Premium Term</option>
+                <select name="term" class="form-control"  id="">
+                  <option value="First Term">First Term</option>
+                  <option value="Second Term">Second Term</option>
+                  <option value="Third Term">Third Term</option>
                 </select>
               </div>
 
-              
-<!-- 
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-2 col-form-label">Pin</label>
-              <input required type="number" name="pins" class="form-control" @error('pins')
-                @enderror value="{{ old('pins') }}" id="exampleInputEmail1" placeholder="Pins">
-            </div>
-            @error('pins')
-            <span class="text-danger">{{ $message }}</span>
-            @enderror  -->
+
 
             <div class="form-group row">
               <label for="inputEmail3" class="col-sm-2 col-form-label">Year</label>
@@ -294,9 +285,9 @@
               <label for="inputEmail3" class="col-sm-2 col-form-label">Section</label>
               <select name="section" required class="form-control" id="">
                 <option value="">Select Section</option>
-                <option value="Early Years Foundation Stage (EYFS)">Early Years (EYFS)</option>
+                <option value="Pre-Nursery">Pre-Nursery</option>
+                <option value="Nursery">Nursery</option>
                 <option value="Primary">Primary</option>
-								<option value="High School">High School</option>
               </select>
               
             </div>
