@@ -171,6 +171,8 @@ class ClassnameController extends Controller
         return view('dashboard.admin.classresults', compact('view_pupils', 'view_classes', 'sessions', 'view_myresult', 'view_myresults'));
     }
 
+   
+    
     public function classapprovesresults($classname){
         $view_myresult = Classname::where('classname', $classname)->first();
         $view_myresults = Result::where('classname', $classname)

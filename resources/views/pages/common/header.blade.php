@@ -92,6 +92,7 @@
 									<li class="dropdown"><a href="#">Services</a>
 										<ul>
 											<li><a href="{{ url('services') }}">Services</a></li>
+											<li><a href="{{ url('markets') }}">Markets</a></li>
 											
 										</ul>
 									</li>
@@ -189,7 +190,13 @@
 									</ul>
 								</li>
 								
-									<li><a href="{{ url('services') }}">Services</a></li>
+								<li class="dropdown"><a href="#">Services</a>
+									<ul>
+										<li><a href="{{ url('services') }}">Services</a></li>
+										<li><a href="{{ url('markets') }}">Markets</a></li>
+										
+									</ul>
+								</li>
 									
 									<li><a href="{{ url('#') }}">Admission</a></li> 
 

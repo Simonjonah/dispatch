@@ -417,7 +417,7 @@ class ResultController extends Controller
 
     public function teacherviewresults2nd($user_id){
         $view_myresult_results = Result::where('user_id', $user_id)
-        ->where('term', 'Penultimate Term')
+        ->where('term', 'Second Term')
         ->get();
 
         $view_results = Result::where('user_id', $user_id)->first();
@@ -426,7 +426,7 @@ class ResultController extends Controller
     }
     public function pensulatermresults(){
         $view_myresults = Result::where('teacher_id', auth::guard('web')->id())
-         ->where('term', 'Penultimate Term')
+         ->where('term', 'Second Term')
          ->where('status', null)
         ->get();
         $view_classes = Classname::all();
@@ -436,7 +436,7 @@ class ResultController extends Controller
     
     public function penultimatetermresults(){
         $view_myresults = Result::where('teacher_id', auth::guard('web')->id())
-         ->where('term', 'Penultimate Term')
+         ->where('term', 'Second Term')
          ->where('status', null)
          ->where('type', null)
         ->get();
@@ -447,7 +447,7 @@ class ResultController extends Controller
 
     public function penmiftermresults(){
         $view_midtermmyresults = Result::where('teacher_id', auth::guard('web')->id())
-         ->where('term', 'Penultimate Term')
+         ->where('term', 'Second Term')
          ->where('status', null)
          ->where('type', 'Midterm')
         ->get();
@@ -459,7 +459,7 @@ class ResultController extends Controller
     
     public function penmidteresultsapproved(){
         $view_midtermmyresults = Result::where('teacher_id', auth::guard('web')->id())
-         ->where('term', 'Penultimate Term')
+         ->where('term', 'Second Term')
          ->where('status', 'approved')
          ->where('type', 'Midterm')
 
@@ -473,7 +473,7 @@ class ResultController extends Controller
 
     public function penultimatetermresultsapproved(){
         $view_myresults = Result::where('teacher_id', auth::guard('web')->id())
-         ->where('term', 'Penultimate Term')
+         ->where('term', 'Second Term')
          ->where('status', 'approved')
          ->where('type', null)
 
@@ -487,7 +487,7 @@ class ResultController extends Controller
 
     public function teacherviewresults3rd($user_id){
         $view_myresult_results = Result::where('user_id', $user_id)
-        ->where('term', 'Premium Term')
+        ->where('term', 'Third Term')
         ->get();
         $view_results = Result::where('user_id', $user_id)->first();
            
@@ -507,7 +507,7 @@ class ResultController extends Controller
     
     public function premiumtermresults(){
         $view_myresults = Result::where('teacher_id', auth::guard('web')->id())
-         ->where('term', 'Premium Term')
+         ->where('term', 'Third Term')
          ->where('status', null)
          ->where('type', null)
         ->get();
@@ -519,7 +519,7 @@ class ResultController extends Controller
 
     public function premiumidtermresults(){
         $view_midtermmyresults = Result::where('teacher_id', auth::guard('web')->id())
-         ->where('term', 'Premium Term')
+         ->where('term', 'Third Term')
          ->where('status', null)
          ->where('type', 'Midterm')
         ->get();
@@ -532,7 +532,7 @@ class ResultController extends Controller
     
     public function premidtermresultapproved(){
         $view_midtermmyresults = Result::where('teacher_id', auth::guard('web')->id())
-         ->where('term', 'Premium Term')
+         ->where('term', 'Third Term')
          ->where('status', 'approved')
          ->where('type', 'Midterm')
 
@@ -545,7 +545,7 @@ class ResultController extends Controller
 
     public function tpremiumprimarytermresults(){
         $view_myresults = Result::where('teacher_id', auth::guard('web')->id())
-         ->where('term', 'Premium Term')
+         ->where('term', 'Third Term')
          ->where('status', 'approved')
          ->where('type', null)
 
@@ -750,7 +750,7 @@ class ResultController extends Controller
         ->where('classname', $request->classname)
         ->where('section', $request->section)
         
-        ->where('term', 'Penultimate Term')->orderBy('category')->get();
+        ->where('term', 'Second Term')->orderBy('category')->get();
 
         $totalstudentInClass = User::where('academic_session', $request->academic_session)
         // ->where('regnumber', $request->regnumber)
@@ -760,20 +760,13 @@ class ResultController extends Controller
         ->where('assign1', 'student')->count();
 
        
-        if ($request->section == 'High School') {
-            return view('dashboard.highschoolresultpdfs', compact('view_results', 'getyour_results'));
+        if ($request->section == 'Primary') {
+            return view('dashboard.highschoolresultpdfs', compact('totalstudentInClass', 'view_results', 'getyour_results'));
         }elseif($request->section == 'Nursery')
         
             return view('dashboard.ftermprimaryresultspdf', compact('results_classaverageforccas', 'totalresults_noneonavges', 'totalclassavgfornumercys', 'results_totalforliteracyonavgs', 'results_forccas', 'results_fornones', 'results_fornums', 'results_forcats', 'totalstudentInClass', 'view_results', 'getyour_results'));
            
-            elseif($request->section == 'Primary' && $request->term == 'Penultimate Term')
-        
-            return view('dashboard.stermprimaryresultspdf', compact('firstterm_results', 'results_classaverageforccas', 'totalresults_noneonavges', 'totalclassavgfornumercys', 'results_totalforliteracyonavgs', 'results_forccas', 'results_fornones', 'results_fornums', 'results_forcats', 'totalstudentInClass', 'view_results', 'getyour_results'));
            
-            elseif($request->section == 'Primary' && $request->term == 'Premium Term')
-        
-            return view('dashboard.ttermprimaryresultspdf', compact('secondterm_results', 'firstterm_results', 'results_classaverageforccas', 'totalresults_noneonavges', 'totalclassavgfornumercys', 'results_totalforliteracyonavgs', 'results_forccas', 'results_fornones', 'results_fornums', 'results_forcats', 'totalstudentInClass', 'view_results', 'getyour_results'));
-        
         elseif($request->section == 'Pre-Nursery'){
             return view('dashboard.preschoolresults', compact('totalstudentInClass', 'secondterm_results','firstterm_results', 'view_results', 'getyour_results'));
 
@@ -783,6 +776,14 @@ class ResultController extends Controller
         return redirect()->back()->with('error', 'No page found!');
     }
     
+
+    public function allresult(){
+        $view_myresults = Result::where('type', null)->latest()->get();
+        $sessions = Academicsession::all();
+        $view_classes = Classname::all();
+        $view_pupils = User::where('assign1', 'student')->get();
+        return view('dashboard.admin.allresult', compact('view_pupils', 'view_classes', 'sessions', 'view_myresults'));
+    }
 
     public function checkresultbyheads(Request $request){
         $request->validate([
@@ -913,11 +914,11 @@ class ResultController extends Controller
        
            return view('dashboard.ftermprimaryresultspdfheads', compact('results_classaverageforccas', 'totalresults_noneonavges', 'totalclassavgfornumercys', 'results_totalforliteracyonavgs', 'results_forccas', 'results_fornones', 'results_fornums', 'results_forcats', 'totalstudentInClass', 'view_results', 'getyour_results'));
            
-           elseif($request->section == 'Primary' && $request->term == 'Penultimate Term')
+           elseif($request->section == 'Primary' && $request->term == 'Second Term')
        
            return view('dashboard.stermprimaryresultspdfheads', compact('firstterm_results', 'results_classaverageforccas', 'totalresults_noneonavges', 'totalclassavgfornumercys', 'results_totalforliteracyonavgs', 'results_forccas', 'results_fornones', 'results_fornums', 'results_forcats', 'totalstudentInClass', 'view_results', 'getyour_results'));
           
-           elseif($request->section == 'Primary' && $request->term == 'Premium Term')
+           elseif($request->section == 'Primary' && $request->term == 'Third Term')
        
            return view('dashboard.ttermprimaryresultspdfheads', compact('secondterm_results', 'firstterm_results', 'results_classaverageforccas', 'totalresults_noneonavges', 'totalclassavgfornumercys', 'results_totalforliteracyonavgs', 'results_forccas', 'results_fornones', 'results_fornums', 'results_forcats', 'totalstudentInClass', 'view_results', 'getyour_results'));
        
@@ -1213,7 +1214,7 @@ class ResultController extends Controller
        ->where('section', $request->section)
        ->where('type', 'Midterm')
 
-       ->where('term', 'Penultimate Term')->orderBy('category')->get();
+       ->where('term', 'Second Term')->orderBy('category')->get();
 
        $totalstudentInClass = User::where('academic_session', $request->academic_session)
     //    ->where('regnumber', $request->regnumber)
@@ -1229,11 +1230,11 @@ class ResultController extends Controller
        
            return view('dashboard.primaryresultmidtermheads', compact('results_classaverageforccas', 'totalresults_noneonavges', 'totalclassavgfornumercys', 'results_totalforliteracyonavgs', 'results_forccas', 'results_fornones', 'results_fornums', 'results_forcats', 'totalstudentInClass', 'view_results', 'getyour_results'));
            
-           elseif($request->section == 'Primary' && $request->term == 'Penultimate Term')
+           elseif($request->section == 'Primary' && $request->term == 'Second Term')
        
            return view('dashboard.primaryresultmidtermheads', compact('firstterm_results', 'results_classaverageforccas', 'totalresults_noneonavges', 'totalclassavgfornumercys', 'results_totalforliteracyonavgs', 'results_forccas', 'results_fornones', 'results_fornums', 'results_forcats', 'totalstudentInClass', 'view_results', 'getyour_results'));
           
-           elseif($request->section == 'Primary' && $request->term == 'Premium Term')
+           elseif($request->section == 'Primary' && $request->term == 'Third Term')
        
            return view('dashboard.primaryresultmidtermheads', compact('secondterm_results', 'firstterm_results', 'results_classaverageforccas', 'totalresults_noneonavges', 'totalclassavgfornumercys', 'results_totalforliteracyonavgs', 'results_forccas', 'results_fornones', 'results_fornums', 'results_forcats', 'totalstudentInClass', 'view_results', 'getyour_results'));
        
@@ -1370,7 +1371,7 @@ class ResultController extends Controller
    ->where('regnumber', $request->regnumber)
    ->where('classname', $request->classname)
    ->where('section', $request->section)
-   ->where('term', 'Penultimate Term')->orderBy('category')->get();
+   ->where('term', 'Second Term')->orderBy('category')->get();
 
    $totalstudentInClass = User::where('academic_session', $request->academic_session)
 //    ->where('regnumber', $request->regnumber)
@@ -1386,11 +1387,11 @@ class ResultController extends Controller
    
        return view('dashboard.primaryresultmidtermpdf', compact('results_classaverageforccas', 'totalresults_noneonavges', 'totalclassavgfornumercys', 'results_totalforliteracyonavgs', 'results_forccas', 'results_fornones', 'results_fornums', 'results_forcats', 'totalstudentInClass', 'view_results', 'getyour_results'));
        
-       elseif($request->section == 'Primary' && $request->term == 'Penultimate Term')
+       elseif($request->section == 'Primary' && $request->term == 'Second Term')
    
        return view('dashboard.primaryresultmidtermpdf', compact('firstterm_results', 'results_classaverageforccas', 'totalresults_noneonavges', 'totalclassavgfornumercys', 'results_totalforliteracyonavgs', 'results_forccas', 'results_fornones', 'results_fornums', 'results_forcats', 'totalstudentInClass', 'view_results', 'getyour_results'));
       
-       elseif($request->section == 'Primary' && $request->term == 'Premium Term')
+       elseif($request->section == 'Primary' && $request->term == 'Third Term')
    
        return view('dashboard.primaryresultmidtermpdf', compact('secondterm_results', 'firstterm_results', 'results_classaverageforccas', 'totalresults_noneonavges', 'totalclassavgfornumercys', 'results_totalforliteracyonavgs', 'results_forccas', 'results_fornones', 'results_fornums', 'results_forcats', 'totalstudentInClass', 'view_results', 'getyour_results'));
    
@@ -1629,7 +1630,7 @@ public function searchforstudent(Request $request)
        ->where('classname', $request->classname)
        ->where('section', $request->section)
        ->where('type', null)
-       ->where('term', 'Penultimate Term')->orderBy('category')->get();
+       ->where('term', 'Second Term')->orderBy('category')->get();
 
        $totalstudentInClass = User::where('academic_session', $request->academic_session)
        ->where('classname', $request->classname)
@@ -1638,20 +1639,12 @@ public function searchforstudent(Request $request)
        ->where('assign1', 'student')->count();
 
       
-       if ($request->section == 'High School') {
-           return view('dashboard.admin.highschoolresultadheads', compact('view_results', 'getyour_results'));
+       if ($request->section == 'Primary') {
+           return view('dashboard.admin.highschoolresultadheads', compact('totalstudentInClass', 'view_results', 'getyour_results'));
        }elseif($request->section == 'Nursery')
        
            return view('dashboard.admin.ftermprimaryresultspdfadsheads', compact('results_classaverageforccas', 'totalresults_noneonavges', 'totalclassavgfornumercys', 'results_totalforliteracyonavgs', 'results_forccas', 'results_fornones', 'results_fornums', 'results_forcats', 'totalstudentInClass', 'view_results', 'getyour_results'));
            
-           elseif($request->section == 'Primary' && $request->term == 'Penultimate Term')
-       
-           return view('dashboard.admin.stermprimaryresultspdadsfheads', compact('firstterm_results', 'results_classaverageforccas', 'totalresults_noneonavges', 'totalclassavgfornumercys', 'results_totalforliteracyonavgs', 'results_forccas', 'results_fornones', 'results_fornums', 'results_forcats', 'totalstudentInClass', 'view_results', 'getyour_results'));
-          
-           elseif($request->section == 'Primary' && $request->term == 'Premium Term')
-       
-           return view('dashboard.admin.ttermprimaryresultadspdfheads', compact('secondterm_results', 'firstterm_results', 'results_classaverageforccas', 'totalresults_noneonavges', 'totalclassavgfornumercys', 'results_totalforliteracyonavgs', 'results_forccas', 'results_fornones', 'results_fornums', 'results_forcats', 'totalstudentInClass', 'view_results', 'getyour_results'));
-       
        elseif($request->section == 'Pre-Nursery'){
         
         return view('dashboard.admin.preschoolresultsadheads', compact('totalstudentInClass', 'secondterm_results','firstterm_results', 'view_results', 'getyour_results'));
@@ -1813,7 +1806,7 @@ public function searchforstudent(Request $request)
    ->where('section', $request->section)
    ->where('centername', $request->centername)
    ->where('type', 'Midterm')
-   ->where('term', 'Penultimate Term')->orderBy('category')->get();
+   ->where('term', 'Second Term')->orderBy('category')->get();
 
    $totalstudentInClass = User::where('academic_session', $request->academic_session)
    ->where('centername', $request->centername)
@@ -1829,11 +1822,11 @@ public function searchforstudent(Request $request)
    
        return view('dashboard.admin.ftermprimaryresultspdfadsmidheads', compact('results_classaverageforccas', 'totalresults_noneonavges', 'totalclassavgfornumercys', 'results_totalforliteracyonavgs', 'results_forccas', 'results_fornones', 'results_fornums', 'results_forcats', 'totalstudentInClass', 'view_results', 'getyour_results'));
        
-       elseif($request->section == 'Primary' && $request->term == 'Penultimate Term')
+       elseif($request->section == 'Primary' && $request->term == 'Second Term')
    
        return view('dashboard.admin.ftermprimaryresultspdfadsmidheads', compact('results_classaverageforccas', 'totalresults_noneonavges', 'totalclassavgfornumercys', 'results_totalforliteracyonavgs', 'results_forccas', 'results_fornones', 'results_fornums', 'results_forcats', 'totalstudentInClass', 'view_results', 'getyour_results'));
       
-       elseif($request->section == 'Primary' && $request->term == 'Premium Term')
+       elseif($request->section == 'Primary' && $request->term == 'Third Term')
    
        return view('dashboard.admin.ftermprimaryresultspdfadsmidheads', compact('results_classaverageforccas', 'totalresults_noneonavges', 'totalclassavgfornumercys', 'results_totalforliteracyonavgs', 'results_forccas', 'results_fornones', 'results_fornums', 'results_forcats', 'totalstudentInClass', 'view_results', 'getyour_results'));
    
@@ -2021,7 +2014,7 @@ public function editresultmidtermadmin($id){
    ->where('section', $request->section)
    ->where('type', 'Midterm')
 
-   ->where('term', 'Penultimate Term')->orderBy('category')->get();
+   ->where('term', 'Second Term')->orderBy('category')->get();
 
    $totalstudentInClass = User::where('academic_session', $request->academic_session)
 //    ->where('regnumber', $request->regnumber)
@@ -2037,11 +2030,11 @@ public function editresultmidtermadmin($id){
    
        return view('dashboard.admin.primaryresultmidtermheadsadmin', compact('results_classaverageforccas', 'totalresults_noneonavges', 'totalclassavgfornumercys', 'results_totalforliteracyonavgs', 'results_forccas', 'results_fornones', 'results_fornums', 'results_forcats', 'totalstudentInClass', 'view_results', 'getyour_results'));
        
-       elseif($request->section == 'Primary' && $request->term == 'Penultimate Term')
+       elseif($request->section == 'Primary' && $request->term == 'Second Term')
    
        return view('dashboard.admin.primaryresultmidtermheadsadmin', compact('firstterm_results', 'results_classaverageforccas', 'totalresults_noneonavges', 'totalclassavgfornumercys', 'results_totalforliteracyonavgs', 'results_forccas', 'results_fornones', 'results_fornums', 'results_forcats', 'totalstudentInClass', 'view_results', 'getyour_results'));
       
-       elseif($request->section == 'Primary' && $request->term == 'Premium Term')
+       elseif($request->section == 'Primary' && $request->term == 'Third Term')
    
        return view('dashboard.admin.primaryresultmidtermheadsadmin', compact('secondterm_results', 'firstterm_results', 'results_classaverageforccas', 'totalresults_noneonavges', 'totalclassavgfornumercys', 'results_totalforliteracyonavgs', 'results_forccas', 'results_fornones', 'results_fornums', 'results_forcats', 'totalstudentInClass', 'view_results', 'getyour_results'));
    

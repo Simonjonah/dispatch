@@ -329,19 +329,15 @@
                     <th>Admission No</th>
                     <th>Psycomotor</th>
                     <th>Approved</th>
-                    <th>CA 1</th>
-                    <th>CA 2</th>
-                    <!-- <th>CA 3</th> -->
-                    <th>Exams</th>
+                    <th>CA 30%</th>
+                
+                    <th>Exams 30%</th>
                     <th>Total</th>
-                    <th>Grade</th>
                     <th>Remarks</th>
                     <th>Edit</th>
-                    {{-- <th>View</th> --}}
 
                     <th>Delete</th>
               
-                    {{-- <th>Date</th> --}}
                   </tr>
                   </thead>
                   <tbody>
@@ -356,7 +352,6 @@
                     {{ Session::get('fail') }}
                     @endif
                     @foreach ($view_myresults as $view_myresult)
-                      @if ($view_myresult->centername == 'Uyo')
                       <tr>
                         <td>{{ $view_myresult->user['surname'] }}
                           <small>{{ $view_myresult->section }} {{ $view_myresult->classname }}</small>
@@ -390,42 +385,23 @@
   
 
                       <td>{{ $view_myresult->test_1 }}</td>
-                      <td>{{ $view_myresult->test_2 }}</td>
-                      <!-- <td>{{ $view_myresult->test_3 }}</td> -->
                       <td>{{ $view_myresult->exams }}</td>
                       <td>{{ $view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams }}</td>
-                      <td>@if ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 69)
-                        <p>A</p>
-                       
-                        @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 59)
-                        <p>B</p>
-                        @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 49)
-                        <p>C</p>
-                        @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 44)
-                        <p>D</p>
-                        @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 40)
-                        <p>E</p>
-                        @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 39)
-                        <p>F</p>
-                        @else
-                        <p>F</p>
-                      @endif</td>
-
                       <td>@if ($view_myresult->test + $view_myresult->exams > 69)
-                        <p>An Excellent Performance </p>
+                        <p>Excellent </p>
                        
                         @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 59)
-                        <p>A good Performance</p>
+                        <p>Good</p>
                         @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 49)
-                        <p>A fair performance</p>
+                        <p>Fair</p>
                         @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 44)
-                        <p>A Poor performance.</p>
+                        <p>Poor</p>
                         @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 40)
-                        <p>A Poor performance.</p>
+                        <p>V. Poor</p>
                         @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 39)
-                        <p>A Poor performance.</p>
+                        <p>V. Poor</p>
                         @else
-                        <p>A Poor performance.</p>
+                        <p>V. Poor</p>
                       @endif</td>
                          
                       
@@ -441,9 +417,7 @@
                     
 
                       </tr>
-                      @else
-                        
-                      @endif
+                    
                       
                      
                     @endforeach
@@ -460,18 +434,13 @@
                       <th>Psycomotor</th>
 
                       <th>Approved</th>
-                      <th>CA 1</th>
-                      <th>CA 2</th>
-                      <!-- <th>CA 3</th> -->
-                      <th>Exams</th>
+                      <th>CA 30%</th>
+                      <th>Exams 30%</th>
                       <th>Total</th>
-                      <th>Grade</th>
                       <th>Remarks</th>
                       <th>Edit</th>
-                      {{-- <th>View</th> --}}
                       <th>Delete</th>
                 
-                      {{-- <th>Date</th> --}}
                     </tr>
                   </tfoot>
                 </table>

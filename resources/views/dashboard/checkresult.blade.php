@@ -36,7 +36,7 @@
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title" style="color: red">Your {{ Auth::guard('web')->user()->centername }} Center</h3>
+                <h3 class="card-title" style="color: red">Your {{ Auth::guard('web')->user()->section }} Center</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -65,7 +65,7 @@
                   <tbody>
                   {{-- @if (Auth::guard('web')->user()->promotion == 'Pre-School Head') --}}
                     @foreach ($check_results as $check_result)
-                    {{-- @if ($check_result->centername == Auth::guard('web')->user()->centername && $check_result->role == null) --}}
+                    {{-- @if ($check_result->centername == Auth::guard('web')->user()->section && $check_result->role == null) --}}
                       <tr>
                         <td>{{ $check_result->classname }}</td>
                         <td>{{ $check_result->surname }}, {{ $check_result->fname }} {{ $check_result->middlename }}</td>

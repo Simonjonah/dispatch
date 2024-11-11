@@ -23,7 +23,7 @@
     </section>
 
     <!-- Main content -->
-    @if (Auth::guard('web')->user()->section == 'Early Years Foundation Stage (EYFS)')
+    @if (Auth::guard('web')->user()->section == 'Pre-Nursery')
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -63,12 +63,12 @@
                   <tbody>
 
                     @foreach ($view_myresults as $view_myresult)
-                        @if ($view_myresult->centername == Auth::guard('web')->user()->centername )
+                        @if ($view_myresult->classname == Auth::guard('web')->user()->classname && $view_myresult->section == Auth::guard('web')->user()->section )
                         <tr>
                             <td>{{ $view_myresult->user['surname'] }}
                             
                             </td>
-                            <td>{{ $view_myresult->user['fname'] }} {{ $view_myresult->entrylevel }}</td>
+                            <td>{{ $view_myresult->user['fname'] }} {{ $view_myresult->term }}</td>
                             <td>{{ $view_myresult->user['middlename'] }}
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
                                     Check Result
@@ -76,7 +76,7 @@
                               
                             </td>
                             <td>{{ $view_myresult->regnumber }}
-                            <small>{{ $view_myresult->centername }}</small>
+                            <small>{{ $view_myresult->section }}</small>
                             </td>
                             <td><input type="text" class="form-control" name="comment" value="{{ $view_myresult->comment }}" placeholder="">
                            
@@ -140,18 +140,17 @@
                    
                   </tbody>
                   <tfoot>
-                  <tr>
-                    <th>Surname</th>
-                    <th>Firstname</th>
-                    <th>Middlename</th>
-                    <th>Admission No</th>
-                    <th>Comments</th>
-                    <th>Approved</th>
-                    <th>Edit</th>
-                    <th>Pscomotor</th>
-
-                    <th>Delete</th>
-                  </tr>
+                    <tr>
+                      <th>Surname</th>
+                      <th>Firstname</th>
+                      <th>Middlename</th>
+                      <th>Admission No</th>
+                      <th>Comments</th>
+                      <th>Approved</th>
+                      <th>Edit</th>
+                      <th>Pscomotor</th>
+                      <th>Delete</th>
+                    </tr>
                    
                   </tfoot>
                 </table>
@@ -167,7 +166,7 @@
       <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-    @elseif (Auth::guard('web')->user()->section == 'Primary')
+    @elseif (Auth::guard('web')->user()->section == 'Nursery')
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -199,13 +198,13 @@
                     <th>Admission No</th>
                     <th>Psycomotor</th>
                     <th>Approved</th>
-                    <th>CA 1</th>
-                    <th>CA 2</th>
+                    <th>CA 30%</th>
+                    
                     <!-- <th>CA 3</th> -->
                     <th>Exams</th>
                     <th>Total</th>
                     <th>Grade</th>
-                    <!-- <th>Remarks</th> -->
+                    <th>Remarks</th>
                     <th>Edit</th>
                     {{-- <th>View</th> --}}
 
@@ -217,19 +216,19 @@
                   <tbody>
 
                     @foreach ($view_myresults as $view_myresult)
-                        @if ($view_myresult->centername == Auth::guard('web')->user()->centername)
+                        @if ($view_myresult->section == Auth::guard('web')->user()->section)
                         <tr>
                             <td>{{ $view_myresult->user['surname'] }}
                             
                             </td>
-                            <td>{{ $view_myresult->user['fname'] }} {{ $view_myresult->entrylevel }}</td>
+                            <td>{{ $view_myresult->user['fname'] }} {{ $view_myresult->term }}</td>
                             <td>{{ $view_myresult->user['middlename'] }}
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
                                     Check Result
                                 </button>
                             </td>
                             <td>{{ $view_myresult->regnumber }}
-                            <small>{{ $view_myresult->centername }}</small>
+                            <small>{{ $view_myresult->section }}</small>
                             </td>
                             <td><a href="{{ url('web/addpsychomotor/'.$view_myresult->id) }}"
                               class='btn btn-default'>
@@ -259,8 +258,7 @@
                             Approved
                              <i class="far fa-eye"></i></a></td>
                           <td>{{ $view_myresult->test_1 }}</td>
-                          <td>{{ $view_myresult->test_2 }}</td>
-                          <!-- <td>{{ $view_myresult->test_3 }}</td> -->
+                          
                           <td>{{ $view_myresult->exams }}</td>
                           <td>{{ $view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams }}</td>
                           <td>@if ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 69)
@@ -280,7 +278,22 @@
                             <p>F</p>
                           @endif</td>
     
-                             
+                          <td>@if ($view_myresult->test + $view_myresult->exams > 69)
+                            <p>Excellent</p>
+                           
+                            @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 59)
+                            <p>Good</p>
+                            @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 49)
+                            <p>Fair</p>
+                            @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 44)
+                            <p>Poor</p>
+                            @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 40)
+                            <p>Poor</p>
+                            @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 39)
+                            <p>V. Poor</p>
+                            @else
+                            <p>V.Poor</p>
+                          @endif</td>
                           
                          <td><a href="{{ url('web/editresult/'.$view_myresult->id) }}"
                                 class='btn btn-info'>
@@ -319,13 +332,14 @@
                       <th>Psycomotor</th>
 
                       <th>Approved</th>
-                      <th>CA 1</th>
-                      <th>CA 2</th>
+                      <th>CA 30%</th>
+                      
                       <!-- <th>CA 3</th> -->
                       <th>Exams</th>
                       <th>Total</th>
                       <th>Grade</th>
-                      <!-- <th>Remarks</th> -->
+                      <th>Remarks</th>
+
                       <th>Edit</th>
                       {{-- <th>View</th> --}}
                       <th>Delete</th>
@@ -379,8 +393,8 @@
                     <th>Admission No</th>
                     <th>Psycomotor</th>
                     <th>Approved</th>
-                    <th>CA 1</th>
-                    <th>CA 2</th>
+                    <th>CA </th>
+                    {{-- <th>CA 2</th> --}}
                     <!-- <th>CA 3</th> -->
                     <th>Exams</th>
                     <th>Total</th>
@@ -397,19 +411,19 @@
                   <tbody>
 
                     @foreach ($view_myresults as $view_myresult)
-                        @if ($view_myresult->centername == Auth::guard('web')->user()->centername)
+                        @if ($view_myresult->section == Auth::guard('web')->user()->section)
                         <tr>
                             <td>{{ $view_myresult->user['surname'] }}
                             
                             </td>
-                            <td>{{ $view_myresult->user['fname'] }} {{ $view_myresult->entrylevel }}</td>
+                            <td>{{ $view_myresult->user['fname'] }} {{ $view_myresult->term }}</td>
                             <td>{{ $view_myresult->user['middlename'] }}
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
                                     Check Result
                                 </button>
                             </td>
                             <td>{{ $view_myresult->regnumber }}
-                            <small>{{ $view_myresult->centername }}</small>
+                            <small>{{ $view_myresult->section }}</small>
                             </td>
                             <td><a href="{{ url('web/addpsychomotor/'.$view_myresult->id) }}"
                               class='btn btn-default'>
@@ -439,8 +453,7 @@
                             Approved
                              <i class="far fa-eye"></i></a></td>
                           <td>{{ $view_myresult->test_1 }}</td>
-                          <td>{{ $view_myresult->test_2 }}</td>
-                          <!-- <td>{{ $view_myresult->test_3 }}</td> -->
+                          {{-- <td>{{ $view_myresult->test_2 }}</td> --}}
                           <td>{{ $view_myresult->exams }}</td>
                           <td>{{ $view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams }}</td>
                           <td>@if ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 69)
@@ -461,20 +474,20 @@
                           @endif</td>
     
                           <td>@if ($view_myresult->test + $view_myresult->exams > 69)
-                            <p>An Excellent Performance </p>
+                            <p>Excellent</p>
                            
                             @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 59)
-                            <p>A good Performance</p>
+                            <p>Good</p>
                             @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 49)
-                            <p>A fair performance</p>
+                            <p>Fair</p>
                             @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 44)
-                            <p>A Poor performance.</p>
+                            <p>Poor</p>
                             @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 40)
-                            <p>A Poor performance.</p>
+                            <p>Poor</p>
                             @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 39)
-                            <p>A Poor performance.</p>
+                            <p>V. Poor</p>
                             @else
-                            <p>A Poor performance.</p>
+                            <p>V.Poor</p>
                           @endif</td>
                              
                           
@@ -515,8 +528,8 @@
                       <th>Psycomotor</th>
 
                       <th>Approved</th>
-                      <th>CA 1</th>
-                      <th>CA 2</th>
+                      <th>CA </th>
+                      {{-- <th>CA 2</th> --}}
                       <!-- <th>CA 3</th> -->
                       <th>Exams</th>
                       <th>Total</th>
@@ -551,7 +564,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2023 <a href="https://brixtoonschool.com.ng">Brixtonn</a>.</strong> All rights
+    <strong>Copyright &copy; 2024 <a href="#">GOGIS</a>.</strong> All rights
     reserved.
   </footer>
 
@@ -614,17 +627,20 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+        @php
+          use App\Models\User;
+          $viewmy_pupils = User::where('classname', auth::user()->classname)->where('assign1', 'student')->get();
+        @endphp
         <div class="modal-body">
           <form action="{{ url('web/checkresultbyheads') }}" method="post">
             @csrf
             <div class="form-group">
                 <label for="">Admission No</label>
-                
                 <select name="regnumber" id="" class="form-control">
-                @foreach ($view_myresults as $view_myresult)
-                        @if ($view_myresult->centername == Auth::guard('web')->user()->centername)
-                    <option value="{{ $view_myresult->regnumber }}">{{ $view_myresult->regnumber }}</option>
-                    @endif
+                @foreach ($viewmy_pupils as $viewmy_pupil)
+                  @if ($viewmy_pupil->section == Auth::guard('web')->user()->section)
+                    <option value="{{ $viewmy_pupil->regnumber }}">{{ $viewmy_pupil->fname }} {{ $viewmy_pupil->surname }} {{ $viewmy_pupil->regnumber }}</option>
+                  @endif
               @endforeach
                 </select>
 
@@ -632,30 +648,33 @@
               </div>
 
               <div class="form-group">
-                <label for="">Entrylevel</label>
-                <select name="entrylevel" id="" class="form-control">
-                    <option value="Pioneer Term">Pioneer Term</option>
-                    <option value="Penultimate Term">Penultimate Term</option>
-                    <option value="Premium Term">Premium Term</option>
+                <label for="">Term</label>
+                <select name="term" id="" class="form-control">
+                    <option value="First Term">First Term</option>
+                    <option value="Second Term">Second Term</option>
+                    <option value="Third Term">Third Term</option>
                 </select>
               </div>
               <div class="form-group">
                 <label for="">Class</label>
                 <select name="classname" id="" class="form-control">
+                  <option value="{{ Auth::guard('web')->user()->classname }}">{{ Auth::guard('web')->user()->classname }}</option>
 
-                  @foreach ($view_classes as $view_classe)
-                  <option value="{{ $view_classe->classname }}">{{ $view_classe->classname }}</option>
+                  {{-- @foreach ($view_classes as $view_classe) --}}
+                  {{-- <option value="{{ $view_classe->classname }}">{{ $view_classe->classname }}</option> --}}
                     
-                  @endforeach
+                  {{-- @endforeach --}}
                 </select>
               </div>
 
               <div class="form-group">
                 <label for="">Select Section</label>
                 <select name="section" id="" class="form-control">
-                  <option value="Early Years Foundation Stage (EYFS)">Early Years (EYFS)</option>
-                <option value="Primary">Primary</option>
-								<option value="High School">High School</option>
+                  <option value="{{ Auth::guard('web')->user()->section }}">{{ Auth::guard('web')->user()->section }}</option>
+
+                  {{-- <option value="Pre-Nursery">Pre-Nursery</option>
+                <option value="Nursery">Nursery</option>
+								<option value="Primary">Primary</option> --}}
                     
                 </select>
               </div>

@@ -884,12 +884,12 @@
                   </li>
                   @endforeach
 
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="{{ url('admin/allresult') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View all Results</p>
                 </a>
-              </li>
+              </li> --}}
             </ul>
           </li>
 
@@ -912,12 +912,12 @@
                   </li>
                   @endforeach
 
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="{{ url('admin/allresult') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View all Results</p>
                 </a>
-              </li>
+              </li> --}}
             </ul>
           </li>
 

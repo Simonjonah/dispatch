@@ -129,6 +129,20 @@ Route::get('/blog', function () {
 });
 
 
+Route::get('/markets', function () {
+    $view_marketables = Market::latest()->where('status', 'approved')->get();
+    return view('pages.markets', compact('view_marketables'));
+});
+
+Route::get('/singlemarket/{ref_no}', function ($ref_no) {
+    $view_singlemarkets = Market::where('ref_no', $ref_no)->first();
+    $all_markets = Market::latest()->where('status', 'approved')->get();
+    return view('pages.singlemarket', compact('all_markets', 'view_singlemarkets'));
+});
+
+
+
+
 Route::get('/contact', function () {
     return view('pages.contact');
 });
@@ -576,6 +590,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/viewnurserysubjects', [SubjectController::class, 'viewnurserysubjects'])->name('viewnurserysubjects');
         Route::get('/addprimarysub', [SubjectController::class, 'addprimarysub'])->name('addprimarysub');
         Route::get('/classapprovesresults/{classname}', [ClassnameController::class, 'classapprovesresults'])->name('classapprovesresults');
+        Route::get('/allresult', [ResultController::class, 'allresult'])->name('allresult');
         
         
         Route::get('/logout', [AdminController::class, 'logout'])->name('logout'); 

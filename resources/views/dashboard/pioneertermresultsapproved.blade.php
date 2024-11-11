@@ -21,8 +21,9 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
+
+    <!-- Main content -->
     @if (Auth::guard('web')->user()->section == 'Pre-Nursery')
-      <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -54,32 +55,30 @@
                     <th>Admission No</th>
                     <th>Comments</th>
                     <th>Approved</th>
-                    
                     <th>Edit</th>
-                    <th>Pyscomotor</th>
-
+                    <th>Pscomotor</th>
                     <th>Delete</th>
                   </tr>
                   </thead>
                   <tbody>
 
                     @foreach ($view_myresults as $view_myresult)
-                        @if ($view_myresult->section == Auth::guard('web')->user()->section)
+                        @if ($view_myresult->classname == Auth::guard('web')->user()->classname && $view_myresult->section == Auth::guard('web')->user()->section )
                         <tr>
                             <td>{{ $view_myresult->user['surname'] }}
                             
                             </td>
-                            <td>{{ $view_myresult->user['fname'] }} {{ $view_myresult->entrylevel }}</td>
+                            <td>{{ $view_myresult->user['fname'] }} {{ $view_myresult->term }}</td>
                             <td>{{ $view_myresult->user['middlename'] }}
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
                                     Check Result
                                 </button>
+                              
                             </td>
                             <td>{{ $view_myresult->regnumber }}
-                            <small>{{ $view_myresult->centername }}</small>
+                            <small>{{ $view_myresult->section }}</small>
                             </td>
-                            <td><input type="text" value="{{ $view_myresult->comment }}" name="comment" class="form-control"></td>
-    
+                            <td><input type="text" class="form-control" name="comment" value="{{ $view_myresult->comment }}" placeholder="">
                            
     
                           <td>
@@ -102,199 +101,27 @@
                             class='btn btn-info'>
                             Approved
                              <i class="far fa-eye"></i></a></td>
-                          
-    
-                          
+                         
+                        
+                        
                          <td><a href="{{ url('web/editresult/'.$view_myresult->id) }}"
                                 class='btn btn-info'>
                                  <i class="far fa-edit"></i>
                              </a></td>
-                             
+                                 
                          <td><a href="{{ url('web/addpsychomotor/'.$view_myresult->id) }}"
                               class='btn btn-default'>
                               Add Psycomotor
                                <i class="far fa-eye"></i></a></td>
     
                           <td>
-                            
+
+
                            
-                      
-                            
-                           <a href="{{ url('web/deletreslt/'.$view_myresult->id) }}"
-                            class='btn btn-danger'>
-                             <i class="far fa-trash-alt"></i>
-                         </a></td>
-
-                        
-    
-                          </tr>
-                         
-                        @else
-                            
-                        @endif
-                      
-                    @endforeach
-                 
-                 
-                   
-                  </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>Surname</th>
-                    <th>Firstname</th>
-                    <th>Middlename</th>
-                    <th>Admission No</th>
-                    <th>Comments</th>
-                    <th>Approved</th>
-                    
-                    <th>Edit</th>
-                    <th>Psycomotor</th>
-                    
-                    <th>Delete</th>
-                  </tr>
-                  </tfoot>
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container-fluid -->
-    </section>
-
-    @elseif (Auth::guard('web')->user()->section == 'Primary')
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            
-
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Your Students Result</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                    @if (Session::get('success'))
-                <div class="alert alert-success">
-                    {{ Session::get('success') }}
-                </div>
-                @endif
-
-                @if (Session::get('fail'))
-                <div class="alert alert-danger">
-                {{ Session::get('fail') }}
-                @endif
-                  <tr>
-                    <th>Surname</th>
-                    <th>Firstname</th>
-                    <th>Middlename</th>
-                    <th>Admission No</th>
-                    <th>Psycomotor</th>
-                    <th>Approved</th>
-                    <th>CA 1</th>
-                    <th>CA 2</th>
-                    <!-- <th>CA 3</th> -->
-                    <th>Exams</th>
-                    <th>Total</th>
-                    <th>Grade</th>
-                    <th>Remarks</th>
-                    <th>Edit</th>
-                    {{-- <th>View</th> --}}
-
-                    <th>Delete</th>
-              
-                    {{-- <th>Date</th> --}}
-                  </tr>
-                  </thead>
-                  <tbody>
-
-                    @foreach ($view_myresults as $view_myresult)
-                        @if ($view_myresult->centername == Auth::guard('web')->user()->centername)
-                        <tr>
-                            <td>{{ $view_myresult->user['surname'] }}
-                            
-                            </td>
-                            <td>{{ $view_myresult->user['fname'] }} {{ $view_myresult->entrylevel }}</td>
-                            <td>{{ $view_myresult->user['middlename'] }}
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
-                                    Check Result
-                                </button>
-                            </td>
-                            <td>{{ $view_myresult->regnumber }}
-                            <small>{{ $view_myresult->centername }}</small>
-                            </td>
-                            <td><a href="{{ url('web/addpsychomotor/'.$view_myresult->id) }}"
-                              class='btn btn-default'>
-                              Add Psycomotor
-                               <i class="far fa-eye"></i></a></td>
-                               
-                          <td>
-                            <small>
-
-                              @if ($view_myresult->status == null)
-                                <span class="badge badge-secondary"> In progress</span>
-                            @elseif($view_myresult->status == 'suspend')
-                            <span class="badge badge-warning"> Suspended</span>
-                            @elseif($view_myresult->status == 'reject')
-                            <span class="badge badge-danger"> Rejected</span>
-                            @elseif($view_myresult->status == 'approved')
-                            <span class="badge badge-success"> Approved</span>
-                            @elseif($view_myresult->status == 'admitted')
-                            
-                            <span class="badge badge-success">Admitted</span>
-                            @endif
-                            </small>
-                            <a href="{{ url('web/approvedresulthead/'.$view_myresult->id) }}"
-                            class='btn btn-info'>
-                            Approved
-                             <i class="far fa-eye"></i></a></td>
-                          <td>{{ $view_myresult->test_1 }}</td>
-                          <td>{{ $view_myresult->test_2 }}</td>
-                          <td>{{ $view_myresult->section }}
-                            <small>{{ $view_myresult->classname }}</small>
-
-                          </td>
-                          <td>{{ $view_myresult->exams }}</td>
-                          <td>{{ $view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams }}</td>
-                          
-                          <td>@if ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->exams > 89)
-                            <td>A* Outstanding</td>
-                            
-                            @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->exams > 79)
-                            <td>Excellent</td>
-                          
-                            @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->exams > 69)
-                            <td>B Very Good</td>
-                            @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->exams > 59)
-                            <td>C Credit</td>
-                            @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->exams > 49)
-                            <td>D Good </td>
-                            @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->exams > 39)
-                            <td>E Pass</td>
-                            @else
-                            <td>F Fail</td>
-                          @endif</td>
-    
-                             
-                          
-                         <td><a href="{{ url('web/editresult/'.$view_myresult->id) }}"
-                                class='btn btn-info'>
-                                 <i class="far fa-edit"></i>
-                             </a></td>
-                             {{-- <td><a href="{{ url('web/teacherviewresults/'.$view_myresult->user_id)}}"
-                              class='btn btn-default'>
-                               <i class="far fa-eye"></i>
-                           </a></td> --}}
                            
-                          {{-- <th><a href="{{ url('web/studentit/'.$view_myresult->ref_no) }}" class="btn btn-info"><i class="fas fa-user"></i> IT</a></th> --}}
-                           <td><a href="{{ url('web/deletreslt/'.$view_myresult->id) }}"
+                          
+                          
+                          <td><a href="{{ url('web/deletreslt/'.$view_myresult->id) }}"
                             class='btn btn-danger'>
                              <i class="far fa-trash-alt"></i>
                          </a></td>
@@ -318,22 +145,13 @@
                       <th>Firstname</th>
                       <th>Middlename</th>
                       <th>Admission No</th>
-                      <th>Psycomotor</th>
-
+                      <th>Comments</th>
                       <th>Approved</th>
-                      <th>CA 1</th>
-                      <th>CA 2</th>
-                      <!-- <th>CA 3</th> -->
-                      <th>Exams</th>
-                      <th>Total</th>
-                      <th>Grade</th>
-                      <th>Remarks</th>
                       <th>Edit</th>
-                      {{-- <th>View</th> --}}
+                      <th>Pscomotor</th>
                       <th>Delete</th>
-                
-                      {{-- <th>Date</th> --}}
                     </tr>
+                   
                   </tfoot>
                 </table>
               </div>
@@ -347,8 +165,8 @@
       </div>
       <!-- /.container-fluid -->
     </section>
-    @else
-      
+    <!-- /.content -->
+    @elseif (Auth::guard('web')->user()->section == 'Nursery')
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -380,8 +198,8 @@
                     <th>Admission No</th>
                     <th>Psycomotor</th>
                     <th>Approved</th>
-                    <th>CA 1</th>
-                    <th>CA 2</th>
+                    <th>CA 30%</th>
+                    
                     <!-- <th>CA 3</th> -->
                     <th>Exams</th>
                     <th>Total</th>
@@ -398,19 +216,19 @@
                   <tbody>
 
                     @foreach ($view_myresults as $view_myresult)
-                        @if ($view_myresult->centername == Auth::guard('web')->user()->centername)
+                        @if ($view_myresult->section == Auth::guard('web')->user()->section)
                         <tr>
                             <td>{{ $view_myresult->user['surname'] }}
                             
                             </td>
-                            <td>{{ $view_myresult->user['fname'] }} {{ $view_myresult->entrylevel }}</td>
+                            <td>{{ $view_myresult->user['fname'] }} {{ $view_myresult->term }}</td>
                             <td>{{ $view_myresult->user['middlename'] }}
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
                                     Check Result
                                 </button>
                             </td>
                             <td>{{ $view_myresult->regnumber }}
-                            <small>{{ $view_myresult->centername }}</small>
+                            <small>{{ $view_myresult->section }}</small>
                             </td>
                             <td><a href="{{ url('web/addpsychomotor/'.$view_myresult->id) }}"
                               class='btn btn-default'>
@@ -440,8 +258,7 @@
                             Approved
                              <i class="far fa-eye"></i></a></td>
                           <td>{{ $view_myresult->test_1 }}</td>
-                          <td>{{ $view_myresult->test_2 }}</td>
-                          <!-- <td>{{ $view_myresult->test_3 }}</td> -->
+                          
                           <td>{{ $view_myresult->exams }}</td>
                           <td>{{ $view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams }}</td>
                           <td>@if ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 69)
@@ -462,20 +279,215 @@
                           @endif</td>
     
                           <td>@if ($view_myresult->test + $view_myresult->exams > 69)
-                            <p>An Excellent Performance </p>
+                            <p>Excellent</p>
                            
                             @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 59)
-                            <p>A good Performance</p>
+                            <p>Good</p>
                             @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 49)
-                            <p>A fair performance</p>
+                            <p>Fair</p>
                             @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 44)
-                            <p>A Poor performance.</p>
+                            <p>Poor</p>
                             @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 40)
-                            <p>A Poor performance.</p>
+                            <p>Poor</p>
                             @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 39)
-                            <p>A Poor performance.</p>
+                            <p>V. Poor</p>
                             @else
-                            <p>A Poor performance.</p>
+                            <p>V.Poor</p>
+                          @endif</td>
+                          
+                         <td><a href="{{ url('web/editresult/'.$view_myresult->id) }}"
+                                class='btn btn-info'>
+                                 <i class="far fa-edit"></i>
+                             </a></td>
+                             {{-- <td><a href="{{ url('web/teacherviewresults/'.$view_myresult->user_id)}}"
+                              class='btn btn-default'>
+                               <i class="far fa-eye"></i>
+                           </a></td> --}}
+                           
+                          {{-- <th><a href="{{ url('web/studentit/'.$view_myresult->ref_no) }}" class="btn btn-info"><i class="fas fa-user"></i> IT</a></th> --}}
+                           <td><a href="{{ url('web/deletreslt/'.$view_myresult->id) }}"
+                            class='btn btn-danger'>
+                             <i class="far fa-trash-alt"></i>
+                         </a></td>
+                        
+                         {{-- <td>{{ $view_myresult->created_at->format('D d, M Y, H:i')}}</td> --}}
+    
+                          </tr>
+                         
+                        @else
+                            
+                        @endif
+                      
+                    @endforeach
+                 
+                 
+                   
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th>Surname</th>
+                      <th>Firstname</th>
+                      <th>Middlename</th>
+                      <th>Admission No</th>
+                      <th>Psycomotor</th>
+
+                      <th>Approved</th>
+                      <th>CA 30%</th>
+                      
+                      <!-- <th>CA 3</th> -->
+                      <th>Exams</th>
+                      <th>Total</th>
+                      <th>Grade</th>
+                      <th>Remarks</th>
+
+                      <th>Edit</th>
+                      {{-- <th>View</th> --}}
+                      <th>Delete</th>
+                
+                      {{-- <th>Date</th> --}}
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    @else
+
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Your Students Result</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                    @if (Session::get('success'))
+                <div class="alert alert-success">
+                    {{ Session::get('success') }}
+                </div>
+                @endif
+
+                @if (Session::get('fail'))
+                <div class="alert alert-danger">
+                {{ Session::get('fail') }}
+                @endif
+                  <tr>
+                    <th>Surname</th>
+                    <th>Firstname</th>
+                    <th>Middlename</th>
+                    <th>Admission No</th>
+                    <th>Psycomotor</th>
+                    <th>Approved</th>
+                    <th>CA </th>
+                    {{-- <th>CA 2</th> --}}
+                    <!-- <th>CA 3</th> -->
+                    <th>Exams</th>
+                    <th>Total</th>
+                    <th>Grade</th>
+                    <th>Remarks</th>
+                    <th>Edit</th>
+                    {{-- <th>View</th> --}}
+
+                    <th>Delete</th>
+              
+                    {{-- <th>Date</th> --}}
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                    @foreach ($view_myresults as $view_myresult)
+                        @if ($view_myresult->section == Auth::guard('web')->user()->section)
+                        <tr>
+                            <td>{{ $view_myresult->user['surname'] }}
+                            
+                            </td>
+                            <td>{{ $view_myresult->user['fname'] }} {{ $view_myresult->term }}</td>
+                            <td>{{ $view_myresult->user['middlename'] }}
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
+                                    Check Result
+                                </button>
+                            </td>
+                            <td>{{ $view_myresult->regnumber }}
+                            <small>{{ $view_myresult->section }}</small>
+                            </td>
+                            <td><a href="{{ url('web/addpsychomotor/'.$view_myresult->id) }}"
+                              class='btn btn-default'>
+                              Add Psycomotor
+                               <i class="far fa-eye"></i></a></td>
+    
+                           
+    
+                          <td>
+                            <small>
+
+                              @if ($view_myresult->status == null)
+                                <span class="badge badge-secondary"> In progress</span>
+                            @elseif($view_myresult->status == 'suspend')
+                            <span class="badge badge-warning"> Suspended</span>
+                            @elseif($view_myresult->status == 'reject')
+                            <span class="badge badge-danger"> Rejected</span>
+                            @elseif($view_myresult->status == 'approved')
+                            <span class="badge badge-success"> Approved</span>
+                            @elseif($view_myresult->status == 'admitted')
+                            
+                            <span class="badge badge-success">Admitted</span>
+                            @endif
+                            </small>
+                            <a href="{{ url('web/approvedresulthead/'.$view_myresult->id) }}"
+                            class='btn btn-info'>
+                            Approved
+                             <i class="far fa-eye"></i></a></td>
+                          <td>{{ $view_myresult->test_1 }}</td>
+                          {{-- <td>{{ $view_myresult->test_2 }}</td> --}}
+                          <td>{{ $view_myresult->exams }}</td>
+                          <td>{{ $view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams }}</td>
+                          <td>@if ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 69)
+                            <p>A</p>
+                           
+                            @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 59)
+                            <p>B</p>
+                            @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 49)
+                            <p>C</p>
+                            @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 44)
+                            <p>D</p>
+                            @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 40)
+                            <p>E</p>
+                            @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 39)
+                            <p>F</p>
+                            @else
+                            <p>F</p>
+                          @endif</td>
+    
+                          <td>@if ($view_myresult->test + $view_myresult->exams > 69)
+                            <p>Excellent</p>
+                           
+                            @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 59)
+                            <p>Good</p>
+                            @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 49)
+                            <p>Fair</p>
+                            @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 44)
+                            <p>Poor</p>
+                            @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 40)
+                            <p>Poor</p>
+                            @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 39)
+                            <p>V. Poor</p>
+                            @else
+                            <p>V.Poor</p>
                           @endif</td>
                              
                           
@@ -516,8 +528,8 @@
                       <th>Psycomotor</th>
 
                       <th>Approved</th>
-                      <th>CA 1</th>
-                      <th>CA 2</th>
+                      <th>CA </th>
+                      {{-- <th>CA 2</th> --}}
                       <!-- <th>CA 3</th> -->
                       <th>Exams</th>
                       <th>Total</th>
@@ -542,16 +554,17 @@
       </div>
       <!-- /.container-fluid -->
     </section>
+    <!-- /.content -->
+      
     @endif
     
-    <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2023 <a href="https://brixtoonschool.com.ng">Brixtonn</a>.</strong> All rights
+    <strong>Copyright &copy; 2024 <a href="#">GOGIS</a>.</strong> All rights
     reserved.
   </footer>
 
@@ -606,87 +619,91 @@
 </html>
 
 <div class="modal fade" id="modal-default">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Check Result of A Child</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      @php
-        use App\Models\User;
-        $viewmy_pupils = User::where('classname', auth::user()->classname)->where('assign1', 'student')->get();
-      @endphp
-      <div class="modal-body">
-        <form action="{{ url('web/checkresultbyheads') }}" method="post">
-          @csrf
-          <div class="form-group">
-              <label for="">Admission No</label>
-              <select name="regnumber" id="" class="form-control">
-              @foreach ($viewmy_pupils as $viewmy_pupil)
-                @if ($viewmy_pupil->section == Auth::guard('web')->user()->section)
-                  <option value="{{ $viewmy_pupil->regnumber }}">{{ $viewmy_pupil->fname }} {{ $viewmy_pupil->surname }} {{ $viewmy_pupil->regnumber }}</option>
-                @endif
-            @endforeach
-              </select>
-
-              
-            </div>
-
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Check Result of A Child</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        @php
+          use App\Models\User;
+          $viewmy_pupils = User::where('classname', auth::user()->classname)->where('assign1', 'student')->get();
+        @endphp
+        <div class="modal-body">
+          <form action="{{ url('web/checkresultbyheads') }}" method="post">
+            @csrf
             <div class="form-group">
-              <label for="">Term</label>
-              <select name="term" id="" class="form-control">
-                  <option value="First Term">First Term</option>
-                  <option value="Second Term">Second Term</option>
-                  <option value="Third Term">Third Term</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="">Class</label>
-              <select name="classname" id="" class="form-control">
+                <label for="">Admission No</label>
+                <select name="regnumber" id="" class="form-control">
+                @foreach ($viewmy_pupils as $viewmy_pupil)
+                  @if ($viewmy_pupil->section == Auth::guard('web')->user()->section)
+                    <option value="{{ $viewmy_pupil->regnumber }}">{{ $viewmy_pupil->fname }} {{ $viewmy_pupil->surname }} {{ $viewmy_pupil->regnumber }}</option>
+                  @endif
+              @endforeach
+                </select>
 
-                @foreach ($view_classes as $view_classe)
-                <option value="{{ $view_classe->classname }}">{{ $view_classe->classname }}</option>
-                  
-                @endforeach
-              </select>
-            </div>
+                
+              </div>
 
-            <div class="form-group">
-              <label for="">Select Section</label>
-              <select name="section" id="" class="form-control">
-                <option value="Pre-Nursery">Pre-Nursery</option>
-              <option value="Nursery">Nursery</option>
-              <option value="Primary">Primary</option>
-                  
-              </select>
-            </div>
+              <div class="form-group">
+                <label for="">Term</label>
+                <select name="term" id="" class="form-control">
+                    <option value="First Term">First Term</option>
+                    <option value="Second Term">Second Term</option>
+                    <option value="Third Term">Third Term</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="">Class</label>
+                <select name="classname" id="" class="form-control">
+                  <option value="{{ Auth::guard('web')->user()->classname }}">{{ Auth::guard('web')->user()->classname }}</option>
 
-            <div class="form-group">
-              <label for="">Admission No</label>
-              <select name="academic_session" id="" class="form-control">
-                @foreach ($view_sessions as $view_session)
-                <option value="{{ $view_session->academic_session }}">{{ $view_session->academic_session }}</option>
-                  
-                @endforeach
-              </select>
-            </div>
+                  {{-- @foreach ($view_classes as $view_classe) --}}
+                  {{-- <option value="{{ $view_classe->classname }}">{{ $view_classe->classname }}</option> --}}
+                    
+                  {{-- @endforeach --}}
+                </select>
+              </div>
 
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Check</button>
-            </div>
-        </form>
+              <div class="form-group">
+                <label for="">Select Section</label>
+                <select name="section" id="" class="form-control">
+                  <option value="{{ Auth::guard('web')->user()->section }}">{{ Auth::guard('web')->user()->section }}</option>
+
+                  {{-- <option value="Pre-Nursery">Pre-Nursery</option>
+                <option value="Nursery">Nursery</option>
+								<option value="Primary">Primary</option> --}}
+                    
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="">Admission No</label>
+                <select name="academic_session" id="" class="form-control">
+                  @foreach ($view_sessions as $view_session)
+                  <option value="{{ $view_session->academic_session }}">{{ $view_session->academic_session }}</option>
+                    
+                  @endforeach
+                </select>
+              </div>
+
+              <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Check</button>
+              </div>
+          </form>
+        </div>
+        
       </div>
       
     </div>
-    
+    <!-- /.modal-dialog -->
   </div>
-  <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
+  <!-- /.modal -->
 
 
 
 
+  
