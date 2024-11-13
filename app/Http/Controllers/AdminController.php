@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Event;
+use App\Models\Market;
+use App\Models\Result;
 use App\Models\Student;
 use App\Models\User;
 use App\Models\Subject;
@@ -58,23 +60,31 @@ class AdminController extends Controller
     public function home(){
         $countstudent = User::where('role', null)->count();
         $countsubjects = Subject::count();
-        $countsubjecthigh = Subject::where('section', 'High School')->count();
-        $countsubjectprim = Subject::where('section', 'Primary')->count();
-        $countteacher = User::where('status', 'teacher')->count();
-        $countteacheruyo = User::where('user_id', 'Uyo')
-        ->where('status', 'teacher')->count();
-        $countteacherabuja = User::where('user_id', 'Abuja')
-        ->where('status', 'teacher')->count();
-        $countstudenttsuspend = User::where('status', 'suspend')->count();
-        $countstudentapprove = User::where('status', 'suspend')->count();
-        $countstudentreject = User::where('status', 'reject')->count();
-        $countsqueries = Student::count();
-        $countsrepliedqueries = Student::where('status', 'reply')->count();
+        $countsubjecthigh = Subject::where('section', 'Primary')->count();
+        $countsubjectprim = Subject::where('section', 'Nursery')->count();
+        $countteacher = User::where('assign', 'teacher')->count();
+        $view_students = User::where('assign1', 'student')->latest()->take(10)->get();
+        $view_results = Result::latest()->take(10)->get();
+        $markets = Market::latest()->take(10)->get();
+        
+        $view_lecturers = User::where('assign', 'teacher')->latest()->take(8)->get();
+        $countteacheruyo = User::where('section', 'Primary')
+        ->where('assign', 'teacher')->where('role', 'approved')->count();
+        $countteacherabuja = User::where('section', 'Nursery')->where('role', 'approved')
+        ->where('assign', 'teacher')->count();
+        $countstudenttsuspend = User::where('assign1', 'student')->where('status', 'suspend')->count();
+        $countstudentapprove = User::where('assign1', 'student')->where('status', 'suspend')->count();
+        $countstudentreject = User::where('assign1', 'student')->where('status', 'reject')->count();
+        $countsqueries = User::where('role', 'approved')->where('assign', 'teacher')->where('section', 'Pre-Nursery')->count();
+        $countsrepliedqueries = Subject::where('section', 'Pre-Nursery')->count();
         $countsevents = Event::where('status', 'reply')->count();
         $countstestimony = Testimony::where('status', 'reply')->count();
+        $countsmarkets = Market::count();
+        $view_parents = User::where('assign', 'parent')->take(10)->get();
+
         
         
-        return view('dashboard.admin.home', compact('countstudent', 'countstestimony', 'countsevents', 'countsrepliedqueries','countsqueries', 'countstudentreject', 'countstudentapprove', 'countstudenttsuspend', 'countteacherabuja', 'countteacheruyo', 'countteacher', 'countsubjectprim', 'countsubjecthigh', 'countsubjects'));
+        return view('dashboard.admin.home', compact('view_parents', 'markets', 'view_results', 'view_students', 'view_lecturers', 'countsmarkets', 'countstudent', 'countstestimony', 'countsevents', 'countsrepliedqueries','countsqueries', 'countstudentreject', 'countstudentapprove', 'countstudenttsuspend', 'countteacherabuja', 'countteacheruyo', 'countteacher', 'countsubjectprim', 'countsubjecthigh', 'countsubjects'));
     }
 
     public function profile() {

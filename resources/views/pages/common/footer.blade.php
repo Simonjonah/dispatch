@@ -22,7 +22,7 @@
                       					 </li>
 										<li><span class="icon fa fa-envelope"></span> info@gogis.com.ng</li>
 										<!-- <li><span class="icon fa fa-home"></span>Grace of od International Schools - GOGGIS, Uyo <br> Akwa Ibom, Nigeria</li> -->
-										<li><span class="icon fa fa-home"></span>Grace of of International Schools - GOGGIS,  <br>61 Ntiendo Udosen Street, <br> Off Udo Umana Uyo Akwa Ibom, Nigeria</li>
+										<li><span class="icon fa fa-home"></span>Grace of of International Schools - GOGIS,  <br>61 Ntiendo Udosen Street, <br> Off Udo Umana Uyo Akwa Ibom, Nigeria</li>
 										
 									</ul>
 								</div>
@@ -60,6 +60,7 @@
 										<li><a href="{{ url('/') }}">Visit Knowledge Base</a></li>
 										<li><a href="{{ url('contact') }}">Support System</a></li>
 										<li><a href="{{ url('/login') }}">Teacher's login</a></li>
+										<li><a href="{{ url('/login') }}">Parents' login</a></li>
 									</ul>
 								</div>
 							</div>

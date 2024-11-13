@@ -67,9 +67,55 @@
                                     
                                 @endforeach
                             </ul>
-                            
                         </div>
+
+
+						<!--Gallery Widget-->
+                        <div class="sidebar-widget instagram-widget">
+                            <div class="sidebar-title-two">
+                                <h4>Gallery</h4>
+                            </div>
+							<div class="images-outer clearfix">
+                                <!--Image Box-->
+                                <figure class="image-box"><a href="{{ URL::asset("/public/../$view_singlemarkets->images1")}}" class="lightbox-image" data-caption="" data-fancybox="images" title="Image Title Here" data-fancybox-group="footer-gallery"><span class="overlay-box flaticon-plus-symbol"></span></a>
+                                <img style="width: 100%; height: 80px;" src="{{ URL::asset("/public/../$view_singlemarkets->images1")}}" alt=""></figure>
+                                <!--Image Box-->
+                                <figure class="image-box"><a href="{{ URL::asset("/public/../$view_singlemarkets->images2")}}" class="lightbox-image" data-caption="" data-fancybox="images" title="Image Title Here" data-fancybox-group="footer-gallery"><span class="overlay-box flaticon-plus-symbol"></span></a>
+                                <img style="width: 100%; height: 80px;" src="{{ URL::asset("/public/../$view_singlemarkets->images2")}}" alt=""></figure>
+                                <!--Image Box-->
+                                <figure class="image-box"><a href="{{ URL::asset("/public/../$view_singlemarkets->images3")}}" class="lightbox-image" data-caption="" data-fancybox="images" title="Image Title Here" data-fancybox-group="footer-gallery"><span class="overlay-box flaticon-plus-symbol"></span></a>
+                                <img style="width: 100%; height: 80px;" src="{{ URL::asset("/public/../$view_singlemarkets->images3")}}" alt=""></figure>
+                                <!--Image Box-->
+                                <figure class="image-box"><a href="{{ URL::asset("/public/../$view_singlemarkets->images4")}}" class="lightbox-image" data-caption="" data-fancybox="images" title="Image Title Here" data-fancybox-group="footer-gallery"><span class="overlay-box flaticon-plus-symbol"></span></a>
+                                <img style="width: 100%; height: 80px;" src="{{ URL::asset("/public/../$view_singlemarkets->images4")}}" alt=""></figure>
+                                <!--Image Box-->
+                                <figure class="image-box"><a href="{{ URL::asset("/public/../$view_singlemarkets->images5")}}" class="lightbox-image" data-caption="" data-fancybox="images" title="Image Title Here" data-fancybox-group="footer-gallery"><span class="overlay-box flaticon-plus-symbol"></span></a>
+                                <img style="width: 100%; height: 80px;" src="{{ URL::asset("/public/../$view_singlemarkets->images5")}}" alt=""></figure>
+                                
+                            </div>
+						</div>
 						
+
+
+						<!--Blog Category Widget-->
+                        <div class="sidebar-widget sidebar-blog-category">
+                            <div class="sidebar-title-two">
+                                <h4>Details</h4>
+                            </div>
+                            <ul class="blog-cat-two">
+                                
+                                <li><a href="{{ url('singleblog/'.$view_singlemarkets->slug) }}">{{ $view_singlemarkets->email }}</span></a></li>
+                                <li><a href="{{ url('singleblog/'.$view_singlemarkets->slug) }}">{{ $view_singlemarkets->phone }}</span></a></li>
+                                <li><a href="{{ url('singleblog/'.$view_singlemarkets->slug) }}">{{ $view_singlemarkets->title }}</span></a></li>
+                                <li><a href="{{ url('singleblog/'.$view_singlemarkets->slug) }}">{{ $view_singlemarkets->address }}</span></a></li>
+                                <li><a href="{{ url('singleblog/'.$view_singlemarkets->slug) }}">{{ $view_singlemarkets->company_name }}</span></a></li>
+                                <li><a href="{{ url($view_singlemarkets->facebook) }}">Facebook<span class="fa fa-facebook-square"></span></a></li>
+								<li><a href="{{ url($view_singlemarkets->twitter) }}">X<span class="fa fa-twitter-square"></span></a></li>
+								<li><a href="{{ url($view_singlemarkets->linkedin) }}">Linkedin<span class="fa fa-linkedin-square"></span></a></li>
+								<li><a href="{{ url($view_singlemarkets->instagram) }}">Instagram<span class="fa fa-instagram"></span></a></li>
+								<li><a href="{{ url($view_singlemarkets->whatsapp) }}">Whatsapp<span class="fa fa-whatsapp"></span></a></li>
+                            </ul>
+                        </div>
 						
 						</div>
 						

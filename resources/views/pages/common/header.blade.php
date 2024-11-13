@@ -42,7 +42,7 @@
                 <div class="inner-container clearfix">
                     <div class="top-left">
                         <ul class="contact-list clearfix">
-                            <li><i class="fa fa-envelope-o"></i>info@gogis.com.ng</li>
+                            <li><i class="fa fa-envelope-o"></i>info@gogischool.org</li>
                             <li><i class="fa fa-user"></i><a href="{{ url('/login') }}">Teacher's Login</a></li>
 							<li><i class="fa fa-phone"></i><a href="#"> +234 808 908 0898 </a></li>
                         </ul>
@@ -113,8 +113,14 @@
 
 										
 									</ul>
+									<li class="dropdown"><a href="#">Check Result</a>
+										<ul>
+											<li><a href="{{ url('login') }}">Login</a></li>
 
-									<li><a href="{{ url('checkresult') }}">Check Result</a></li> 
+											<li><a href="{{ url('checkresult') }}">Check Result</a></li> 
+
+										</ul>
+									</li>
 								</li>
 								
 								</li>
@@ -215,8 +221,14 @@
 										
 									</ul>
 								</li>
-									<li><a href="{{ url('checkresult') }}">Check Result</a></li> 
-									<!-- <li><a href="{{ url('login') }}">Login</a></li>  -->
+								<li class="dropdown"><a href="#">Check Result</a>
+									<ul>
+										<li><a href="{{ url('login') }}">Login</a></li>
+
+										<li><a href="{{ url('checkresult') }}">Check Result</a></li> 
+
+									</ul>
+								</li>
 
 								<li><a href="{{ url('contact') }}">Contact us</a></li>
 								
