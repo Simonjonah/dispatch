@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Brixtonn Schools</title>
+  <title>GOGIS Schools</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Bootstrap 4 -->
@@ -27,7 +27,7 @@
     <div class="row">
       <div class="col-12">
         <h2 class="page-header">
-          <img style="width: 300px; height: 50px;" src="{{ asset('images/sch14.jpg') }}" alt=""> <br>
+          <img style="width: 50px; height: 50px;" src="{{ asset('front/images/logo.jpg') }}" alt=""> <br>
           {{-- <small class="float-right">{{ $print_students->created_at->format('D d, M Y, H:i')}}</small> --}}
         </h2>
       </div>
@@ -38,14 +38,10 @@
       <div class="col-sm-4 invoice-col">
        
         <address>
-          <strong>BRIXTONN SCHOOLS</strong><br>
-            @if ( Auth::guard('admin')->user()->centername = 'Uyo')
-            30 Ewet Housing, Uyo <br>
+          <strong>GRACE OF GOD INTERNATIONAL SCHOOLS - GOGIS</strong><br>
+            61 Ntiendo street, Uyo <br>
             Akwa Ibom State, Nigeria
-            @else
-            30 Asokoro, Abuja <br>
-            Nigeria 
-            @endif
+           
           <br>
           
         </address>
@@ -70,7 +66,7 @@
               <th>Middlename</th>
               <th>Class</th>
               <th>Gender</th>
-              <th>Center Name</th>
+              
               <th>Section</th>
               <th>Form No</th>
               <th>Reg No</th>
@@ -85,7 +81,6 @@
                 <td>{{ $getyour_classe->middlename }}</td>
                 <td>{{ $getyour_classe->classname }}</td>
                 <td>{{ $getyour_classe->gender }}</td>
-                <td>{{ $getyour_classe->centername }}</td>
                 <td>{{ $getyour_classe->section }}</td>
                 <td>{{ $getyour_classe->ref_no }}</td>
                 <td>{{ $getyour_classe->regnumber }}</td>

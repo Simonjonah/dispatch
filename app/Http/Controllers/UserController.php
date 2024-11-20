@@ -959,6 +959,7 @@ class UserController extends Controller
             $getyour_classes = User::orderby('created_at', 'DESC')
             // ->where('centername', $request->centername)
             ->where('classname', $request->classname)
+            ->where('assign1', 'student')
        
             ->get(); 
             }else{
