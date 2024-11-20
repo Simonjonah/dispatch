@@ -97,10 +97,12 @@
                             <span class="badge badge-success">Admitted</span>
                             @endif
                             </small>
-                            <a href="{{ url('web/approvedresulthead/'.$view_myresult->id) }}"
+                            {{-- <a href="{{ url('web/approvedresulthead/'.$view_myresult->id) }}"
                             class='btn btn-info'>
                             Approved
-                             <i class="far fa-eye"></i></a></td>
+                             <i class="far fa-eye"></i></a> --}}
+                            
+                            </td>
                          
                         
                         
@@ -233,7 +235,9 @@
                             <td><a href="{{ url('web/addpsychomotor/'.$view_myresult->id) }}"
                               class='btn btn-default'>
                               Add Psycomotor
-                               <i class="far fa-eye"></i></a></td>
+                               <i class="far fa-eye"></i></a>
+                              
+                              </td>
     
                            
     
@@ -253,10 +257,12 @@
                             <span class="badge badge-success">Admitted</span>
                             @endif
                             </small>
-                            <a href="{{ url('web/approvedresulthead/'.$view_myresult->id) }}"
+                            {{-- <a href="{{ url('web/approvedresulthead/'.$view_myresult->id) }}"
                             class='btn btn-info'>
                             Approved
-                             <i class="far fa-eye"></i></a></td>
+                             <i class="far fa-eye"></i></a> --}}
+                            
+                            </td>
                           <td>{{ $view_myresult->test_1 }}</td>
                           
                           <td>{{ $view_myresult->exams }}</td>
@@ -448,10 +454,12 @@
                             <span class="badge badge-success">Admitted</span>
                             @endif
                             </small>
-                            <a href="{{ url('web/approvedresulthead/'.$view_myresult->id) }}"
+                            {{-- <a href="{{ url('web/approvedresulthead/'.$view_myresult->id) }}"
                             class='btn btn-info'>
                             Approved
-                             <i class="far fa-eye"></i></a></td>
+                             <i class="far fa-eye"></i></a> --}}
+                            
+                            </td>
                           <td>{{ $view_myresult->test_1 }}</td>
                           {{-- <td>{{ $view_myresult->test_2 }}</td> --}}
                           <td>{{ $view_myresult->exams }}</td>
@@ -680,7 +688,7 @@
               </div>
 
               <div class="form-group">
-                <label for="">Admission No</label>
+                <label for="">Academic Session</label>
                 <select name="academic_session" id="" class="form-control">
                   @foreach ($view_sessions as $view_session)
                   <option value="{{ $view_session->academic_session }}">{{ $view_session->academic_session }}</option>

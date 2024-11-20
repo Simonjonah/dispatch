@@ -680,7 +680,7 @@
               </div>
 
               <div class="form-group">
-                <label for="">Admission No</label>
+                <label for="">Academic Sesion</label>
                 <select name="academic_session" id="" class="form-control">
                   @foreach ($view_sessions as $view_session)
                   <option value="{{ $view_session->academic_session }}">{{ $view_session->academic_session }}</option>

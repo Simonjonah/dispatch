@@ -33,7 +33,7 @@ class ResultController extends Controller
             $terms = $request->input('term');
             $images_s = $request->input('images');
             $classnames = $request->input('classname');
-            $centernames = $request->input('centername');
+            
             $categories = $request->input('category');
             $fnames = $request->input('fname');
             $middlenames = $request->input('middlename');
@@ -59,7 +59,7 @@ class ResultController extends Controller
                     'teacher_id' =>$teacher_ids[$i],
                     'term' => $terms[$i],
                     'classname' => $classnames[$i],
-                    'centername' => $centernames[$i],
+                    
                     'category' => $categories[$i],
                     'fname' => $fnames[$i],
                     'section' => $sections[$i],
@@ -86,7 +86,7 @@ class ResultController extends Controller
             $terms = $request->input('term');
             $images_s = $request->input('images');
             $classnames = $request->input('classname');
-            // $centernames = $request->input('centername');
+            // 
             $categories = $request->input('category');
             $fnames = $request->input('fname');
             $middlenames = $request->input('middlename');
@@ -112,7 +112,7 @@ class ResultController extends Controller
                     'teacher_id' =>$teacher_ids[$i],
                     'term' => $terms[$i],
                     'classname' => $classnames[$i],
-                    // 'centername' => $centernames[$i],
+                    // 
                     'category' => $categories[$i],
                     'fname' => $fnames[$i],
                     'surname' => $surnames[$i],
@@ -138,7 +138,7 @@ class ResultController extends Controller
            $terms = $request->input('term');
            $images_s = $request->input('images');
            $classnames = $request->input('classname');
-           $centernames = $request->input('centername');
+           
            $categories = $request->input('category');
            $fnames = $request->input('fname');
            $middlenames = $request->input('middlename');
@@ -166,7 +166,166 @@ class ResultController extends Controller
                    'teacher_id' =>$teacher_ids[$i],
                    'term' => $terms[$i],
                    'classname' => $classnames[$i],
-                   'centername' => $centernames[$i],
+                   
+                   'category' => $categories[$i],
+                   'fname' => $fnames[$i],
+                   'surname' => $surnames[$i],
+                   'middlename' => $middlenames[$i],
+                   'gender' => $genders[$i],
+                   'tname' => $tnames[$i],
+                   'tsurname' => $tsurnames[$i],
+   
+               ];
+           } 
+
+        }
+            
+   
+            Result::insert($data);
+ 
+       return redirect()->back()->with('success', 'you have added successfully');
+    }
+
+
+
+
+
+
+    public function createresultsbyadmin(Request $request){
+        // dd($request->section == 'Pre-Nursery');
+        if ($sections = $request->input('section')) {
+            $data = [];
+            $test_1s = $request->input('test_1');
+            
+            $examss = $request->input('exams');
+            $subjectnames = $request->input('subjectname');
+            $user_ids = $request->input('user_id');
+            $sections = $request->input('section');
+            $academic_sessions = $request->input('academic_session');
+            $regnumbers = $request->input('regnumber');
+            $terms = $request->input('term');
+            $images_s = $request->input('images');
+            $classnames = $request->input('classname');
+            
+            $categories = $request->input('category');
+            $fnames = $request->input('fname');
+            $middlenames = $request->input('middlename');
+            $surnames = $request->input('surname');
+            $genders = $request->input('gender');
+            $comments = $request->input('comment');
+
+            
+            for ($i = 0; $i < count($subjectnames); $i++) {
+                $data[] = [
+    
+                    'subjectname' => $subjectnames[$i],
+                    'comment' => $comments[$i],
+                    'user_id' => $test_1s[$i],
+                    'test_1' => $examss[$i],
+                    'exams' => $user_ids[$i],
+                    'section' => $sections[$i],
+                    'academic_session' =>$academic_sessions[$i],
+                    'images' =>$images_s[$i],
+                    'regnumber' =>$regnumbers[$i],
+                    
+                    'term' => $terms[$i],
+                    'classname' => $classnames[$i],
+                    'category' => $categories[$i],
+                    'fname' => $fnames[$i],
+                    'section' => $sections[$i],
+                    'surname' => $surnames[$i],
+                    'middlename' => $middlenames[$i],
+                    'gender' => $genders[$i],
+    
+                ];
+            }  
+        }elseif ($request->section == 'Nursery') {
+            $data = [];
+            $subjectnames = $request->input('subjectname');
+            $test_1s = $request->input('test_1');
+            
+            $examss = $request->input('exams');
+            $user_ids = $request->input('user_id');
+            $sections = $request->input('section');
+          
+            
+            $academic_sessions = $request->input('academic_session');
+            $regnumbers = $request->input('regnumber');
+            $terms = $request->input('term');
+            $images_s = $request->input('images');
+            $classnames = $request->input('classname');
+            // 
+            $categories = $request->input('category');
+            $fnames = $request->input('fname');
+            $middlenames = $request->input('middlename');
+            $surnames = $request->input('surname');
+            $genders = $request->input('gender');
+            // $comments = $request->input('comment');
+
+            
+            for ($i = 0; $i < count($subjectnames); $i++) {
+                $data[] = [
+    
+                    'subjectname' => $subjectnames[$i],
+                    'test_1' => $test_1s[$i],
+                 
+                    'exams' => $examss[$i],
+                    'user_id' => $user_ids[$i],
+                    'section' => $sections[$i],
+                    'academic_session' =>$academic_sessions[$i],
+                    'images' =>$images_s[$i],
+                    'regnumber' =>$regnumbers[$i],
+                    'term' => $terms[$i],
+                    'classname' => $classnames[$i],
+                    // 
+                    'category' => $categories[$i],
+                    'fname' => $fnames[$i],
+                    'surname' => $surnames[$i],
+                    'middlename' => $middlenames[$i],
+                    'gender' => $genders[$i],
+    
+                ];
+            }
+        }elseif ($request->section == 'Primary') {
+           
+           $data = [];
+           $subjectnames = $request->input('subjectname');
+           $test_1s = $request->input('test_1');
+      
+           $examss = $request->input('exams');
+           $user_ids = $request->input('user_id');
+           $sections = $request->input('section');
+         
+           $academic_sessions = $request->input('academic_session');
+           $regnumbers = $request->input('regnumber');
+           $terms = $request->input('term');
+           $images_s = $request->input('images');
+           $classnames = $request->input('classname');
+           
+           $categories = $request->input('category');
+           $fnames = $request->input('fname');
+           $middlenames = $request->input('middlename');
+           $surnames = $request->input('surname');
+           $genders = $request->input('gender');
+           $tnames = $request->input('tname');
+           $tsurnames = $request->input('tsurname');
+           // $comments = $request->input('comment');
+
+           
+           for ($i = 0; $i < count($subjectnames); $i++) {
+               $data[] = [
+                   'subjectname' => $subjectnames[$i],
+                   'test_1' => $test_1s[$i],
+                   'exams' => $examss[$i],
+                   'user_id' => $user_ids[$i],
+                   'section' => $sections[$i],
+                   'academic_session' =>$academic_sessions[$i],
+                   'images' =>$images_s[$i],
+                   'regnumber' =>$regnumbers[$i],
+                  
+                   'term' => $terms[$i],
+                   'classname' => $classnames[$i],
+                   
                    'category' => $categories[$i],
                    'fname' => $fnames[$i],
                    'surname' => $surnames[$i],
@@ -208,7 +367,7 @@ class ResultController extends Controller
             $terms = $request->input('term');
             $images_s = $request->input('images');
             $classnames = $request->input('classname');
-            $centernames = $request->input('centername');
+            
             $categories = $request->input('category');
             $fnames = $request->input('fname');
             $middlenames = $request->input('middlename');
@@ -234,7 +393,7 @@ class ResultController extends Controller
                     'teacher_id' =>$teacher_ids[$i],
                     'term' => $terms[$i],
                     'classname' => $classnames[$i],
-                    'centername' => $centernames[$i],
+                    
                     'category' => $categories[$i],
                     'fname' => $fnames[$i],
                     'surname' => $surnames[$i],
@@ -262,7 +421,7 @@ class ResultController extends Controller
             $terms = $request->input('term');
             $images_s = $request->input('images');
             $classnames = $request->input('classname');
-            $centernames = $request->input('centername');
+            
             $categories = $request->input('category');
             $fnames = $request->input('fname');
             $middlenames = $request->input('middlename');
@@ -288,7 +447,7 @@ class ResultController extends Controller
                     'teacher_id' =>$teacher_ids[$i],
                     'term' => $terms[$i],
                     'classname' => $classnames[$i],
-                    'centername' => $centernames[$i],
+                    
                     'category' => $categories[$i],
                     'fname' => $fnames[$i],
                     'surname' => $surnames[$i],
@@ -312,7 +471,7 @@ class ResultController extends Controller
            $terms = $request->input('term');
            $images_s = $request->input('images');
            $classnames = $request->input('classname');
-           $centernames = $request->input('centername');
+           
            $categories = $request->input('category');
            $fnames = $request->input('fname');
            $middlenames = $request->input('middlename');
@@ -339,7 +498,7 @@ class ResultController extends Controller
                    'teacher_id' =>$teacher_ids[$i],
                    'term' => $terms[$i],
                    'classname' => $classnames[$i],
-                   'centername' => $centernames[$i],
+                   
                    'category' => $categories[$i],
                    'fname' => $fnames[$i],
                    'surname' => $surnames[$i],

@@ -364,8 +364,10 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('viewsession', [AcademicsessionController::class, 'viewsession'])->name('viewsession');
         Route::post('createsession', [AcademicsessionController::class, 'createsession'])->name('createsession');
         Route::get('addsession', [AcademicsessionController::class, 'addsession'])->name('addsession');
-        Route::get('studentsubjects/{ref_no}', [UserController::class, 'studentsubjects'])->name('studentsubjects');
+        Route::get('studentsubjects/{ref_no1}', [UserController::class, 'studentsubjects'])->name('studentsubjects');
         Route::get('abujateachers', [UserController::class, 'abujateachers'])->name('abujateachers');
+        
+        Route::post('createresultsbyadmin', [ResultController::class, 'createresultsbyadmin'])->name('createresultsbyadmin');
         Route::get('uyoteachers', [UserController::class, 'uyoteachers'])->name('uyoteachers');
         Route::get('viewteachersubjects/{user_id}', [TeacherassignController::class, 'viewteachersubjects'])->name('viewteachersubjects');
         Route::get('teachertosubjects', [TeacherassignController::class, 'teachertosubjects'])->name('teachertosubjects');
@@ -572,6 +574,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/viewstudents/{ref_no1}', [UserController::class, 'viewstudents'])->name('viewstudents');
         Route::get('approvedstudents', [UserController::class, 'approvedstudents'])->name('approvedstudents');
         Route::get('viewclasspayment/{classname}', [PaymentController::class, 'viewclasspayment'])->name('viewclasspayment');
+        Route::post('/createpsychomotoro1admin', [MotoController::class, 'createpsychomotoro1admin'])->name('createpsychomotoro1admin');
         
         Route::get('/contactdelete/{id}', [ContactController::class, 'contactdelete'])->name('contactdelete');
         Route::get('/classresultsmidterm/{classname}', [ClassnameController::class, 'classresultsmidterm'])->name('classresultsmidterm');

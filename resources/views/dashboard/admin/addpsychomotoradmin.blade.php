@@ -61,7 +61,7 @@
                 <div class="table-responsive">
                   {{-- <p class="lead">Behaviour</p> --}}
     
-                  <form action="{{ url('web/createpsychomotoro1') }}" method="post">
+                  <form action="{{ url('admin/createpsychomotoro1admin') }}" method="post">
                     @csrf
                     @if (Session::get('success'))
                     <div class="alert alert-success">

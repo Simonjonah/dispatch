@@ -1173,10 +1173,11 @@ class UserController extends Controller
         ->where('centername', 'Abuja')->get();
         return view('dashboard.admin.abujateachers', compact('view_abujateachers'));
     }
-    public function studentsubjects($ref_no){
-        $view_studentsubjects = User::where('ref_no', $ref_no)->first();
-        $view_subjects = Subject::where('section', 'Primary')->get();
-        return view('dashboard.admin.studentsubjects', compact('view_studentsubjects', 'view_subjects'));
+    public function studentsubjects($ref_no1){
+        $view_studentsubject = User::where('ref_no1', $ref_no1)->first();
+        $view_teachersubjects = Subject::all();
+        
+        return view('dashboard.admin.studentsubjects', compact('view_studentsubject', 'view_teachersubjects'));
     }
 
 

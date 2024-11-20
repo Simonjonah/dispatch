@@ -27,156 +27,10 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
+            
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title" style="color: red">Uyo Study Center</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example2" class="table table-bordered table-hover">
-                  <thead>
-                    <tr>
-                      <th>Classes</th>
-                      <th>Subjects</th>
-                      <th>Lastname</th>
-                      <th>Term</th>
-                      <th>Images</th>
-                      <th>View</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-  
-                      <th>Admit No</th>
-                      <th>Form No</th>
-                      <th>Edit</th>
-                      <th>Reject</th>
-                      <th>Assigned </th>
-                      <th>Suspend</th>
-                      <th>Admit</th>
-                      
-                      <th>View Subjects</th>
-                      <th>Delete</th>
-                      {{-- <th>I.T Status</th> --}}
-  
-                      <th>Date</th>
-  
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @if (Session::get('success'))
-                    <div class="alert alert-success">
-                        {{ Session::get('success') }}
-                    </div>
-                    @endif
-  
-                    @if (Session::get('fail'))
-                    <div class="alert alert-danger">
-                    {{ Session::get('fail') }}
-                    @endif
-                    @foreach ($view_classstudents as $view_classstudent)
-                      
-                        <tr>
-                          <td>{{ $view_classstudent->classname }}</td>
-                          <td>{{ $view_classstudent->middlename }}</td>
-                          <td>{{ $view_classstudent->fname }}</td>
-                          <td>{{ $view_classstudent->entrylevel }}</td>
-
-                          <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$view_classstudent->images")}}" alt=""></td>
-                          <td><a href="{{ url('admin/viewstudents/'.$view_classstudent->ref_no) }}"
-                              class='btn btn-default'>
-                              <i class="far fa-eye"></i>
-                          </a></td>
-                          <td>@if ($view_classstudent->status == null)
-                            <span class="badge badge-secondary"> In progress</span>
-                          @elseif($view_classstudent->status == 'suspend')
-                          <span class="badge badge-warning"> Suspended</span>
-                          @elseif($view_classstudent->status == 'reject')
-                          <span class="badge badge-danger"> Rejected</span>
-                          @elseif($view_classstudent->status == 'approved')
-                          <span class="badge badge-info"> Approved</span>
-                          @elseif($view_classstudent->status == 'admitted')
-                          
-                          <span class="badge badge-success">Admitted</span>
-                          @endif</td>
-                          
-                        <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-default">
-                         Print
-                        </button></td>
-    
-                        <td>{{ $view_classstudent->regnumber }}</td>
-                        <td>{{ $view_classstudent->ref_no }}</td>
-                          <td><a href="{{ url('admin/editstudent/'.$view_classstudent->ref_no) }}"
-                            class='btn btn-info'>
-                            <i class="far fa-edit"></i>
-                        </a></td>  
-                        
-                          
-                        <th><a href="{{ url('admin/rejectstudent/'.$view_classstudent->ref_no) }}" class="btn btn-sm bg-teal">
-                          <i class="fas fa-user"></i>
-                        </a></th>
-                        <th><a href="{{ url('admin/assignedteacher/'.$view_classstudent->ref_no) }}" class="btn btn-sm bg-teal">
-                          <i class="fas fa-comments"></i>
-                        </a></th><th><a href="{{ url('admin/suspendstudent/'.$view_classstudent->ref_no) }}" class="btn btn-sm bg-teal">
-                          <i class="fas fa-comments"></i>
-                        </a></th>
-    
-                        <th> <a href="{{ url('admin/studentsaddmit/'.$view_classstudent->ref_no) }}" class="btn btn-sm btn-primary">
-                          <i class="fas fa-user"></i> 
-                        </a></th>
-                        
-                        <th> <a href="{{ url('admin/studentsubjects/'.$view_classstudent->ref_no) }}" class="btn btn-sm btn-secondary">
-                          Subjects 
-                        </a></th>
-                        {{-- <th><a href="{{ url('admin/studentit/'.$view_classstudent->ref_no) }}" class="btn btn-info"><i class="fas fa-user"></i> IT</a></th> --}}
-                        <td><a href="{{ url('admin/deletestudent/'.$view_classstudent->ref_no) }}"
-                          class='btn btn-danger'>
-                          <i class="far fa-trash-alt"></i>
-                      </a></td>
-                      
-                      <td>{{ $view_classstudent->created_at->format('D d, M Y, H:i')}}</td>
-    
-                        </tr>
-                  
-                  @endforeach
-               
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <th>Classes</th>
-                      <th>Subjects</th>
-                      <th>Lastname</th>
-                      <th>Term</th>
-                      <th>Images</th>
-                      <th>View</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-  
-                      <th>Admit No</th>
-                      <th>Form No</th>
-                      <th>Edit</th>
-                      <th>Reject</th>
-                      <th>Assigned </th>
-                      <th>Suspend</th>
-                      <th>Admit</th>
-                      
-                      <th>View Subjects</th>
-                      <th>Delete</th>
-                      {{-- <th>I.T Status</th> --}}
-  
-                      <th>Date</th>
-  
-                    </tr>
-  
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title" style="color: red">Abuja Study Center</h3>
+                <h3 class="card-title" style="color: red">Pupils</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -191,19 +45,10 @@
                       <th>View</th>
                       <th>Status</th>
                       <th>Actions</th>
-  
                       <th>Admit No</th>
                       <th>Form No</th>
-                      <th>Edit</th>
-                      <th>Reject</th>
-                      <th>Assigned </th>
-                      <th>Suspend</th>
-                      <th>Admit</th>
                       
-                      <th>View Subjects</th>
-                      <th>Delete</th>
-                      {{-- <th>I.T Status</th> --}}
-  
+                      <th>Add Result</th>
                       <th>Date</th>
   
                     </tr>
@@ -215,10 +60,10 @@
                       <td>{{ $view_student_abuja->classname }}</td>
                       <td>{{ $view_student_abuja->middlename }}</td>
                       <td>{{ $view_student_abuja->fname }}</td>
-                      <td>{{ $view_student_abuja->entrylevel }}</td>
+                      <td>{{ $view_student_abuja->term }}</td>
 
                       <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$view_student_abuja->images")}}" alt=""></td>
-                      <td><a href="{{ url('admin/viewstudents/'.$view_student_abuja->ref_no) }}"
+                      <td><a href="{{ url('admin/viewstudents/'.$view_student_abuja->ref_no1) }}"
                           class='btn btn-default'>
                           <i class="far fa-eye"></i>
                       </a></td>
@@ -240,34 +85,12 @@
                     </button></td>
 
                     <td>{{ $view_student_abuja->regnumber }}</td>
-                    <td>{{ $view_student_abuja->ref_no }}</td>
-                      <td><a href="{{ url('admin/editstudent/'.$view_student_abuja->ref_no) }}"
-                        class='btn btn-info'>
-                        <i class="far fa-edit"></i>
-                    </a></td>  
-                    
-                      
-                    <th><a href="{{ url('admin/rejectstudent/'.$view_student_abuja->ref_no) }}" class="btn btn-sm bg-teal">
-                      <i class="fas fa-user"></i>
-                    </a></th>
-                    <th><a href="{{ url('admin/assignedteacher/'.$view_student_abuja->ref_no) }}" class="btn btn-sm bg-teal">
-                      <i class="fas fa-comments"></i>
-                    </a></th><th><a href="{{ url('admin/suspendstudent/'.$view_student_abuja->ref_no) }}" class="btn btn-sm bg-teal">
-                      <i class="fas fa-comments"></i>
-                    </a></th>
-
-                    <th> <a href="{{ url('admin/studentsaddmit/'.$view_student_abuja->ref_no) }}" class="btn btn-sm btn-primary">
-                      <i class="fas fa-user"></i> 
-                    </a></th>
-                    <th> <a href="{{ url('admin/studentsubjects/'.$view_student_abuja->ref_no) }}" class="btn btn-sm btn-primary">
-                      <i class="fas fa-user"></i> 
+                    <td>{{ $view_student_abuja->ref_no1 }}</td>
+    
+                    <th> <a href="{{ url('admin/studentsubjects/'.$view_student_abuja->ref_no1) }}" class="btn btn-sm btn-primary">
+                      Add Results
                     </a></th>
                   
-                    {{-- <th><a href="{{ url('admin/studentit/'.$view_student_abuja->ref_no) }}" class="btn btn-info"><i class="fas fa-user"></i> IT</a></th> --}}
-                    <td><a href="{{ url('admin/deletestudent/'.$view_student_abuja->ref_no) }}"
-                      class='btn btn-danger'>
-                      <i class="far fa-trash-alt"></i>
-                  </a></td>
                   
                   <td>{{ $view_student_abuja->created_at->format('D d, M Y, H:i')}}</td>
 
@@ -287,19 +110,10 @@
                       <th>View</th>
                       <th>Status</th>
                       <th>Actions</th>
-  
                       <th>Admit No</th>
                       <th>Form No</th>
-                      <th>Edit</th>
-                      <th>Reject</th>
-                      <th>Assigned </th>
-                      <th>Suspend</th>
-                      <th>Admit</th>
                       
-                      <th>View Subjects</th>
-                      <th>Delete</th>
-                      {{-- <th>I.T Status</th> --}}
-  
+                      <th>Add Result</th>
                       <th>Date</th>
   
                     </tr>
@@ -323,7 +137,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2023 <a href="https://brixtonnschools.com.ng">brixtonnschools.com.ng</a>.</strong> All rights
+    <strong>Copyright &copy; 2024 <a href="#">GOGIS</a>.</strong> All rights
     reserved.
   </footer>
 
@@ -397,12 +211,12 @@
           </div>
 
           <div class="form-group">
-            <label for="">Select Study Center</label>
+            <label for="">Select Sections</label>
 
             <select class="form-control" name="centername" id="">
-              @foreach ($view_studycenters as $view_studycenter)
-              <option value="{{ $view_studycenter->centername }}">{{ $view_studycenter->centername }}</option>
-            @endforeach
+              <option value="Pre-Nursery">Pre-Nursery</option>
+              <option value="Nursery">Nursery</option>
+              <option value="Primary">Primary</option>
             </select>
          </div>
         

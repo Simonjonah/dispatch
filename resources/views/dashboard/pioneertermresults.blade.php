@@ -97,10 +97,11 @@
                             <span class="badge badge-success">Admitted</span>
                             @endif
                             </small>
-                            <a href="{{ url('web/approvedresulthead/'.$view_myresult->id) }}"
+                            {{-- <a href="{{ url('web/approvedresulthead/'.$view_myresult->id) }}"
                             class='btn btn-info'>
                             Approved
-                             <i class="far fa-eye"></i></a></td>
+                             <i class="far fa-eye"></i></a> --}}
+                            </td>
                          
                         
                         
@@ -253,10 +254,10 @@
                             <span class="badge badge-success">Admitted</span>
                             @endif
                             </small>
-                            <a href="{{ url('web/approvedresulthead/'.$view_myresult->id) }}"
+                            {{-- <a href="{{ url('web/approvedresulthead/'.$view_myresult->id) }}"
                             class='btn btn-info'>
                             Approved
-                             <i class="far fa-eye"></i></a></td>
+                             <i class="far fa-eye"></i></a></td> --}}
                           <td>{{ $view_myresult->test_1 }}</td>
                           
                           <td>{{ $view_myresult->exams }}</td>
@@ -302,7 +303,8 @@
                              {{-- <td><a href="{{ url('web/teacherviewresults/'.$view_myresult->user_id)}}"
                               class='btn btn-default'>
                                <i class="far fa-eye"></i>
-                           </a></td> --}}
+                           </a>--}}
+                          </td> 
                            
                           {{-- <th><a href="{{ url('web/studentit/'.$view_myresult->ref_no) }}" class="btn btn-info"><i class="fas fa-user"></i> IT</a></th> --}}
                            <td><a href="{{ url('web/deletreslt/'.$view_myresult->id) }}"
@@ -448,10 +450,12 @@
                             <span class="badge badge-success">Admitted</span>
                             @endif
                             </small>
-                            <a href="{{ url('web/approvedresulthead/'.$view_myresult->id) }}"
+                            {{-- <a href="{{ url('web/approvedresulthead/'.$view_myresult->id) }}"
                             class='btn btn-info'>
                             Approved
-                             <i class="far fa-eye"></i></a></td>
+                             <i class="far fa-eye"></i></a> --}}
+                            
+                            </td>
                           <td>{{ $view_myresult->test_1 }}</td>
                           {{-- <td>{{ $view_myresult->test_2 }}</td> --}}
                           <td>{{ $view_myresult->exams }}</td>
@@ -680,7 +684,7 @@
               </div>
 
               <div class="form-group">
-                <label for="">Admission No</label>
+                <label for="">Academic Session</label>
                 <select name="academic_session" id="" class="form-control">
                   @foreach ($view_sessions as $view_session)
                   <option value="{{ $view_session->academic_session }}">{{ $view_session->academic_session }}</option>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Classname;
 use App\Models\Result;
 use App\Models\Studycenter;
-use App\Models\user;
+use App\Models\User;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Auth;
@@ -68,15 +68,12 @@ class ClassnameController extends Controller
         $view_classstudents = Classname::where('classname', $classname)->first();
         $view_classstudents = user::where('classname', $classname)
         ->where('status', 'admitted')
-        ->where('assign1', 'student')
-        ->where('centername', 'Uyo')->get();
+        ->where('assign1', 'student')->get();
 
         $view_student_abujas = Classname::where('classname', $classname)->first();
         $view_student_abujas = user::where('classname', $classname)
         ->where('status', 'admitted')
-        ->where('assign1', 'student')
-
-        ->where('centername', 'Abuja')->get();
+        ->where('assign1', 'student')->get();
 
         $view_classes = Classname::all();
        
@@ -153,9 +150,8 @@ class ClassnameController extends Controller
         ->latest()->get();
         $sessions = Academicsession::all();
         $view_classes = Classname::all();
-        $view_studycenters = Studycenter::all();
 
-        return view('dashboard.admin.classresultsmidterm', compact('view_studycenters', 'view_classes', 'sessions', 'view_myresult', 'view_myresults'));
+        return view('dashboard.admin.classresultsmidterm', compact('view_classes', 'sessions', 'view_myresult', 'view_myresults'));
     }
 
     
@@ -168,11 +164,11 @@ class ClassnameController extends Controller
         $sessions = Academicsession::all();
         $view_classes = Classname::all();
         $view_pupils = User::where('classname', $classname)->where('assign1', 'student')->get();
+
         return view('dashboard.admin.classresults', compact('view_pupils', 'view_classes', 'sessions', 'view_myresult', 'view_myresults'));
     }
 
    
-    
     public function classapprovesresults($classname){
         $view_myresult = Classname::where('classname', $classname)->first();
         $view_myresults = Result::where('classname', $classname)

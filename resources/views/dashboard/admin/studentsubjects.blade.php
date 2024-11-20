@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Subjects </h1>
+            <h1>Result of {{ $view_studentsubject->fname }} {{ $view_studentsubject->middlename }} {{ $view_studentsubject->surname }} in {{ $view_studentsubject->classname }} {{ $view_studentsubject->term }} {{ $view_studentsubject->section }}  {{ $view_studentsubject->regnumber }} Section</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -24,57 +24,35 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <div class="callout callout-info">
-              <h5><i class="fas fa-info"></i> Note:</h5>
-              <span class="text-danger">{{ $view_studentsubjects->fname }} {{ $view_studentsubjects->middlename }} {{ $view_studentsubjects->surname }} in {{ $view_studentsubjects->classname }} at {{ $view_studentsubjects->centername }} study center {{ $view_studentsubjects->entrylevel }}</span>
-            </div>
-
-
+           
             <!-- Main content -->
             <div class="invoice p-3 mb-3">
               <!-- title row -->
               <div class="row">
                 <div class="col-12">
                     <h2 class="page-header">
-                        <small class="float-right">{{ $view_studentsubjects->created_at->format('D d, M Y, H:i')}}</small>
+                        <small class="float-right">{{ $view_studentsubject->created_at->format('D d, M Y, H:i')}}</small>
                     </h2>
                 </div>
                 <!-- /.col -->
               </div>
               <!-- info row -->
               <div class="row invoice-info">
-                <div class="col-sm-4 invoice-col">
-                    <img style="width: 250px; height: 50px;" src="{{ asset('images/sch14.jpg') }}" alt=""> <br>
-
-                  <address>
-                    <strong>BRIXTONN SCHOOLS</strong><br>
-                    @if ($view_studentsubjects->centername = 'Uyo')
-                    13 F-Line Ewet Housing Estate, Uyo <br>
-                    Akwa Ibom State, Nigeria
-                    @else
-                    30 Asokoro, Abuja <br>
-                    Nigeria 
-                    @endif
-                    <br>
-                  </address>
+                <div class="col-lg-2 col-md-6 col-sm-4 invoice-col">
+                    <img style="width: 80px; height: 80px;" src="{{ asset('front/images/logo.jpg') }}" alt=""> <br>
                 </div> 
                 <!-- /.col -->
-               <div class="col-sm-4 invoice-col">
-                   To
-                   <address>
-                    Name: <strong>{{ $view_studentsubjects->surname }}, {{ $view_studentsubjects->fname }} {{ $view_studentsubjects->middlename }}</strong><br>
-                    Gender: {{ $view_studentsubjects->gender }}<br>
-                    Phone: {{ $view_studentsubjects->phone }}<br>
-                    Email: {{ $view_studentsubjects->email }}<br>
-                    Admission ID: {{ $view_studentsubjects->regnumber }}<br>
-                    Session: {{ $view_studentsubjects->academicsession }}<br>
-                    Session: {{ $view_studentsubjects->entrylevel }}<br>
-
+               <div class="col-lg-8 col-md-6 col-sm-4 invoice-col">
+                 
+                  <address style="text-align: center">
+                    <h2><strong>Grace of International Schools - GOGIS</strong></h2>
+                    61 Ntiendo Udosen Street, 
+                    Off Udo Umana Uyo Akwa Ibom, Nigeria
                   </address>
                 </div>
                 <!-- /.col -->
-                <div class="col-sm-4 invoice-col">
-                    <img style="width: 70%; height: 150px;" src="{{ URL::asset("/public/../$view_studentsubjects->images")}}" alt="">
+                <div class="col-lg-2 col-md-6 col-sm-4 invoice-col">
+                    <img style="width: 100px; height: 100px;" src="{{ URL::asset("/public/../$view_studentsubject->images")}}" alt="">
                 </div>
                 <!-- /.col -->
               </div>
@@ -82,100 +60,301 @@
 
               <!-- Table row -->
               <div class="row">
-                <div class="col-12 table-responsive">
-                  @if ($view_studentsubjects->section === 'Primary' || $view_studentsubjects->section === 'Creche' || $view_studentsubjects->section === 'Pre-School' || $view_studentsubjects->section === 'Preparatory' || $view_studentsubjects->section === 'Nursery' || $view_studentsubjects->section === 'Primary')
-                      <form action="" method="post">
+                    <div class="col-12 table-responsive">
+                      @if ($view_studentsubject->section === 'Nursery')
+                      <form action="{{ url('admin/createresultsbyadmin') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @if (Session::get('success'))
+                        <div class="alert alert-success">
+                            {{ Session::get('success') }}
+                        </div>
+                        @endif
+      
+                        @if (Session::get('fail'))
+                        <div class="alert alert-danger">
+                        {{ Session::get('fail') }}
+                        @endif
+      
                         <table class="table table-striped">
                             <thead>
                             <tr>
                               {{-- <th>S/N</th> --}}
                               <th>Subjects</th>
-                              <th>Ca 1</th>
-                              <th>Ca 2</th>
-                              <th>Ca 3</th>
-                              <th>Exams</th>
+                              <th>Assessment Test 30%</th>
+                              <th>Examination 70%</th>
                               
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach ($view_subjects as $view_subject)
-                                <tr>
-                                    <td>{{ $view_subject->subjectname }}</td>
-                                    <td><input type="number" class="form-control" name="test_1" placeholder="Test 1"></td>
-                                    <td><input type="number" class="form-control" name="test_2" placeholder="Test 2"></td>
-                                    <td><input type="number" class="form-control" name="test_3" placeholder="Test 3"></td>
-                                    <td><input type="number" class="form-control" name="exams" placeholder="Exams"></td>
-                                  </tr>
-                                @endforeach
-                            
+
+
+                            <td>MATHEMATICAL SKILL</td>
+                            @foreach ($view_teachersubjects as $view_teachersubject)
+                              @if ($view_teachersubject->section == 'Nursery')
+                              <tr>
+                                @if ($view_teachersubject->category == 'MATHEMATICAL SKILL')
+                                <td>{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
+                                <td><input required type="number" max="30" class="form-control" name="test_1[]" placeholder="Assesssment test 30%"></td>
+                                <td><input required type="number" max="70" class="form-control" name="exams[]" placeholder="Exams Score 70%"></td>
+                                @else
+                                @endif
+                              </tr>
+                              <tr>
+                              @else
+                              @endif
+                            @endforeach
+
+                             
+                        <td>LANGUAGE SKILL</td>
+                            @foreach ($view_teachersubjects as $view_teachersubject)
+                              @if ($view_teachersubject->section == 'Nursery')
+                              <tr>
+                                @if ($view_teachersubject->category == 'LANGUAGE SKILL')
+                                <td>{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
+                                <td><input required type="number" max="30" class="form-control" name="test_1[]" placeholder="Assesssment test 30%"></td>
+                                <td><input required type="number" max="70" class="form-control" name="exams[]" placeholder="Exams Score 70%"></td>
+                               
+                                @else
+                                @endif
+                              </tr>
+                              <tr>
+                              @else
+                              @endif
+                            @endforeach
+
+                            <td>NURSERY RHYMES</td>
+                            @foreach ($view_teachersubjects as $view_teachersubject)
+                              @if ($view_teachersubject->section == 'Nursery')
+                              <tr>
+                                @if ($view_teachersubject->category == 'NURSERY RHYMES')
+                                <td>{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
+                                <td><input required type="number" max="30" class="form-control" name="test_1[]" placeholder="Assesssment test 30%"></td>
+                                <td><input required type="number" max="70" class="form-control" name="exams[]" placeholder="Exams Score 70%"></td>
+                                @else
+                                @endif
+                              </tr>
+                              <tr>
+                              @else
+                              @endif
+                            @endforeach
+
+                            <td>CCA</td>
+                            @foreach ($view_teachersubjects as $view_teachersubject)
+                              @if ($view_teachersubject->section == 'Nursery')
+                              <tr>
+                                @if ($view_teachersubject->category == 'FRENCH')
+                                <td>{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
+                                <td><input required type="number" max="30" class="form-control" name="test_1[]" placeholder="Assesssment test 30%"></td>
+                                <td><input required type="number" max="70" class="form-control" name="exams[]" placeholder="Exams Score 70%"></td>
+                                @else
+                                @endif
+                              </tr>
+                              <tr>
+                              
+                                  
+                                <label for="">Select the Teacher</label>
+                                
+                                {{-- <input type="hidden" name="teacher_id[]" value="{{ Auth::guard('web')->user()->id }}" placeholder="Teacher ID"> --}}
+                                  <input type="hidden" name="classname[]" value="{{ $view_studentsubject->classname }}" placeholder="ID">
+                                  <input type="hidden" name="category[]" value="{{ $view_teachersubject->category }}" placeholder="ID">
+                                  {{-- <input type="hidden" name="centername[]" value="{{ $view_studentsubject->centername }}" placeholder="ID"> --}}
+                                  <input type="hidden" name="user_id[]" value="{{ $view_studentsubject->id }}" placeholder="ID">
+                                  <input type="hidden" name="term[]" value="{{ $view_studentsubject->term }}" placeholder="term">
+                                  <input type="hidden" name="academic_session[]" value="{{ $view_studentsubject->academic_session }}" placeholder="academic_session">
+                                  <input type="hidden" name="section[]" value="{{ $view_studentsubject->section }}" placeholder="academic_session">
+                                  <input type="hidden" name="regnumber[]" value="{{ $view_studentsubject->regnumber }}" placeholder="regnumber">
+                                  <!-- <input type="hidden" name="guardian_id[]" value="{{ $view_studentsubject->guardian_id }}" placeholder="Parent ID"> -->
+                                  <input type="hidden" name="classname[]" value="{{ $view_studentsubject->classname }}" placeholder="Parent ID">
+                                  <input type="hidden" name="fname[]" value="{{ $view_studentsubject->fname }}" placeholder="Parent ID">
+                                  <input type="hidden" name="middlename[]" value="{{ $view_studentsubject->middlename }}" placeholder="Parent ID">
+                                  <input type="hidden" name="surname[]" value="{{ $view_studentsubject->surname }}" placeholder="Parent ID">
+                                  <input type="hidden" name="gender[]" value="{{ $view_studentsubject->gender }}" placeholder="Parent ID">
+                                  <input type="hidden" name="images[]" value="{{ $view_studentsubject->images }}" placeholder="Parent ID">
+                                  {{-- <input type="hidden" value="{{ Auth::guard('web')->user()->fname }}" name="tname[]" id=""></td> --}}
+                                  {{-- <input type="hidden" value="{{ Auth::guard('web')->user()->surname }}" name="tsurname[]" id=""></td> --}}
+                                    
+                                </tr>
+                              @else
+                              @endif
+                            @endforeach
 
                             </tbody>
                           </table>
-                      </form>
-                  @else
                       
+                       
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+              <button type="submit" class="btn btn-success"><i class="far fa-bell"></i> 
+                  Submit 
+              </button>
+                  
+                  @elseif($view_studentsubject->section === 'Pre-Nursery')
+                  <form action="{{ url('admin/createresultsbyadmin') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    @if (Session::get('success'))
+                    <div class="alert alert-success">
+                        {{ Session::get('success') }}
+                    </div>
+                    @endif
+  
+                    @if (Session::get('fail'))
+                    <div class="alert alert-danger">
+                    {{ Session::get('fail') }}
+                    @endif
+  
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                          <th>SUBJECTS</th>
+                          <th>GRADING SYSTEM</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach ($view_teachersubjects as $view_teachersubject)
+                              @if ($view_teachersubject->section == 'Pre-Nursery')
+                              <tr>
+                                <td style="width: 20px">{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
+                                <td><textarea required cols="4" rows="4" class="form-control" name="comment[]" placeholder="ENTER GRADE"></textarea> </td>
+                                
+                              </tr>
+                              <tr>
+                              @else
+                              @endif
+                            @endforeach
+
+
+
+
+                            @foreach ($view_teachersubjects as $view_teachersubject)
+                              @if ($view_teachersubject->section == 'Pre-Nursery')
+                              
+                              <tr>
+                              
+                                  {{-- <input type="hidden" name="teacher_id[]" value="{{ Auth::guard('web')->user()->id }}" placeholder="Teacher ID"> --}}
+                                  <input type="hidden" name="classname[]" value="{{ $view_studentsubject->classname }}" placeholder="ID">
+                                  <input type="hidden" name="category[]" value="{{ $view_teachersubject->category }}" placeholder="ID">
+                                  <input type="hidden" name="centername[]" value="{{ $view_studentsubject->centername }}" placeholder="ID">
+                                  <input type="hidden" name="user_id[]" value="{{ $view_studentsubject->id }}" placeholder="ID">
+                                  <input type="hidden" name="term[]" value="{{ $view_studentsubject->term }}" placeholder="term">
+                                  <input type="hidden" name="academic_session[]" value="{{ $view_studentsubject->academic_session }}" placeholder="academic_session">
+                                  <input type="hidden" name="section[]" value="{{ $view_studentsubject->section }}" placeholder="academic_session">
+                                  <input type="hidden" name="regnumber[]" value="{{ $view_studentsubject->regnumber }}" placeholder="regnumber">
+                                  <!-- <input type="hidden" name="guardian_id[]" value="{{ $view_studentsubject->guardian_id }}" placeholder="Parent ID"> -->
+                                  <input type="hidden" name="classname[]" value="{{ $view_studentsubject->classname }}" placeholder="Parent ID">
+                                  <input type="hidden" name="fname[]" value="{{ $view_studentsubject->fname }}" placeholder="Parent ID">
+                                  <input type="hidden" name="middlename[]" value="{{ $view_studentsubject->middlename }}" placeholder="Parent ID">
+                                  <input type="hidden" name="surname[]" value="{{ $view_studentsubject->surname }}" placeholder="Parent ID">
+                                  <input type="hidden" name="gender[]" value="{{ $view_studentsubject->gender }}" placeholder="Parent ID">
+                                  <input type="hidden" name="images[]" value="{{ $view_studentsubject->images }}" placeholder="Parent ID">
+                                  {{-- <input type="hidden" value="{{ Auth::guard('web')->user()->fname }}" name="tname[]" id=""></td> --}}
+                                  {{-- <input type="hidden" value="{{ Auth::guard('web')->user()->surname }}" name="tsurname[]" id=""></td> --}}
+                                    
+                                </tr>
+                              @else
+                              @endif
+                            @endforeach
+
+                                
+
+                        
+  
+                        </tbody>
+                      </table>
+                 
+                  @elseif($view_studentsubject->section === 'Primary')
+
+                <form action="{{ url('admin/createresultsbyadmin') }}" method="post" enctype="multipart/form-data">
+                  @csrf
+                  @if (Session::get('success'))
+                  <div class="alert alert-success">
+                      {{ Session::get('success') }}
+                  </div>
                   @endif
 
+                  @if (Session::get('fail'))
+                  <div class="alert alert-danger">
+                  {{ Session::get('fail') }}
+                  @endif
 
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
+                  <table class="table table-striped">
+                      <thead>
+                      <tr>
+                        <th>Subjects</th>
+                        <th>Assesssment Test 30%</th>
+                        {{-- <th>Assessment Test 2</th> --}}
+                        <!-- <th>Test 3</th> -->
+                        <th>Examination 70%</th>
+                        
+                      </tr>
+                      </thead>
+                      <tbody>
 
-              <div class="row">
-                <!-- accepted payments column -->
-                <div class="col-6">
-                  <p class="lead">Payment Methods:</p>
-                  <img src="../../dist/img/credit/visa.png" alt="Visa">
-                  <img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
-                  <img src="../../dist/img/credit/american-express.png" alt="American Express">
-                  <img src="../../dist/img/credit/paypal2.png" alt="Paypal">
+                          @foreach ($view_teachersubjects as $view_teachersubject)
+                            @if ($view_teachersubject->section == 'Primary')
+                            <tr>
+                                <td>{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
+                                <td><input max="30" type="number" class="form-control" name="test_1[]" placeholder="Assesssment Test 1"></td>
+                                {{-- <td><input type="text" class="form-control" name="test_2[]" placeholder="Assessment Test 2"></td> --}}
+                                <!-- <td><input type="number" class="form-control" name="test_3[]" placeholder="Test 3"></td> -->
+                                <td><input max="70" type="number" class="form-control" name="exams[]" placeholder="Exams Score"></td>
+                               <input type="hidden" name="classname[]" value="{{ $view_studentsubject->classname }}" placeholder="ID">
+                               <input type="hidden" name="centername[]" value="{{ $view_studentsubject->centername }}" placeholder="ID">
+                                <input type="hidden" name="section[]" value="{{ Auth::guard('web')->user()->section }}" placeholder="Teacher ID">
+                                <input type="hidden" name="category[]" value="{{ $view_teachersubject->category }}" placeholder="ID">
 
-                  <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem
-                    plugg
-                    dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
-                  </p>
-                </div>
-                <!-- /.col -->
-                <div class="col-6">
-                  <p class="lead">Amount Due 2/22/2014</p>
+                                <input type="hidden" name="tname[]" value="{{ Auth::guard('web')->user()->fname }}" placeholder="Teacher ID">
+                                <input type="hidden" name="tsurname[]" value="{{ Auth::guard('web')->user()->surname }}" placeholder="Teacher ID">
+                                {{-- <input type="hidden" name="teacher_id[]" value="{{ Auth::guard('web')->user()->id }}" placeholder="Teacher ID"> --}}
+                                <input type="hidden" name="user_id[]" value="{{ $view_studentsubject->id }}" placeholder="ID">
+                                <input type="hidden" name="term[]" value="{{ $view_studentsubject->term }}" placeholder="term">
+                                <input type="hidden" name="academic_session[]" value="{{ $view_studentsubject->academic_session }}" placeholder="academic_session">
+                                <input type="hidden" name="section[]" value="{{ $view_studentsubject->section }}" placeholder="academic_session">
+                                <input required type="hidden" name="regnumber[]" value="{{ $view_studentsubject->regnumber }}" placeholder="regnumber">
+                                {{-- <input type="text" name="guardian_id[]" value="{{ $view_studentsubject->id }}" placeholder="Parent ID"> --}}
+                                <input type="hidden" name="classname[]" value="{{ $view_studentsubject->classname }}" placeholder="Parent ID">
+                                <input type="hidden" name="fname[]" value="{{ $view_studentsubject->fname }}" placeholder="Parent ID">
+                                <input type="hidden" name="middlename[]" value="{{ $view_studentsubject->middlename }}" placeholder="Parent ID">
+                                <input type="hidden" name="surname[]" value="{{ $view_studentsubject->surname }}" placeholder="Parent ID">
+                                <input type="hidden" name="gender[]" value="{{ $view_studentsubject->gender }}" placeholder="Parent ID">
+                                <input type="hidden" name="images[]" value="{{ $view_studentsubject->images }}" placeholder="Parent ID">
+                                <input type="hidden" name="images[]" value="{{ $view_studentsubject->images }}" placeholder="Parent ID">
+                               <input type="hidden" value="{{ Auth::guard('web')->user()->tname }}" name="tname[]" id=""></td> 
+                                 <input type="hidden" value="{{ Auth::guard('web')->user()->tsurname }}" name="tsurname[]" id=""></td> 
+                                      
+                              </tr>
+                            @else
+                            
+                                    
+                            @endif
 
-                  <div class="table-responsive">
-                    <table class="table">
-                      <tr>
-                        <th style="width:50%">Subtotal:</th>
-                        <td>$250.30</td>
-                      </tr>
-                      <tr>
-                        <th>Tax (9.3%)</th>
-                        <td>$10.34</td>
-                      </tr>
-                      <tr>
-                        <th>Shipping:</th>
-                        <td>$5.80</td>
-                      </tr>
-                      <tr>
-                        <th>Total:</th>
-                        <td>$265.24</td>
-                      </tr>
+                          @endforeach
+                      
+
+                      </tbody>
                     </table>
-                  </div>
-                </div>
-                <!-- /.col -->
+                
+                  {{-- @else
+                      
+                @endif --}}
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+       
+        <div class="row">
+          
+        
+          @endif
               </div>
-              <!-- /.row -->
-
-              <!-- this row will not appear when printing -->
-              <div class="row no-print">
-                <div class="col-12">
-                  <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-                  <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
-                    Payment
-                  </button>
-                  <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-                    <i class="fas fa-download"></i> Generate PDF
-                  </button>
+           
+              <button type="submit" class="btn btn-success"><i class="far fa-bell"></i> 
+        Submit 
+      </button>
+                </form>
+                
                 </div>
               </div>
             </div>
@@ -184,7 +363,34 @@
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
+
+
+
+
+
+  
+    </div>
+    <!-- /.row -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
   </div>
   <!-- /.content-wrapper -->
+
+  
  @include('dashboard.admin.footer')
